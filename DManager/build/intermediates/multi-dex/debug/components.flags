@@ -1,0 +1,77 @@
+-injars 'E:\WorkSpace\Android_Studio\Android\SNMP\DManager\build\intermediates\transforms\jarMerging\debug\jars\1\1f\combined.jar'
+-outjars 'E:\WorkSpace\Android_Studio\Android\SNMP\DManager\build\intermediates\multi-dex\debug\componentClasses.jar'
+
+-libraryjars 'D:\Dev\Android_SDK\build-tools\23.0.0\lib\shrinkedAndroid.jar'
+
+-forceprocessing
+-dontoptimize
+-dontobfuscate
+-dontusemixedcaseclassnames
+-dontpreverify
+-dontnote **,com.android.tools.fd.**,android.support.multidex.MultiDexExtractor
+-dontwarn **
+-printconfiguration 'E:\WorkSpace\Android_Studio\Android\SNMP\DManager\build\intermediates\multi-dex\debug\components.flags'
+
+
+-keep class cn.donica.slcd.dmanager.crash.MyApplication {
+    <init>();
+    void attachBaseContext(android.content.Context);
+}
+
+-keep class cn.donica.slcd.dmanager.ui.MainActivity {
+    <init>();
+}
+
+-keep class cn.donica.slcd.dmanager.ui.BiteActivity {
+    <init>();
+}
+
+-keep class cn.donica.slcd.dmanager.broadcastreceiver.BootBroadcaseReceiver {
+    <init>();
+}
+
+-keep class cn.donica.slcd.dmanager.broadcastreceiver.WiFiBroadcastReceiver {
+    <init>();
+}
+
+-keep class cn.donica.slcd.dmanager.broadcastreceiver.AlarmReceiver {
+    <init>();
+}
+
+-keep class cn.donica.slcd.dmanager.service.BootService {
+    <init>();
+}
+
+-keep class cn.donica.slcd.dmanager.service.RegularCheck {
+    <init>();
+}
+
+-keep class cn.donica.slcd.dmanager.service.ManualCheck {
+    <init>();
+}
+
+-keep class cn.donica.slcd.dmanager.service.LogTrapService {
+    <init>();
+}
+
+-keep class cn.donica.slcd.dmanager.service.MainService {
+    <init>();
+}
+
+-keep class cn.donica.slcd.dmanager.service.TestService {
+    <init>();
+}
+
+-keep public class * extends android.app.backup.BackupAgent {
+    <init>();
+}
+
+-keep public class * extends java.lang.annotation.Annotation {
+    <fields>;
+    <methods>;
+}
+
+-keep class com.android.tools.fd.** {
+    <fields>;
+    <methods>;
+}

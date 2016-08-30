@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="main_bg_color">#04508b</color>
+    <color name="orange">#FFA011</color>
+    <color name="red">#DF5431</color>
+    <color name="purple">#B551A5</color>
+    <color name="blue">#299BE8</color>
+    <color name="air">#44DAFF</color>
+    <color name="texi">#6CB5B5</color>
+    <color name="jingdian">#A7B56C</color>
+    <color name="white">#ffffffff</color>
+    <color name="black">#00000000</color>
+
+    <color name="unfocused">#ffffffff</color>
+    <color name="pressed">#FFEBEDCF</color>
+    <color name="selected">#FFEBEDCF</color>
+    <color name="focused">#FFEBEDCF</color>
+    <color name="inselected">#FFe4e4e4</color>
+    <color name="translucent_background">#00000000</color>
+    <color name="bright_foreground_dark">#ffffffff</color>
+
+</resources>

@@ -1,0 +1,28 @@
+apply plugin: 'com.android.application'
+android {
+    compileSdkVersion 23
+    buildToolsVersion '23.0.0'
+    useLibrary 'org.apache.http.legacy'
+    defaultConfig {
+        applicationId "com.advantech.advfuntest"
+        minSdkVersion 14
+        targetSdkVersion 18
+        ndk {
+            moduleName "libserial_port"
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+        debug {
+            jniDebuggable true
+        }
+    }
+}
+
+dependencies {
+    provided files('libs/classes-V0.4.jar')
+}

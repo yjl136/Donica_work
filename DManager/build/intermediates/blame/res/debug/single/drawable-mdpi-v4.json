@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "E:\\WorkSpace\\Android_Studio\\Android\\SNMP\\DManager\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\ic_launcher.png",
+        "source": "E:\\WorkSpace\\Android_Studio\\Android\\SNMP\\DManager\\src\\main\\res\\drawable-mdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "E:\\WorkSpace\\Android_Studio\\Android\\SNMP\\DManager\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\list_item_selector.xml",
+        "source": "E:\\WorkSpace\\Android_Studio\\Android\\SNMP\\DManager\\src\\main\\res\\drawable-mdpi\\list_item_selector.xml"
+    }
+]

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.advantech.advfuntest"
+    android:versionCode="2"
+    android:versionName="2.0">
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="18" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/funtest_icon"
+        android:label="@string/app_name"
+        android:theme="@android:style/Theme.Black.NoTitleBar">
+        <activity
+            android:name=".AdvFunTest"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Black.NoTitleBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".LoopbackActivity"
+            android:label="@string/title_activity_loopback"></activity>
+
+        <service android:name=".SataFun"></service>
+        <service android:name=".UdiskFun"></service>
+
+        <activity
+            android:name=".LogView"
+            android:label="@string/title_activity_log_view"></activity>
+        <activity
+            android:name=".FuncView"
+            android:label="@string/title_activity_func_view"></activity>
+        <activity
+            android:name=".RGB_View"
+            android:label="@string/title_activity_rgb__view"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
+        <activity
+            android:name=".Backlight_View"
+            android:label="@string/title_activity_backlight_view"></activity>
+        <activity
+            android:name=".Volume_View"
+            android:label="@string/title_activity_volume_view"></activity>
+        <activity
+            android:name=".CameraFun"
+            android:configChanges="orientation|keyboardHidden|keyboard"
+            android:label="@string/camera"
+            android:screenOrientation="landscape"></activity>
+        <activity
+            android:name=".InputView"
+            android:label="@string/title_activity_input_view"></activity>
+
+        <receiver android:name=".TestReceiver">
+            <intent-filter>
+                <action android:name="com.advantech.advfuntest.TEST_ACTION" />
+            </intent-filter>
+        </receiver>
+
+        <activity android:name=".MainActivity"></activity>
+    </application>
+
+</manifest>
