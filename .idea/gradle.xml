@@ -9,12 +9,18 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/DManager" />
+            <option value="$PROJECT_DIR$/Donica_Launcher0523" />
+            <option value="$PROJECT_DIR$/advFunTest" />
             <option value="$PROJECT_DIR$/app" />
           </set>
         </option>
         <option name="myModules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/DManager" />
+            <option value="$PROJECT_DIR$/Donica_Launcher0523" />
+            <option value="$PROJECT_DIR$/advFunTest" />
             <option value="$PROJECT_DIR$/app" />
           </set>
         </option>

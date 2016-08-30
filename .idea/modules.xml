@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/DManager/DManager.iml" filepath="$PROJECT_DIR$/DManager/DManager.iml" />
       <module fileurl="file://$PROJECT_DIR$/Donica.iml" filepath="$PROJECT_DIR$/Donica.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Donica_Launcher0523/Donica_Launcher0523.iml" filepath="$PROJECT_DIR$/Donica_Launcher0523/Donica_Launcher0523.iml" />
+      <module fileurl="file://$PROJECT_DIR$/advFunTest/advFunTest.iml" filepath="$PROJECT_DIR$/advFunTest/advFunTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

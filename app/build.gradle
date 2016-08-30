@@ -13,10 +13,20 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            //是否输出日志
+            buildConfigField("boolean", "debug", "false")
+            //是否混淆
+            minifyEnabled true
+            //移除无用的resource文件
+            shrinkResources true
+            zipAlignEnabled true
+            //默认混淆文件
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+
     }
+
+
 }
 
 dependencies {
