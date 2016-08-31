@@ -1,9 +1,5 @@
 [
     {
-        "merged": "E:\\WorkSpace\\Android_Studio\\Android\\SNMP\\DManager\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\ic_launcher.png",
-        "source": "E:\\WorkSpace\\Android_Studio\\Android\\SNMP\\DManager\\src\\main\\res\\drawable-xxhdpi\\ic_launcher.png"
-    },
-    {
         "merged": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\DManager\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4\\ic_launcher.png",
         "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\DManager\\src\\main\\res\\drawable-xxhdpi\\ic_launcher.png"
     }

@@ -17,7 +17,6 @@ ADDED from E:\WorkSpace\Android_Studio\Android\Donica\DManager\src\main\AndroidM
 		ADDED from E:\WorkSpace\Android_Studio\Android\Donica\DManager\src\main\AndroidManifest.xml:2:11-69
 uses-sdk
 ADDED from E:\WorkSpace\Android_Studio\Android\Donica\DManager\src\main\AndroidManifest.xml:7:5-9:41
-MERGED from [com.android.support:multidex:1.0.1] E:\WorkSpace\Android_Studio\Android\Donica\DManager\build\intermediates\exploded-aar\com.android.support\multidex\1.0.1\AndroidManifest.xml:18:5-42
 MERGED from [com.android.support:support-v4:23.4.0] E:\WorkSpace\Android_Studio\Android\Donica\DManager\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\AndroidManifest.xml:20:5-43
 	android:targetSdkVersion
 		ADDED from E:\WorkSpace\Android_Studio\Android\Donica\DManager\src\main\AndroidManifest.xml:9:9-38

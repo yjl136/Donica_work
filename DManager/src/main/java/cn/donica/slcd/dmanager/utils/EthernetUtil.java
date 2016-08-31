@@ -107,7 +107,7 @@ public class EthernetUtil {
     /**
      * @return 以太网卡Mac地址
      */
-    public String getMacAddress() {
+    public static String getMacAddress() {
         try {
             return loadFileAsString("/sys/class/net/eth0/address").toUpperCase().substring(0, 17);
         } catch (IOException e) {

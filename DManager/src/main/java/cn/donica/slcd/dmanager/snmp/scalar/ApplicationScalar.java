@@ -3,22 +3,16 @@
  */
 package cn.donica.slcd.dmanager.snmp.scalar;
 
-import java.util.HashMap;
-import java.util.List;
-
-import org.snmp4j.smi.OctetString;
-import org.snmp4j.smi.Variable;
-
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningAppProcessInfo;
 import android.app.ActivityManager.RunningServiceInfo;
 import android.content.Context;
-import android.os.RemoteException;
-import android.os.ServiceManager;
-import android.util.Log;
 
-import com.android.internal.app.IUsageStats;
-import com.android.internal.os.PkgUsageStats;
+import org.snmp4j.smi.OctetString;
+import org.snmp4j.smi.Variable;
+
+import java.util.HashMap;
+import java.util.List;
 
 import cn.donica.slcd.dmanager.snmp.ISnmpOID;
 
@@ -80,7 +74,7 @@ public class ApplicationScalar implements IScalar {
      * @return
      */
     public long getRunningTime(String packageName) {
-        try {
+       /* try {
             IUsageStats usageStats = IUsageStats.Stub.asInterface(ServiceManager.getService("usagestats"));
             PkgUsageStats[] pkgUsageStats = usageStats.getAllPkgUsageStats();
             for (int i = 0; i < pkgUsageStats.length; i++) {
@@ -92,7 +86,7 @@ public class ApplicationScalar implements IScalar {
             }
         } catch (RemoteException e) {
             e.printStackTrace();
-        }
+        }*/
         return 0;
     }
 

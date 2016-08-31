@@ -21,6 +21,7 @@ android {
             jniDebuggable true
         }
     }
+
 }
 
 dependencies {
