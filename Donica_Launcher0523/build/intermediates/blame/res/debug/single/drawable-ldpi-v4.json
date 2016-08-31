@@ -2,5 +2,9 @@
     {
         "merged": "E:\\WorkSpace\\Android_Studio\\Android\\Launcher2\\Donica_Launcher0523\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi-v4\\icon.png",
         "source": "E:\\WorkSpace\\Android_Studio\\Android\\Launcher2\\Donica_Launcher0523\\res\\drawable-ldpi\\icon.png"
+    },
+    {
+        "merged": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\Donica_Launcher0523\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi-v4\\icon.png",
+        "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\Donica_Launcher0523\\res\\drawable-ldpi\\icon.png"
     }
 ]

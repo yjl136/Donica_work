@@ -1,6 +1,6 @@
 /*
  * This file is auto-generated.  DO NOT MODIFY.
- * Original file: E:\\WorkSpace\\Android_Studio\\Android\\SNMP\\DManager\\src\\main\\aidl\\cn\\donica\\slcd\\dmanager\\aidl\\ILogTrapAidl.aidl
+ * Original file: E:\\WorkSpace\\Android_Studio\\Android\\Donica\\DManager\\src\\main\\aidl\\cn\\donica\\slcd\\dmanager\\aidl\\ILogTrapAidl.aidl
  */
 package cn.donica.slcd.dmanager.aidl;
 // Declare any non-default types here with import statements

@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <RelativeLayout android:layout_width="fill_parent"
-                android:id="@+id/relative" 
-                android:background="#0effffff"
-                android:clickable="true" 
-                android:gravity="center"
-                android:layout_height="wrap_content" 
-                xmlns:android="http://schemas.android.com/apk/res/android">
- <TextView android:layout_width="wrap_content"
-           android:textColor="#030303"   
-           android:layout_centerHorizontal="true"
-           android:layout_height="wrap_content" 
-           android:id="@+id/itemText">     
- </TextView>
+    android:id="@+id/relative"
+    android:background="#0effffff"
+    android:clickable="true"
+    android:gravity="center"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:textColor="#030303"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"
+        android:id="@+id/itemText"></TextView>
 
 </RelativeLayout>
 
