@@ -8,7 +8,7 @@ android {
     defaultConfig {
         applicationId "cn.donica.slcd.polling"
         minSdkVersion 14
-        targetSdkVersion 18
+        targetSdkVersion 23
         ndk {
             moduleName "shell"
         }

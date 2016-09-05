@@ -1,1 +1,1 @@
-include ':app', ':advFunTest', ':Donica_Launcher0523', ':DManager', ':VAPA'
+include ':app', ':advFunTest', ':Donica_Launcher0523', ':DManager', ':VAPA', ':VaPa2'

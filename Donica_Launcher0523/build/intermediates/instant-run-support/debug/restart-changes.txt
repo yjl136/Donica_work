@@ -1,2 +1,0 @@
-CHANGED,E:\WorkSpace\Android_Studio\Android\Launcher2\Donica_Launcher0523\build\intermediates\transforms\instantRun\debug\folders\1\5\main\cn\donica\slcd\launcher\ui\PageControlView.class
-CHANGED,E:\WorkSpace\Android_Studio\Android\Launcher2\Donica_Launcher0523\build\intermediates\transforms\instantRun\debug\folders\1\5\main\cn\donica\slcd\launcher\ui\PageControlView$1.class

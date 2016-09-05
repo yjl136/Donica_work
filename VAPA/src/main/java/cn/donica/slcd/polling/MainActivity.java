@@ -7,7 +7,6 @@ import android.widget.Toast;
 
 import cn.donica.slcd.utils.PollingUtils;
 
-@SuppressWarnings("unused")
 public class MainActivity extends Activity {
 
     private static final String TAG = "MainActivity";
