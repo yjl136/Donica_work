@@ -1,0 +1,2 @@
+set solib-search-path E:\WorkSpace\Android_Studio\Android\Donica\advFunTest\build\intermediates\ndk\debug\obj/local/armeabi
+directory D:/Dev/Android_SDK/ndk-bundle/build//../platforms/android-23/arch-arm/usr/include E:\WorkSpace\Android_Studio\Android\Donica\advFunTest\src\main\jni E:\WorkSpace\Android_Studio\Android\Donica\advFunTest\src\debug\jni E:/WorkSpace/Android_Studio/Android/Donica/advFunTest/build/intermediates/ndk/debug D:/Dev/Android_SDK/ndk-bundle/build//../sources/cxx-stl/system
