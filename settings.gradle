@@ -1,1 +1,2 @@
-include ':app', ':advFunTest', ':Donica_Launcher0523', ':DManager', ':VAPA', ':VaPa2'
+include ':app', ':advFunTest', ':Donica_Launcher0523', ':DManager', ':VaPa2', ':Settings', ':Donica_Sensor', ':DBluetooth'
+include ':fSLOta'

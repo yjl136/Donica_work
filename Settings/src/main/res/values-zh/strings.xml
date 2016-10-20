@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">系统设置</string>
+    <string name="action_about">关于</string>
+    <string name="label_brightness">亮度设置</string>
+    <string name="label_volume">音量设置</string>
+    <string name="SystemManager">系统管理员</string>
+    <string name="SuperUser">超级用户</string>
+    <string name="UserManger">用户管理</string>
+    <string name="about_title">关于</string>
+    <string name="system_Settings">系统设置</string>
+    <string name="system_management">系统管理</string>
+
+    <string name="version_title">版本号</string>
+    <string name="version_content">SLCD20151020V154</string>
+    <string name="developer_title">开发商</string>
+    <string name="developer_content">深圳多尼卡技术有限公司</string>
+    <string name="updateTime_title">更新时间</string>
+    <string name="updateTime_content">2015-10-20 18:30</string>
+
+    <string name="you_click_on_five_times">你点击了五次</string>
+
+    <string name="appIconManager">桌面图标管理</string>
+    <string name="system_settings">设置</string>
+    <string name="restore_factory_settings">恢复出厂设置</string>
+    <string name="uninstall">卸载应用</string>
+    <string name="wlan">WLAN</string>
+    <string name="bluetooth">蓝牙</string>
+    <string name="Ethernet_Configuration">以太网配置</string>
+    <string name="seat_configuration">座位位置配置</string>
+    <string name="ip_seat_configuration">IP地址和座位位置编号配置</string>
+    <string name="Please_enter_the_IP_address">请输入机载服务器IP地址</string>
+    <string name="Please_input_your_seat_location_number">请输入座位位置编号</string>
+    <string name="cancel">取消</string>
+    <string name="try_again">重试</string>
+    <string name="goon">继续</string>
+    <string name="confirm">确认</string>
+
+    <string name="lockpattern_recording_incorrect_too_short">至少连接4个点，请重试</string>
+    <string name="enter_a_gesture_password">解锁登录</string>
+    <string name="enter_password_successfully">输入密码成功</string>
+    <string name="enter_password_error">输入密码错误</string>
+    <string name="reset_password">重设管理员密码</string>
+    <string name="enter_password">请输入系统管理员密码</string>
+    <string name="password">密码</string>
+    <string name="language_input">语言和输入法</string>
+
+    <string name="udisk_upgrade">USB升级系统</string>
+    <string name="sdcard_upgrade">SD升级系统</string>
+    <string name="network_upgrade">网络升级系统</string>
+
+    <string name="launcher_icon_display">桌面图标管理</string>
+
+    <string name="fold">收起</string>
+    <string name="unfold">展开更多</string>
+
+
+    <string name="please_enter_super_user_password">请输入管理员密码</string>
+    <string name="System_Settings">系统设置</string>
+
+    <string name="show_more">显示更多</string>
+
+    <string name="display_app">显示APP</string>
+    <string name="hidden_app">隐藏APP</string>
+</resources>

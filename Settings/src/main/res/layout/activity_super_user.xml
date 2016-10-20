@@ -1,0 +1,116 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:baselineAligned="false"
+    android:orientation="vertical">
+
+    <!--<include layout="@layout/toolbar"></include>-->
+
+    <include layout="@layout/line" />
+
+    <RelativeLayout
+        android:id="@+id/resetPwd"
+        android:layout_width="match_parent"
+        android:layout_height="71dp"
+        android:clickable="true">
+
+        <TextView
+            android:id="@+id/reset_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="46dp"
+            android:text="@string/reset_password"
+            android:textColor="@color/text_label"
+            android:textSize="@dimen/TextSizeBig" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="22dp"
+            android:background="@mipmap/ico_right" />
+    </RelativeLayout>
+
+    <include layout="@layout/line"></include>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="71dp"
+        android:clickable="true">
+
+        <TextView
+            android:id="@+id/udisk_upgrade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="46dp"
+            android:text="@string/udisk_upgrade"
+            android:textColor="@color/text_label"
+            android:textSize="@dimen/TextSizeBig" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="22dp"
+            android:background="@mipmap/ico_right" />
+    </RelativeLayout>
+
+    <include layout="@layout/line"></include>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="71dp"
+        android:clickable="true">
+
+        <TextView
+            android:id="@+id/sdcard_upgrade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="46dp"
+            android:text="@string/sdcard_upgrade"
+            android:textColor="@color/text_label"
+            android:textSize="@dimen/TextSizeBig" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="22dp"
+            android:background="@mipmap/ico_right" />
+    </RelativeLayout>
+
+    <include layout="@layout/line"></include>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="71dp"
+        android:clickable="true">
+
+        <TextView
+            android:id="@+id/network_upgrade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="46dp"
+            android:text="@string/network_upgrade"
+            android:textColor="@color/text_label"
+            android:textSize="@dimen/TextSizeBig" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="22dp"
+            android:background="@mipmap/ico_right" />
+    </RelativeLayout>
+
+    <include layout="@layout/line"></include>
+</LinearLayout>

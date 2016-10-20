@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:baselineAligned="false"
+    android:orientation="vertical">
+
+    <!--<include layout="@layout/toolbar" />-->
+
+    <include layout="@layout/line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            style="@style/MainPanel"
+            android:layout_marginBottom="@dimen/panel_side_margin"
+            android:layout_marginLeft="@dimen/panel_side_margin"
+            android:layout_marginRight="@dimen/panel_gap_margin"
+            android:layout_marginTop="@dimen/panel_side_margin">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@mipmap/ico_brightness" />
+
+                <TextView
+                    style="@style/MainPanelLabel"
+                    android:layout_marginLeft="16dp"
+                    android:text="@string/label_brightness" />
+                <!--<TextView style="@style/HorizontalDivider" />-->
+            </LinearLayout>
+
+            <SeekBar
+                android:id="@+id/brightness_seekbar"
+                style="@style/SettingSeekbar"
+                android:layout_marginTop="@dimen/panel_marginTop"
+                android:maxHeight="2dp"
+                android:paddingLeft="50dp"
+                android:paddingRight="50dp"
+                android:progress="50"
+                android:progressDrawable="@drawable/seekbar_bg"
+                android:thumb="@mipmap/ico_slider" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:background="@color/line">
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/MainPanel"
+            android:layout_marginBottom="@dimen/panel_side_margin"
+            android:layout_marginLeft="@dimen/panel_gap_margin"
+            android:layout_marginRight="@dimen/panel_side_margin"
+            android:layout_marginTop="@dimen/panel_side_margin">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@mipmap/ico_volume" />
+
+                <TextView
+                    style="@style/MainPanelLabel"
+                    android:layout_marginLeft="16dp"
+                    android:text="@string/label_volume" />
+                <!--<TextView style="@style/HorizontalDivider" />-->
+            </LinearLayout>
+
+            <!--<TextView style="@style/HorizontalDivider" />-->
+
+            <SeekBar
+                android:id="@+id/volume_seekbar"
+                style="@style/SettingSeekbar"
+                android:layout_marginTop="@dimen/panel_marginTop"
+                android:maxHeight="2dp"
+                android:paddingLeft="50dp"
+                android:paddingRight="50dp"
+                android:progress="50"
+                android:progressDrawable="@drawable/seekbar_bg"
+                android:thumb="@mipmap/ico_slider" />
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

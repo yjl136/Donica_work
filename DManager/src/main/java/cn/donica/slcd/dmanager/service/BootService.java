@@ -23,7 +23,7 @@ public class BootService extends Service {
         super.onCreate();
         Check check = new Check();
         try {
-//            check.bootCheck();
+            //check.bootCheck();
             check.bootStart();
         } catch (RemoteException e) {
             e.printStackTrace();

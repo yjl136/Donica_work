@@ -2,13 +2,16 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/DBluetooth/DBluetooth.iml" filepath="$PROJECT_DIR$/DBluetooth/DBluetooth.iml" />
       <module fileurl="file://$PROJECT_DIR$/DManager/DManager.iml" filepath="$PROJECT_DIR$/DManager/DManager.iml" />
       <module fileurl="file://$PROJECT_DIR$/Donica.iml" filepath="$PROJECT_DIR$/Donica.iml" />
       <module fileurl="file://$PROJECT_DIR$/Donica_Launcher0523/Donica_Launcher0523.iml" filepath="$PROJECT_DIR$/Donica_Launcher0523/Donica_Launcher0523.iml" />
-      <module fileurl="file://$PROJECT_DIR$/VAPA/VAPA.iml" filepath="$PROJECT_DIR$/VAPA/VAPA.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Donica_Sensor/Donica_Sensor.iml" filepath="$PROJECT_DIR$/Donica_Sensor/Donica_Sensor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Settings/Settings.iml" filepath="$PROJECT_DIR$/Settings/Settings.iml" />
       <module fileurl="file://$PROJECT_DIR$/VaPa2/VaPa2.iml" filepath="$PROJECT_DIR$/VaPa2/VaPa2.iml" />
       <module fileurl="file://$PROJECT_DIR$/advFunTest/advFunTest.iml" filepath="$PROJECT_DIR$/advFunTest/advFunTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fSLOta/fSLOta.iml" filepath="$PROJECT_DIR$/fSLOta/fSLOta.iml" />
     </modules>
   </component>
 </project>

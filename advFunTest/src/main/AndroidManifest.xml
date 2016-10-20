@@ -26,11 +26,11 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/funtest_icon"
+        android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@android:style/Theme.Black.NoTitleBar">
         <activity
-            android:name=".AdvFunTest"
+            android:name="com.advantech.adv.MainActivity"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Black.NoTitleBar">
             <intent-filter>
@@ -40,44 +40,42 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LoopbackActivity"
+            android:name="com.advantech.adv.LoopbackActivity"
             android:label="@string/title_activity_loopback"></activity>
 
-        <service android:name=".SataFun"></service>
-        <service android:name=".UdiskFun"></service>
+
 
         <activity
-            android:name=".LogView"
+            android:name="com.advantech.adv.LogView"
             android:label="@string/title_activity_log_view"></activity>
         <activity
-            android:name=".FuncView"
+            android:name="com.advantech.adv.FuncView"
             android:label="@string/title_activity_func_view"></activity>
         <activity
-            android:name=".RGB_View"
+            android:name="com.advantech.adv.RGB_View"
             android:label="@string/title_activity_rgb__view"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
         <activity
-            android:name=".Backlight_View"
+            android:name="com.advantech.adv.Backlight_View"
             android:label="@string/title_activity_backlight_view"></activity>
         <activity
-            android:name=".Volume_View"
+            android:name="com.advantech.adv.Volume_View"
             android:label="@string/title_activity_volume_view"></activity>
         <activity
-            android:name=".CameraFun"
+            android:name="com.advantech.adv.CameraFun"
             android:configChanges="orientation|keyboardHidden|keyboard"
             android:label="@string/camera"
             android:screenOrientation="landscape"></activity>
         <activity
-            android:name=".InputView"
+            android:name="com.advantech.adv.InputView"
             android:label="@string/title_activity_input_view"></activity>
 
-        <receiver android:name=".TestReceiver">
+        <receiver android:name="com.advantech.adv.TestReceiver">
             <intent-filter>
                 <action android:name="com.advantech.advfuntest.TEST_ACTION" />
             </intent-filter>
         </receiver>
 
-        <activity android:name=".MainActivity"></activity>
     </application>
 
 </manifest>

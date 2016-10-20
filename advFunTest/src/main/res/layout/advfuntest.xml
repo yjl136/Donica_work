@@ -6,8 +6,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/white"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@android:color/white">
 
         <include layout="@layout/titlebar_home" />
 
@@ -143,7 +143,7 @@
                 android:layout_centerVertical="true" />
 
             <ImageView
-                android:id="@+id/imageView4"
+                android:id="@+id/audioIv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/audioCheckBox"
@@ -153,13 +153,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/imageView4"
+                android:layout_toRightOf="@+id/audioIv"
                 android:text="@string/audio"
                 android:background="@color/air"
                 android:textSize="16px" />
 
             <ImageView
-                android:id="@+id/imageView5"
+                android:id="@+id/audioIv2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -174,7 +174,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="2dp"
-                android:layout_toLeftOf="@+id/imageView5"
+                android:layout_toLeftOf="@+id/audioIv2"
                 android:text="@string/defResult"
                 android:textColor="@color/red"
                 android:textSize="25px"
@@ -200,7 +200,7 @@
                 android:layout_centerVertical="true" />
 
             <ImageView
-                android:id="@+id/imageView1"
+                android:id="@+id/memoryIv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/memoryCheckBox"
@@ -211,12 +211,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/imageView1"
+                android:layout_toRightOf="@+id/memoryIv"
                 android:text="@string/memory"
                 android:textSize="16px" />
 
             <ImageView
-                android:id="@+id/imageView6"
+                android:id="@+id/memoryIv2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -231,7 +231,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="2dp"
-                android:layout_toLeftOf="@+id/imageView6"
+                android:layout_toLeftOf="@+id/memoryIv2"
                 android:text="@string/defResult"
                 android:textColor="@color/red"
                 android:textSize="25px"
@@ -257,7 +257,7 @@
                 android:layout_centerVertical="true" />
 
             <ImageView
-                android:id="@+id/imageView1"
+                android:id="@+id/diskIv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/diskCheckBox"
@@ -268,12 +268,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/imageView1"
+                android:layout_toRightOf="@+id/diskIv"
                 android:text="@string/disk"
                 android:textSize="16px" />
 
             <ImageView
-                android:id="@+id/imageView6"
+                android:id="@+id/diskIv2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -288,7 +288,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="2dp"
-                android:layout_toLeftOf="@+id/imageView6"
+                android:layout_toLeftOf="@+id/diskIv2"
                 android:text="@string/defResult"
                 android:textColor="@color/red"
                 android:textSize="25px"
@@ -314,7 +314,7 @@
                 android:layout_centerVertical="true" />
 
             <ImageView
-                android:id="@+id/imageView1"
+                android:id="@+id/udiskIv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/udiskCheckBox"
@@ -325,12 +325,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/imageView1"
+                android:layout_toRightOf="@+id/udiskIv"
                 android:text="@string/udisk"
                 android:textSize="16px" />
 
             <ImageView
-                android:id="@+id/imageView6"
+                android:id="@+id/udiskIv2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -345,7 +345,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="2dp"
-                android:layout_toLeftOf="@+id/imageView6"
+                android:layout_toLeftOf="@+id/udiskIv2"
                 android:text="@string/defResult"
                 android:textColor="@color/red"
                 android:textSize="25px"
@@ -371,7 +371,7 @@
                 android:layout_centerVertical="true" />
 
             <ImageView
-                android:id="@+id/imageView1"
+                android:id="@+id/ssdIv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/ssdCheckBox"
@@ -382,12 +382,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/imageView1"
+                android:layout_toRightOf="@+id/ssdIv"
                 android:text="@string/ssd"
                 android:textSize="16px" />
 
             <ImageView
-                android:id="@+id/imageView6"
+                android:id="@+id/ssdIv2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -402,7 +402,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="2dp"
-                android:layout_toLeftOf="@+id/imageView6"
+                android:layout_toLeftOf="@+id/ssdIv2"
                 android:text="@string/defResult"
                 android:textColor="@color/red"
                 android:textSize="25px"
@@ -428,7 +428,7 @@
                 android:layout_centerVertical="true" />
 
             <ImageView
-                android:id="@+id/imageView1"
+                android:id="@+id/wifiIv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/wifiCheckBox"
@@ -439,13 +439,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/imageView1"
+                android:layout_toRightOf="@+id/wifiIv"
                 android:text="@string/wifi"
                 android:background="@color/air"
                 android:textSize="16px" />
 
             <ImageView
-                android:id="@+id/imageView6"
+                android:id="@+id/wifiIv2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -460,7 +460,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="2dp"
-                android:layout_toLeftOf="@+id/imageView6"
+                android:layout_toLeftOf="@+id/wifiIv2"
                 android:text="@string/defResult"
                 android:textColor="@color/red"
                 android:textSize="25px"
@@ -486,7 +486,7 @@
                 android:layout_centerVertical="true" />
 
             <ImageView
-                android:id="@+id/imageView1"
+                android:id="@+id/rfidIv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/rfidCheckBox"
@@ -497,13 +497,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/imageView1"
+                android:layout_toRightOf="@+id/rfidIv"
                 android:text="@string/rfid"
                 android:background="@color/air"
                 android:textSize="16px" />
 
             <ImageView
-                android:id="@+id/imageView6"
+                android:id="@+id/rfidIv2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -518,7 +518,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="2dp"
-                android:layout_toLeftOf="@+id/imageView6"
+                android:layout_toLeftOf="@+id/rfidIv2"
                 android:text="@string/defResult"
                 android:textColor="@color/red"
                 android:textSize="25px"
@@ -543,7 +543,7 @@
                 android:layout_centerVertical="true" />
 
             <ImageView
-                android:id="@+id/imageView4"
+                android:id="@+id/ethernetIv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/ethernetCheckBox"
@@ -553,12 +553,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/imageView4"
+                android:layout_toRightOf="@+id/ethernetIv"
                 android:text="@string/ethernet"
                 android:textSize="16px" />
 
             <ImageView
-                android:id="@+id/imageView5"
+                android:id="@+id/ethernetIv2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -573,7 +573,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="2dp"
-                android:layout_toLeftOf="@+id/imageView5"
+                android:layout_toLeftOf="@+id/ethernetIv2"
                 android:text="@string/defResult"
                 android:textColor="@color/red"
                 android:textSize="25px"
@@ -600,7 +600,7 @@
                 android:layout_centerVertical="true" />
 
             <ImageView
-                android:id="@+id/imageView1"
+                android:id="@+id/usbIv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/usbCheckBox"
@@ -611,12 +611,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/imageView1"
+                android:layout_toRightOf="@+id/usbIv"
                 android:text="@string/usb"
                 android:textSize="16px" />
 
             <ImageView
-                android:id="@+id/imageView6"
+                android:id="@+id/usbIv2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -631,7 +631,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="2dp"
-                android:layout_toLeftOf="@+id/imageView6"
+                android:layout_toLeftOf="@+id/usbIv2"
                 android:text="@string/defResult"
                 android:textColor="@color/red"
                 android:textSize="25px"
@@ -658,7 +658,7 @@
                 android:layout_centerVertical="true" />
 
             <ImageView
-                android:id="@+id/imageView1"
+                android:id="@+id/sdcardIv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/sdcardCheckBox"
@@ -669,12 +669,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/imageView1"
+                android:layout_toRightOf="@+id/sdcardIv"
                 android:text="@string/sdcarddet"
                 android:textSize="16px" />
 
             <ImageView
-                android:id="@+id/imageView6"
+                android:id="@+id/sdcardIv2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -689,7 +689,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="2dp"
-                android:layout_toLeftOf="@+id/imageView6"
+                android:layout_toLeftOf="@+id/sdcardIv2"
                 android:text="@string/defResult"
                 android:textColor="@color/red"
                 android:textSize="25px"
@@ -715,7 +715,7 @@
                 android:layout_centerVertical="true" />
 
             <ImageView
-                android:id="@+id/imageView1"
+                android:id="@+id/lcdIv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/lcdCheckBox"
@@ -726,13 +726,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/imageView1"
+                android:layout_toRightOf="@+id/lcdIv"
                 android:text="@string/lcd"
                 android:background="@color/air"
                 android:textSize="16px" />
 
             <ImageView
-                android:id="@+id/imageView6"
+                android:id="@+id/lcdIv2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -747,7 +747,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="2dp"
-                android:layout_toLeftOf="@+id/imageView6"
+                android:layout_toLeftOf="@+id/lcdIv2"
                 android:text="@string/defResult"
                 android:textColor="@color/red"
                 android:textSize="25px"
@@ -773,7 +773,7 @@
                 android:layout_centerVertical="true" />
 
             <ImageView
-                android:id="@+id/imageView1"
+                android:id="@+id/micIv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/ledCheckBox"
@@ -784,12 +784,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/imageView1"
+                android:layout_toRightOf="@+id/micIv"
                 android:text="@string/led"
                 android:textSize="16px" />
 
             <ImageView
-                android:id="@+id/imageView6"
+                android:id="@+id/micIv2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -804,7 +804,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="2dp"
-                android:layout_toLeftOf="@+id/imageView6"
+                android:layout_toLeftOf="@+id/micIv2"
                 android:text="@string/defResult"
                 android:textColor="@color/red"
                 android:textSize="25px"

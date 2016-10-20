@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="horizontal"
     android:background="@android:color/white"
-    tools:context="com.advantech.advfuntest.MainActivity">
+    tools:context="com.advantech.adv.MainActivity">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -199,6 +199,22 @@
             android:layout_marginTop="10dp"
             android:onClick="set_led3"
             android:text="set_led3" />
+        <Button
+            android:id="@+id/temperature"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:onClick="get_temperature"
+            android:text="get_temperature" />
+        <Button
+            android:id="@+id/angle"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:onClick="get_angle_status"
+            android:text="get_angle_status" />
 
         <TextView
             android:id="@+id/title"

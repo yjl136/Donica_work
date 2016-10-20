@@ -20,7 +20,7 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <string name="action_settings">Settings</string>
-    <string name="app_name">AdvFunTest</string>
+    <string name="app_name">DonicaTest</string>
     <string name="audio">Audio Test</string>
     <string name="autotest">Auto Test</string>
     <string name="autotestStr">自检程序</string>
@@ -77,7 +77,7 @@
     <string name="str_Zero">0</string>
     <string name="testlogStr">Demo演示</string>
     <string name="third_button">Ethernet</string>
-    <string name="title">Advantech Fun Test V1.6</string>
+    <string name="title">Advantech Fun Test V1.7</string>
     <string name="title_activity_audio_fun">AudioFun</string>
     <string name="title_activity_backlight_view">Backlight Test</string>
     <string name="title_activity_func_view">Function Test</string>

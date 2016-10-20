@@ -245,7 +245,7 @@ int fd, open_flag;
 off_t offset = strtoll("0xE0000", NULL, 0);
 size_t len = strtoul("0x1000", NULL, 0);
 //LOGE("in read fun");
-const char *filename = "/data/data/com.advantech.advfuntest/flag";
+const char *filename = "/data/data/com.advantech.adv/flag";
 enum {
     OPT_INFO,
     OPT_READ,

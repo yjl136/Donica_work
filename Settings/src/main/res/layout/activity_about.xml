@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <!--<include layout="@layout/toolbar" />-->
+
+    <include layout="@layout/line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="71dp"
+            android:clickable="true">
+
+            <TextView
+                android:id="@+id/version_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="46dp"
+                android:text="版本号"
+                android:textColor="@color/left_text_color"
+                android:textSize="@dimen/TextSizeBig" />
+
+            <TextView
+                android:id="@+id/version_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="56dp"
+                android:text="版本号"
+                android:textColor="@color/right_text_color"
+                android:textSize="18sp" />
+        </RelativeLayout>
+
+        <include layout="@layout/line" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="71dp"
+            android:clickable="true">
+
+            <TextView
+                android:id="@+id/developer_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="46dp"
+                android:text="版本号"
+                android:textColor="@color/left_text_color"
+                android:textSize="@dimen/TextSizeBig" />
+
+            <TextView
+                android:id="@+id/developer_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="56dp"
+                android:text="版本号"
+                android:textColor="@color/right_text_color"
+                android:textSize="18sp" />
+        </RelativeLayout>
+
+        <include layout="@layout/line" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="71dp"
+            android:clickable="true">
+
+            <TextView
+                android:id="@+id/updateTime_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="46dp"
+                android:text="版本号"
+                android:textColor="@color/left_text_color"
+                android:textSize="@dimen/TextSizeBig" />
+
+            <TextView
+                android:id="@+id/updateTime_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="56dp"
+                android:text="版本号"
+                android:textColor="@color/right_text_color"
+                android:textSize="18sp" />
+        </RelativeLayout>
+
+        <include layout="@layout/line" />
+    </LinearLayout>
+</LinearLayout>

@@ -12,7 +12,8 @@ extern "C" {
  * Method:    open
  * Signature: (Ljava/lang/String;II)Ljava/io/FileDescriptor;
  */
-JNIEXPORT jobjectJNICALL
+JNIEXPORT jobject
+        JNICALL
 Java_com_advantech_advfuntest_SerialPort_open
 (JNIEnv
 *, jclass, jstring, jint, jint);

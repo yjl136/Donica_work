@@ -2,9 +2,9 @@
 <resources>
 
     <string name="emp_str"></string>
-    <string name="title">Advantech Fun Test V1.6</string>
+    <string name="title">Advantech Fun Test V1.7</string>
     <string name="keypad_title">GRGBanking Android Keypad Test</string>
-    <string name="app_name">AdvFunTest</string>
+    <string name="app_name">DonicaTest</string>
     <string name="action_settings">Settings</string>
     <string name="autotestStr">自检程序</string>
     <string name="testlogStr">Demo演示</string>

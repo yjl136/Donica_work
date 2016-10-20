@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="actionbar_background">#2AA8DF</color>
+    <color name="panel_background">#FFFFFF</color>
+    <color name="main_background">#F1F1F1</color>
+    <color name="label_text_color">#333333</color>
+    <color name="Gray">#333333</color>
+    <color name="Black">#000000</color>
+    <color name="divider_background">#dddddd</color>
+    <color name="border_background">#dddddd</color>
+    <color name="seekbar_background">#b5b6b5</color>
+    <color name="seekbar_active_background">#54ade9</color>
+
+    <color name="white">@android:color/white</color>
+    <color name="black">@android:color/black</color>
+    <color name="blue">#083a8a</color>
+    <color name="gray">#FF888888</color>
+    <color name="green">#009933</color>
+    <color name="sky_blue">#3f8dd1</color>
+    <color name="deep_blue">#4876FF</color>
+    <color name="divider">#FFCCCCCC</color>
+    <color name="sys_bg">#e6ecee</color>
+    <color name="timestamp_bg">#dddfe2</color>
+    <color name="gray_title_bar">#383a4c</color>
+    <color name="background">#383a4c</color>
+    <color name="line">#4c4e62</color>
+    <color name="left_text_color">#ccccff</color>
+    <color name="right_text_color">#9999cc</color>
+
+    <color name="emphasize">#00aaf3</color>
+    <color name="weaken">#465f9f</color>
+
+    <color name="text_label">#ccccff</color>
+</resources>

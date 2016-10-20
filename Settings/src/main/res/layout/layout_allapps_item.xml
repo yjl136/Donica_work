@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?><!-- AllAppsActivity2中GridView的Item --><!-- 包含了icon背景、icon app名 ，点击/焦点背景变化由drawable/appitemgrid_appitemicon定义-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/appitemframe"
+        android:layout_centerHorizontal="true">
+
+        <ImageView
+            android:id="@+id/appitemicon"
+            android:layout_width="95dip"
+            android:layout_height="95dip"
+            android:padding="20dip" />
+
+        <ImageView
+            android:id="@+id/appitemiconfg"
+            android:layout_width="95dip"
+            android:layout_height="95dip"
+            android:background="@drawable/appitemgrid_appitemicon" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/appitemname"
+        android:layout_below="@id/appitemframe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
+        android:gravity="center"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

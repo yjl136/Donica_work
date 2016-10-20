@@ -1,0 +1,70 @@
+<resources>
+    <string name="app_name">Settings</string>
+    <string name="action_about">About</string>
+    <string name="label_brightness">Brightness</string>
+    <string name="label_volume">Volume</string>
+    <string name="setting_arrow">setting_arrow</string>
+    <string name="SystemManager">System Manager</string>
+    <string name="SuperUser">Super User</string>
+    <string name="UserManger">User Manger</string>
+    <string name="action_settings">action_settings</string>
+    <string name="about_title">About</string>
+    <string name="System_Settings">System Settings</string>
+    <string name="system_management">System Management</string>
+
+    <string name="version_title">Version Code</string>
+    <string name="version_content">SLCD20151020V154</string>
+    <string name="developer_title">Developer</string>
+    <string name="developer_content">Donica(ShenZhen) Co,Ltd</string>
+    <string name="updateTime_title">Update Time</string>
+    <string name="updateTime_content">2015-10-20 18:30</string>
+
+    <string name="appIconManager">App Icon Manager</string>
+    <string name="system_settings">Settings</string>
+    <string name="restore_factory_settings">Restore Factory Settings</string>
+    <string name="uninstall">Uninstall</string>
+    <string name="wlan">WLAN</string>
+    <string name="bluetooth">Bluetooth</string>
+    <string name="Ethernet_Configuration">Ethernet Configuration</string>
+    <string name="language_input">Language And Input</string>
+    <string name="seat_configuration">Seat Configuration</string>
+    <string name="ip_seat_configuration">IP address and Seat location number configuration</string>
+    <string name="Please_enter_the_IP_address">Please enter the airborne server IP address</string>
+    <string name="Please_input_your_seat_location_number">Please input your seat location number</string>
+    <string name="you_click_on_five_times">You click on five times</string>
+    <string name="cancel">Cancel</string>
+    <string name="try_again">Try Again</string>
+    <string name="goon">Goon</string>
+    <string name="confirm">Confirm</string>
+    <string name="lockpattern_recording_incorrect_too_short">lockpattern recording incorrect too short</string>
+    <string name="lockpattern_error">Lockpattern Error</string>
+    <!-- Accessibility description sent when user starts drawing a lock pattern. [CHAR LIMIT=NONE] -->
+    <string name="lockscreen_access_pattern_start">Pattern started</string>
+    <!-- Accessibility description sent when user adds a cell to the pattern. [CHAR LIMIT=NONE] -->
+    <string name="lockscreen_access_pattern_cell_added">Cell added</string>
+    <!-- Accessibility description sent when the pattern times out and is cleared. [CHAR LIMIT=NONE] -->
+    <string name="lockscreen_access_pattern_cleared">Pattern cleared</string>
+    <!-- Accessibility description sent when user completes drawing a pattern. [CHAR LIMIT=NONE] -->
+    <string name="lockscreen_access_pattern_detected">Pattern completed</string>
+    <string name="enter_a_gesture_password">Enter Gesture Password</string>
+
+    <string name="enter_password_successfully">Enter password successfully</string>
+    <string name="enter_password_error">Enter password error</string>
+    <string name="reset_password">Reset password</string>
+    <string name="enter_password">Enter password</string>
+    <string name="password">password</string>
+
+    <string name="udisk_upgrade">Udisk Upgrade</string>
+    <string name="sdcard_upgrade">SDCard Upgrade</string>
+    <string name="network_upgrade">NetWork Upgrade</string>
+
+    <string name="launcher_icon_display">Launcher Icon Display</string>
+
+    <string name="fold">Fold</string>
+    <string name="unfold">Show More</string>
+
+    <string name="please_enter_super_user_password">Enter Super User Password</string>
+    <string name="show_more">Show More</string>
+    <string name="display_app">Display App</string>
+    <string name="hidden_app">Hidden App</string>
+</resources>

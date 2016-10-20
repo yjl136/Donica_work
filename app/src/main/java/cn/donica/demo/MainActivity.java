@@ -14,5 +14,6 @@ public class MainActivity extends AppCompatActivity {
         int width = getResources().getDisplayMetrics().widthPixels;
         Log.i("donica", "height:" + height);
         Log.i("donica", "width:" + width);
+
     }
 }

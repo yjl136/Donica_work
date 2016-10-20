@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?><!-- GridView组件，被GameActivity、AllAppsActivity2共用 -->
+<GridView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/gameGrid"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal"
+    android:gravity="center_horizontal"
+    android:verticalSpacing="15dip"
+    android:numColumns="4"
+    android:listSelector="#00000000">
+    <!-- android:gravity="center_horizontal"保证 AllAppsActivity2的 viewFlipper的GridView的item能够居中-->
+    <!-- android:listSelector="#00000000"隐藏默认的选中背景 -->
+</GridView>

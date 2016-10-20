@@ -26,8 +26,8 @@
                     "startLine": 3,
                     "startColumn": 4,
                     "startOffset": 100,
-                    "endColumn": 45,
-                    "endOffset": 141
+                    "endColumn": 52,
+                    "endOffset": 148
                 },
                 "from": {
                     "file": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\Donica_Launcher0523\\res\\values\\strings.xml",
@@ -35,8 +35,8 @@
                         "startLine": 3,
                         "startColumn": 4,
                         "startOffset": 56,
-                        "endColumn": 45,
-                        "endOffset": 97
+                        "endColumn": 52,
+                        "endOffset": 104
                     }
                 }
             },
@@ -44,18 +44,18 @@
                 "to": {
                     "startLine": 4,
                     "startColumn": 4,
-                    "startOffset": 146,
+                    "startOffset": 153,
                     "endColumn": 43,
-                    "endOffset": 185
+                    "endOffset": 192
                 },
                 "from": {
                     "file": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\Donica_Launcher0523\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
-                        "startOffset": 102,
+                        "startOffset": 109,
                         "endColumn": 43,
-                        "endOffset": 141
+                        "endOffset": 148
                     }
                 }
             },
@@ -63,18 +63,18 @@
                 "to": {
                     "startLine": 5,
                     "startColumn": 4,
-                    "startOffset": 190,
+                    "startOffset": 197,
                     "endColumn": 87,
-                    "endOffset": 273
+                    "endOffset": 280
                 },
                 "from": {
                     "file": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\Donica_Launcher0523\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 5,
                         "startColumn": 4,
-                        "startOffset": 146,
+                        "startOffset": 153,
                         "endColumn": 87,
-                        "endOffset": 229
+                        "endOffset": 236
                     }
                 }
             }
