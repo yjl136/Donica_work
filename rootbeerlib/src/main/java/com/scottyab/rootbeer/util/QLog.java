@@ -1,9 +1,9 @@
 package com.scottyab.rootbeer.util;
 
+import android.util.Log;
+
 import java.io.PrintWriter;
 import java.io.StringWriter;
-
-import android.util.Log;
 
 public final class QLog {
     public static final int NONE = 0;
