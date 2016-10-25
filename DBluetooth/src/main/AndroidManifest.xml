@@ -22,6 +22,14 @@
         <service
             android:name=".service.DetectService"
             android:exported="true" />
+        <receiver android:name=".receiver.BootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.NET.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
+            </intent-filter>
+
+        </receiver>
     </application>
 
 </manifest>

@@ -199,6 +199,7 @@
             android:layout_marginTop="10dp"
             android:onClick="set_led3"
             android:text="set_led3" />
+
         <Button
             android:id="@+id/temperature"
             android:layout_width="200dp"
@@ -207,6 +208,7 @@
             android:layout_marginTop="10dp"
             android:onClick="get_temperature"
             android:text="get_temperature" />
+
         <Button
             android:id="@+id/angle"
             android:layout_width="200dp"
