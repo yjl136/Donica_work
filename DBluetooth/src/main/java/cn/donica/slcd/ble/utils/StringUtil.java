@@ -17,9 +17,26 @@ public class StringUtil {
     }
 
 
+
     public static byte[] subBytes(byte[] src, int begin, int count) {
         byte[] bs = new byte[count];
         for (int i = begin; i < begin + count; i++) bs[i - begin] = src[i];
+        return bs;
+    }
+
+
+    public static byte[] subBytes(byte[] src, int count) {
+        byte[] bs = null;
+        if (src[0] == 0x06 && src[1] == 0x20) {
+            bs = new byte[count - 1];
+            for (int i = 1; i < count; i++) {
+                bs[i - 1] = src[i];
+            }
+        } else if (src[0] == 0x20) {
+            bs = subBytes(src, 0, count);
+        } else {
+            DLog.error("subBytes");
+        }
         return bs;
     }
 

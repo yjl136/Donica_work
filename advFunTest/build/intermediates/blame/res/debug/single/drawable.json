@@ -204,12 +204,12 @@
         "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\src\\main\\res\\drawable\\under_titlebar_blue_bg.png"
     },
     {
-        "merged": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\build\\intermediates\\res\\merged\\debug\\drawable\\ic_hotel_keyword.png",
-        "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\src\\main\\res\\drawable\\ic_hotel_keyword.png"
-    },
-    {
         "merged": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\build\\intermediates\\res\\merged\\debug\\drawable\\gray_10_port.jpg",
         "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\src\\main\\res\\drawable\\gray_10_port.jpg"
+    },
+    {
+        "merged": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\build\\intermediates\\res\\merged\\debug\\drawable\\ic_hotel_keyword.png",
+        "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\src\\main\\res\\drawable\\ic_hotel_keyword.png"
     },
     {
         "merged": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\build\\intermediates\\res\\merged\\debug\\drawable\\preference_item.xml",

@@ -85,15 +85,15 @@ public class CmdManage {
      *
      * @return
      */
-    public static byte[] getReadBlock(byte block) {
+    public static byte[] getReadBlock(int block) {
         int len = 7;
         byte[] buf = new byte[len];
         buf[0] = 0x20;
         int serial = AppTool.getSerial();
         buf[1] = (byte) serial;
-        buf[2] = 0x22;
+        buf[2] = 0x46;
         buf[3] = 0x01;
-        buf[4] = block;
+        buf[4] = (byte) block;
         buf[5] = getBBC(buf[1], buf[2], buf[3], buf[4]);
         buf[6] = 0x03;
         return buf;

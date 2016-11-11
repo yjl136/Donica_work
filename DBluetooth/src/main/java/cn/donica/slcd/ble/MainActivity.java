@@ -17,6 +17,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         openBt = (Button) findViewById(R.id.detectBt);
         openBt.setOnClickListener(this);
+        /// getSystemService()
+
     }
 
     @Override
