@@ -46,7 +46,7 @@ import cn.donica.slcd.ble.utils.UnitUtils;
  * 用于检测是否有card靠近
  */
 public class DetectService extends Service implements AsyncTask.IStatus {
-    private final static int DELAY_TIME = 1500;
+    private final static int DELAY_TIME = 4000;
     //测试用的蓝牙mac地址
     private final static String SP_MAC = "68:FB:7E:EE:C7:95";
     private final static String jin_MAC = "00:07:5B:00:B9:1B";
@@ -57,8 +57,7 @@ public class DetectService extends Service implements AsyncTask.IStatus {
     private OutputStream mOutputStream;
     private SerialPort mSerialPort;
     private boolean isIdel;
-    //当前正在读取卡的数据类型，目前只支持（0x01 和 0x03格式的数据）
-    private byte cardByte;
+
 
     private BluetoothAdapter adapter;
     /**
@@ -69,7 +68,6 @@ public class DetectService extends Service implements AsyncTask.IStatus {
     //需要读取多少个字节数据
     private int count;
     //剩余需要读取多少块数据
-    private int blk;
     private Timer timer = new Timer();
     private static final int DELAY_REMOVE_CMD = 0x102;
     private static final int READ_CARD_CMD = 0x100;
@@ -101,12 +99,19 @@ public class DetectService extends Service implements AsyncTask.IStatus {
             isIdel = true;
             //创建一个线程池对象
             mExecutorService = Executors.newSingleThreadExecutor();
-            timer.schedule(task, 0, 1500);
+            timer.schedule(task, 0, 500);
+
         } else {
             DLog.warn("Fail to open " + Constant.devName + "!");
             stopSelf();
+
         }
 
+    }
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        return START_STICKY;
     }
 
     private TimerTask task = new TimerTask() {
@@ -114,7 +119,7 @@ public class DetectService extends Service implements AsyncTask.IStatus {
             if (isIdel) {
                 Message message = new Message();
                 message.what = READ_CARD;
-                handler.sendMessageDelayed(message, 200);
+                handler.sendMessageDelayed(message, 85);
                 Message msg = new Message();
                 msg.what = READ_CARD_CMD;
                 handler.sendMessage(msg);
@@ -249,11 +254,27 @@ public class DetectService extends Service implements AsyncTask.IStatus {
         }
     }
 
-    public void setIdel(boolean isIdel) {
-        this.isIdel = isIdel;
-        if (isIdel && FloatWindowManager.isFloating()) {
-            handler.sendEmptyMessageDelayed(DELAY_REMOVE_CMD, DELAY_TIME);
+    public void setIdel(final boolean isIdel) {
+        if(isIdel){
+            //是空闲延迟设置idel
+            if(FloatWindowManager.isFloating()){
+                handler.sendEmptyMessageDelayed(DELAY_REMOVE_CMD, DELAY_TIME);
+                //设置延迟
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        DetectService.this.isIdel = isIdel;
+                    }
+                },DELAY_TIME);
+            }else{
+                this.isIdel = isIdel;
+            }
+        }else{
+            //不是空闲
+            this.isIdel = isIdel;
         }
+
+
     }
 
     /**
@@ -308,14 +329,11 @@ public class DetectService extends Service implements AsyncTask.IStatus {
             FloatWindowManager.updateFloatView(localName + " : " + StringUtil.bytes2HexString(macBytes));
             pair(macBytes);
         } catch (Exception e) {
+            FloatWindowManager.updateFloatView("Ndef数据不完整");
             setIdel(true);
             DLog.error("init NdnfMessage error  " + e.getMessage());
         }
     }
-
-
-
-
 
 
     /**
@@ -380,6 +398,12 @@ public class DetectService extends Service implements AsyncTask.IStatus {
                 DLog.error("create bond error " + e.getMessage());
                 e.printStackTrace();
             }
+        } else if (device.getBondState() == BluetoothDevice.BOND_BONDED) {
+            FloatWindowManager.updateFloatView("蓝牙配对成功！！");
+            enable();
+            setIdel(true);
+            boolean isGetProxy = adapter.getProfileProxy(this, new MyServiceListener(device), 4);
+            DLog.info("getProfileProxy:" + isGetProxy);
         } else {
             setIdel(true);
         }
@@ -474,6 +498,7 @@ public class DetectService extends Service implements AsyncTask.IStatus {
 
     /**
      * 任务失败
+     *
      * @param state
      */
     @Override
@@ -495,6 +520,14 @@ public class DetectService extends Service implements AsyncTask.IStatus {
         handler.sendMessage(msg);
     }
 
+    /**
+     * 启动自己
+     */
+    public void startSelf() {
+        Intent intent = new Intent(this, DetectService.class);
+        startService(intent);
+    }
+
     @Override
     public void onDestroy() {
         DLog.info("onDestroy");
@@ -511,6 +544,7 @@ public class DetectService extends Service implements AsyncTask.IStatus {
             mExecutorService.shutdown();
             mExecutorService = null;
         }
+        startSelf();
         super.onDestroy();
     }
 }

@@ -1,8 +1,6 @@
 package cn.donica.slcd.ble.utils;
 
-/************************************
- * ������Ժ��� *
- **************/
+
 
 import android.bluetooth.BluetoothDevice;
 import android.util.Log;

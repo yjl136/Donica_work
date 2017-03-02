@@ -141,7 +141,7 @@ public class MainActivity extends Activity {
             switch (viewId) {
                 case R.id.brightness_seekbar:
                     // save brightness to system settings
-                    Settings.System.putInt(BaseApplication.getContext().getContentResolver(), Settings.System.SCREEN_BRIGHTNESS, progress);
+                  //  Settings.System.putInt(BaseApplication.getContext().getContentResolver(), Settings.System.SCREEN_BRIGHTNESS, progress);
                     // change current window's brightness
                     // Toast.makeText(TestActivity.this,"progress is:"+progress,Toast.LENGTH_SHORT).show();
 

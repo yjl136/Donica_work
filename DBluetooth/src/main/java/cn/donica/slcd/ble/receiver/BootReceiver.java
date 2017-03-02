@@ -1,9 +1,7 @@
 package cn.donica.slcd.ble.receiver;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-
 import cn.donica.slcd.ble.service.DetectService;
 import cn.donica.slcd.ble.utils.DLog;
 

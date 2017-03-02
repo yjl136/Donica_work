@@ -33,6 +33,24 @@ public class CmdManage {
     }
 
     /**
+     * 自动读卡片
+     * @return
+     */
+    public static byte[] getAutoReadCardId(){
+        int len = 7;
+        byte[] buf = new byte[len];
+        buf[0] = 0x20;
+        int serial = AppTool.getSerial();
+        buf[1] = (byte) serial;
+        buf[2] = 0x25;
+        buf[3] = 0x01;
+        buf[4] = 0x00;//ReqCode＝0（IDLE），请求天线范围内IDLE状态的卡（HALT状态的除外）
+        buf[5] = getBBC(buf[1], buf[2], buf[3], buf[4]);
+        buf[6] = 0x03;
+        return buf;
+    }
+
+    /**
      * 写块
      *
      * @param data

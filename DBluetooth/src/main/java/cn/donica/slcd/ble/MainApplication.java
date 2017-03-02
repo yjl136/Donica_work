@@ -3,6 +3,8 @@ package cn.donica.slcd.ble;
 import android.app.Application;
 import android.content.Context;
 
+import com.squareup.leakcanary.LeakCanary;
+
 public class MainApplication extends Application {
 
     private static Context context;
@@ -13,6 +15,7 @@ public class MainApplication extends Application {
         if (context == null) {
             context = getApplicationContext();
         }
+        LeakCanary.install(this);
     }
 
     public static Context getAppContext() {

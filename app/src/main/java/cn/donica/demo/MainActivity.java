@@ -16,4 +16,5 @@ public class MainActivity extends AppCompatActivity {
         Log.i("donica", "width:" + width);
 
     }
+
 }
