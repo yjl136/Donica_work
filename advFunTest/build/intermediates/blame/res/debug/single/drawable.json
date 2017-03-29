@@ -116,12 +116,12 @@
         "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\src\\main\\res\\drawable\\th_five_dice_white.png"
     },
     {
-        "merged": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\build\\intermediates\\res\\merged\\debug\\drawable\\tab_camera_indicator.xml",
-        "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\src\\main\\res\\drawable\\tab_camera_indicator.xml"
-    },
-    {
         "merged": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\build\\intermediates\\res\\merged\\debug\\drawable\\top_tab_indicator_left.xml",
         "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\src\\main\\res\\drawable\\top_tab_indicator_left.xml"
+    },
+    {
+        "merged": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\build\\intermediates\\res\\merged\\debug\\drawable\\tab_camera_indicator.xml",
+        "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\src\\main\\res\\drawable\\tab_camera_indicator.xml"
     },
     {
         "merged": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\build\\intermediates\\res\\merged\\debug\\drawable\\ic_hotel_city.png",
@@ -204,12 +204,12 @@
         "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\src\\main\\res\\drawable\\under_titlebar_blue_bg.png"
     },
     {
-        "merged": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\build\\intermediates\\res\\merged\\debug\\drawable\\gray_10_port.jpg",
-        "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\src\\main\\res\\drawable\\gray_10_port.jpg"
-    },
-    {
         "merged": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\build\\intermediates\\res\\merged\\debug\\drawable\\ic_hotel_keyword.png",
         "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\src\\main\\res\\drawable\\ic_hotel_keyword.png"
+    },
+    {
+        "merged": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\build\\intermediates\\res\\merged\\debug\\drawable\\gray_10_port.jpg",
+        "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\src\\main\\res\\drawable\\gray_10_port.jpg"
     },
     {
         "merged": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\build\\intermediates\\res\\merged\\debug\\drawable\\preference_item.xml",
@@ -292,12 +292,12 @@
         "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\src\\main\\res\\drawable\\photo.png"
     },
     {
-        "merged": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\build\\intermediates\\res\\merged\\debug\\drawable\\segmented_button_right_pressed.png",
-        "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\src\\main\\res\\drawable\\segmented_button_right_pressed.png"
-    },
-    {
         "merged": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\build\\intermediates\\res\\merged\\debug\\drawable\\segmented_button_center.png",
         "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\src\\main\\res\\drawable\\segmented_button_center.png"
+    },
+    {
+        "merged": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\build\\intermediates\\res\\merged\\debug\\drawable\\segmented_button_right_pressed.png",
+        "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\src\\main\\res\\drawable\\segmented_button_right_pressed.png"
     },
     {
         "merged": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\build\\intermediates\\res\\merged\\debug\\drawable\\div_line.xml",
@@ -356,12 +356,12 @@
         "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\src\\main\\res\\drawable\\th_clock1620dt0.png"
     },
     {
-        "merged": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\build\\intermediates\\res\\merged\\debug\\drawable\\tab_while_bar_bg.png",
-        "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\src\\main\\res\\drawable\\tab_while_bar_bg.png"
-    },
-    {
         "merged": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\build\\intermediates\\res\\merged\\debug\\drawable\\th_safari.png",
         "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\src\\main\\res\\drawable\\th_safari.png"
+    },
+    {
+        "merged": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\build\\intermediates\\res\\merged\\debug\\drawable\\tab_while_bar_bg.png",
+        "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\src\\main\\res\\drawable\\tab_while_bar_bg.png"
     },
     {
         "merged": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\build\\intermediates\\res\\merged\\debug\\drawable\\ic_preference_last_normal.9.png",
@@ -392,12 +392,12 @@
         "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\src\\main\\res\\drawable\\musiconline.png"
     },
     {
-        "merged": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\build\\intermediates\\res\\merged\\debug\\drawable\\white_but.xml",
-        "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\src\\main\\res\\drawable\\white_but.xml"
-    },
-    {
         "merged": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\build\\intermediates\\res\\merged\\debug\\drawable\\th_brightness.png",
         "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\src\\main\\res\\drawable\\th_brightness.png"
+    },
+    {
+        "merged": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\build\\intermediates\\res\\merged\\debug\\drawable\\white_but.xml",
+        "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\src\\main\\res\\drawable\\white_but.xml"
     },
     {
         "merged": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\build\\intermediates\\res\\merged\\debug\\drawable\\microphone.png",
@@ -488,12 +488,12 @@
         "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\src\\main\\res\\drawable\\th_mybattery903.png"
     },
     {
-        "merged": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\build\\intermediates\\res\\merged\\debug\\drawable\\segmented_button_center_pressed.png",
-        "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\src\\main\\res\\drawable\\segmented_button_center_pressed.png"
-    },
-    {
         "merged": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\build\\intermediates\\res\\merged\\debug\\drawable\\hotel_bottom.xml",
         "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\src\\main\\res\\drawable\\hotel_bottom.xml"
+    },
+    {
+        "merged": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\build\\intermediates\\res\\merged\\debug\\drawable\\segmented_button_center_pressed.png",
+        "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\src\\main\\res\\drawable\\segmented_button_center_pressed.png"
     },
     {
         "merged": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\build\\intermediates\\res\\merged\\debug\\drawable\\th_bluetooth1.png",

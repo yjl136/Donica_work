@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\Donica_Launcher0523\\build\\intermediates\\res\\merged\\debug\\values\\values.xml",
+        "outputFile": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\Donica_Launcher0523\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
         "map": [
             {
                 "to": {
@@ -11,7 +11,7 @@
                     "endOffset": 95
                 },
                 "from": {
-                    "file": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\Donica_Launcher0523\\res\\values\\dimens.xml",
+                    "file": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\Donica_Launcher0523\\src\\main\\res\\values\\dimens.xml",
                     "position": {
                         "startLine": 5,
                         "startColumn": 4,
@@ -30,7 +30,7 @@
                     "endOffset": 148
                 },
                 "from": {
-                    "file": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\Donica_Launcher0523\\res\\values\\strings.xml",
+                    "file": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\Donica_Launcher0523\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 3,
                         "startColumn": 4,
@@ -49,7 +49,7 @@
                     "endOffset": 192
                 },
                 "from": {
-                    "file": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\Donica_Launcher0523\\res\\values\\strings.xml",
+                    "file": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\Donica_Launcher0523\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
@@ -68,7 +68,7 @@
                     "endOffset": 280
                 },
                 "from": {
-                    "file": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\Donica_Launcher0523\\res\\values\\strings.xml",
+                    "file": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\Donica_Launcher0523\\src\\main\\res\\values\\strings.xml",
                     "position": {
                         "startLine": 5,
                         "startColumn": 4,

@@ -36,7 +36,7 @@ public class LockSetupActivity extends Activity implements
     private Intent mIntent;
 
     /**
-     * 开始
+     * 开始`
      */
     private static final int STEP_1 = 1; // 开始
     /**

@@ -1,64 +1,25 @@
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:2.1.2'
-    }
-}
-apply plugin: 'android'
+apply plugin: 'com.android.application'
 
-dependencies {
-    compile fileTree(include: '*.jar', dir: 'libs')
-    compile files('libs/android-support-v4.jar')
-    //Provides AndroidJUnitRunner
-
-//    compile 'com.android.support:support-v4:23+'
-//    compile 'com.squareup.retrofit2:retrofit:2.0.0-beta4'
-//    compile 'com.squareup.retrofit2:converter-gson:2.0.0-beta4'
-//    compile 'com.j256.ormlite:ormlite-core:4.48'
-//    compile 'com.j256.ormlite:ormlite-android:4.48'
-
-    testCompile 'junit:junit:4.12'
-//    testCompile "org.mockito:mockito-core:1.9.5"
-//    testCompile "org.robolectric:robolectric:3.0"
-//    testCompile 'org.robolectric:robolectric-annotations:3.0'
-//    //robolectric针对support-v4的shadows
-//    testCompile "org.robolectric:shadows-support-v4:3.0"
-//    testCompile "com.jayway.awaitility:awaitility:1.7.0"
-}
 
 android {
     compileSdkVersion 18
-    buildToolsVersion "23.0.1"
+    buildToolsVersion '25.0.2'
     defaultConfig {
-        testInstrumentationRunner "android.test.InstrumentationTestRunner"
+        applicationId "cn.donica.slcd.launcher"
+        minSdkVersion 18
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
     }
-    testOptions {
-        unitTests.returnDefaultValues = true
-    }
-    sourceSets {
-        main {
-            manifest.srcFile 'AndroidManifest.xml'
-            java.srcDirs = ['src']
-            resources.srcDirs = ['src']
-            aidl.srcDirs = ['src']
-            renderscript.srcDirs = ['src']
-            res.srcDirs = ['res']
-            assets.srcDirs = ['assets']
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-
-        // Move the tests to tests/java, tests/res, etc...
-        instrumentTest.setRoot('tests')
-
-        // Move the build types to build-types/<type>
-        // For instance, build-types/debug/java, build-types/debug/AndroidManifest.xml, ...
-        // This moves them out of them default location under src/<type>/... which would
-        // conflict with src/ being used by the main source set.
-        // Adding new build types or product flavors should be accompanied
-        // by a similar customization.
-        debug.setRoot('build-types/debug')
-        release.setRoot('build-types/release')
     }
-
+}
+dependencies {
+    compile fileTree(include: '*.jar', dir: 'libs')
+    compile files('libs/android-support-v4.jar')
+    testCompile 'junit:junit:4.12'
 }

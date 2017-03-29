@@ -17,7 +17,7 @@ ADDED from E:\WorkSpace\Android_Studio\Android\Donica\DManager\src\main\AndroidM
 		ADDED from E:\WorkSpace\Android_Studio\Android\Donica\DManager\src\main\AndroidManifest.xml:2:11-69
 uses-sdk
 ADDED from E:\WorkSpace\Android_Studio\Android\Donica\DManager\src\main\AndroidManifest.xml:7:5-9:41
-MERGED from [com.android.support:support-v4:23.4.0] E:\WorkSpace\Android_Studio\Android\Donica\DManager\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.4.0] C:\Users\liangmingjie\.android\build-cache\b8ccd52a850518f138bd15444f51d206cb64ddbd\output\AndroidManifest.xml:20:5-43
 	android:targetSdkVersion
 		ADDED from E:\WorkSpace\Android_Studio\Android\Donica\DManager\src\main\AndroidManifest.xml:9:9-38
 		INJECTED from E:\WorkSpace\Android_Studio\Android\Donica\DManager\src\main\AndroidManifest.xml
@@ -76,7 +76,7 @@ ADDED from E:\WorkSpace\Android_Studio\Android\Donica\DManager\src\main\AndroidM
 		ADDED from E:\WorkSpace\Android_Studio\Android\Donica\DManager\src\main\AndroidManifest.xml:22:22-72
 application
 ADDED from E:\WorkSpace\Android_Studio\Android\Donica\DManager\src\main\AndroidManifest.xml:24:5-99:19
-MERGED from [com.android.support:support-v4:23.4.0] E:\WorkSpace\Android_Studio\Android\Donica\DManager\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.4.0] C:\Users\liangmingjie\.android\build-cache\b8ccd52a850518f138bd15444f51d206cb64ddbd\output\AndroidManifest.xml:22:5-20
 	android:label
 		ADDED from E:\WorkSpace\Android_Studio\Android\Donica\DManager\src\main\AndroidManifest.xml:28:9-41
 	android:allowBackup

@@ -1,9 +1,12 @@
 package cn.donica.slcd.ble;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+
+import cn.donica.slcd.ble.service.DetectService;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -19,8 +22,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-      /* Intent intent = new Intent(this, DetectService.class);
-        startService(intent);*/
+
+        Intent intent = new Intent(this, DetectService.class);
+        startService(intent);
     }
 
 }
