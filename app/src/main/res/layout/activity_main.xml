@@ -7,10 +7,24 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@android:color/white"
     tools:context="cn.donica.demo.MainActivity">
 
-    <TextView
+    <Button
+        android:id="@+id/bt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!10、23" />
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="100dp"
+        android:text="test"
+
+        />
+    <TextView
+        android:id="@+id/paTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textSize="40dp"
+        android:textColor="@android:color/darker_gray"
+        android:text="PA" />
 </RelativeLayout>

@@ -16,6 +16,15 @@ public class StringUtil {
         return ret.toString().trim();
     }
 
+    public static String byte2Hex(byte b) {
+        StringBuffer ret = new StringBuffer();
+        String hex = Integer.toHexString(b & 0xFF);
+        if (hex.length() == 1) {
+            ret.append("0");
+        }
+        ret.append(hex.toLowerCase());
+        return ret.toString().trim();
+    }
 
 
     public static byte[] subBytes(byte[] src, int begin, int count) {

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.IHwtestService;
 import android.os.RemoteException;
 import android.os.ServiceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -12,10 +13,11 @@ import android.widget.TextView;
 import com.advantech.advfuntest.R;
 
 public class MainActivity extends Activity {
+    private final static String TAG = "Hwtester";
     private TextView result;
     private IHwtestService hwtestService = null;
     byte ret = 0;
-    byte strinfo[] = new byte[256];
+
     private int value1 = 0;
     private int value2 = 0;
     private int value3 = 0;
@@ -60,15 +62,151 @@ public class MainActivity extends Activity {
     }
 
     /**
+     * 获取cpu使用率
+     * @param view
+     */
+    public void get_cpu(View view) throws RemoteException {
+        byte strinfo[] = new byte[256];
+        String allinfo = "get_cpu:";
+        ret = hwtestService.get_cpu(1, strinfo);
+        byte len = strinfo[0];
+        String info = new String(strinfo, 1, len);
+        allinfo += info + ";";
+        result.setText(allinfo);
+    }
+
+    public void get_memory(View view) throws RemoteException {
+        byte strinfo[] = new byte[256];
+        int funcid = 1;
+        String allinfo = "all:";
+        ret = hwtestService.get_memory(funcid, strinfo);
+        byte len = strinfo[0];
+        String info = new String(strinfo, 1, len);
+        allinfo += info + ";";
+
+
+        funcid = 2;
+        allinfo += "\nused:";
+        ret = hwtestService.get_memory(funcid, strinfo);
+        len = strinfo[0];
+        info = new String(strinfo, 1, len);
+        allinfo += info + ";";
+
+        funcid = 3;
+        allinfo += "\nfree:";
+        ret = hwtestService.get_memory(funcid, strinfo);
+        len = strinfo[0];
+        info = new String(strinfo, 1, len);
+        allinfo += info + ";";
+
+        result.setText(allinfo);
+    }
+
+    public void get_disk_ssd(View view) throws RemoteException {
+        byte strinfo[] = new byte[256];
+        int funcid = 1;
+        String allinfo = "ssd all:";
+        ret = hwtestService.get_disk_ssd(funcid, strinfo);
+        byte len = strinfo[0];
+        String info = new String(strinfo, 1, len);
+        allinfo += info + ";";
+
+
+        funcid = 2;
+        allinfo += "\nssd used:";
+        ret = hwtestService.get_disk_ssd(funcid, strinfo);
+        len = strinfo[0];
+        info = new String(strinfo, 1, len);
+        allinfo += info + ";";
+
+        funcid = 3;
+        allinfo += "\nssd free:";
+        ret = hwtestService.get_disk_ssd(funcid, strinfo);
+        len = strinfo[0];
+        info = new String(strinfo, 1, len);
+        allinfo += info + ";";
+
+        result.setText(allinfo);
+    }
+
+    public void get_disk_usb(View view) throws RemoteException {
+        byte strinfo[] = new byte[256];
+        int funcid = 1;
+        String allinfo = "usb all:";
+        ret = hwtestService.get_disk_usb(funcid, strinfo);
+        byte len = strinfo[0];
+        String info = new String(strinfo, 1, len);
+        allinfo += info + ";";
+
+
+        funcid = 2;
+        allinfo += "\nusb used:";
+        ret = hwtestService.get_disk_usb(funcid, strinfo);
+        len = strinfo[0];
+        info = new String(strinfo, 1, len);
+        allinfo += info + ";";
+
+        funcid = 3;
+        allinfo += "\nusb free:";
+        ret = hwtestService.get_disk_usb(funcid, strinfo);
+        len = strinfo[0];
+        info = new String(strinfo, 1, len);
+        allinfo += info + ";";
+
+        result.setText(allinfo);
+    }
+
+    /**
+     * 获取cpu使用率
+     *
+     * @param view
+     */
+    public void get_power(View view) throws RemoteException {
+        byte strinfo[] = new byte[256];
+        int funcid = 0;
+        String allinfo = "VCC:";
+        ret = hwtestService.get_vcc(funcid, strinfo);
+        byte len = strinfo[0];
+        String info = new String(strinfo, 1, len);
+        allinfo += info + ";";
+
+
+        funcid = 1;
+        allinfo += "\nV1:";
+        ret = hwtestService.get_vcc(funcid, strinfo);
+        len = strinfo[0];
+        info = new String(strinfo, 1, len);
+        allinfo += info + ";";
+
+        funcid = 2;
+        allinfo += "\nV2:";
+        ret = hwtestService.get_vcc(funcid, strinfo);
+        len = strinfo[0];
+        info = new String(strinfo, 1, len);
+        allinfo += info + ";";
+
+        result.setText(allinfo);
+    }
+
+    /**
      * 检测是否有音频信号
      *
      * @throws RemoteException
      */
     public void test_audio_signal(View view) throws RemoteException {
+        byte strinfo[] = new byte[256];
         String allinfo = "test_audio_signal:";
         ret = hwtestService.test_audio_signal(strinfo);
-        byte len = strinfo[0];
+        Log.i(TAG, "test_audio_signal:" + ret);
+      /*  byte len = strinfo[0];
         String info = new String(strinfo, 1, len);
+        allinfo += info + ";";*/
+        String info;
+        if (ret == 0) {
+            info = "success";
+        } else {
+            info = "failed";
+        }
         allinfo += info + ";";
         result.setText(allinfo);
     }
@@ -78,11 +216,25 @@ public class MainActivity extends Activity {
      *
      * @throws RemoteException
      */
-    public void test_audio_headset(View view) throws RemoteException {
+    public void test_audio_headset(View view) {
+
+        byte strinfo[] = new byte[256];
         String allinfo = "test_audio_headset:";
-        ret = hwtestService.test_audio_headset(strinfo);
-        byte len = strinfo[0];
+        try {
+            ret = hwtestService.test_audio_headset(strinfo);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        Log.i(TAG, "test_audio_headset:" + ret);
+       /* byte len = strinfo[0];
         String info = new String(strinfo, 1, len);
+        allinfo += info + ";";*/
+        String info;
+        if (ret == 0) {
+            info = "success";
+        } else {
+            info = "failed";
+        }
         allinfo += info + ";";
         result.setText(allinfo);
     }
@@ -93,15 +245,25 @@ public class MainActivity extends Activity {
      * @throws RemoteException
      */
     public void test_audio_chip(View view) throws RemoteException {
+        byte strinfo[] = new byte[256];
         String allinfo = "test_audio_chip:";
         ret = hwtestService.test_audio_chip(strinfo);
-        byte len = strinfo[0];
+        Log.i(TAG, "test_audio_chip:" + ret);
+       /* byte len = strinfo[0];
         String info = new String(strinfo, 1, len);
+        allinfo += info + ";";*/
+        String info;
+        if (ret == 0) {
+            info = "success";
+        } else {
+            info = "failed";
+        }
         allinfo += info + ";";
         result.setText(allinfo);
     }
 
     public void get_temperature(View view) throws RemoteException {
+        byte strinfo[] = new byte[256];
         String allinfo = "test_cpu_tempertature:";
         ret = hwtestService.get_temperature(strinfo);
         byte len = strinfo[0];
@@ -111,6 +273,7 @@ public class MainActivity extends Activity {
     }
 
     public void get_angle_status(View view) throws RemoteException {
+        byte strinfo[] = new byte[256];
         String allinfo = "test_angle_status:";
         ret = hwtestService.get_angle_status(strinfo);
         byte len = strinfo[0];
@@ -124,10 +287,19 @@ public class MainActivity extends Activity {
      * @throws RemoteException
      */
     public void test_ntsc(View view) throws RemoteException {
+        byte strinfo[] = new byte[256];
         String allinfo = "test_ntsc:";
         ret = hwtestService.test_ntsc(strinfo);
-        byte len = strinfo[0];
+        /*byte len = strinfo[0];
         String info = new String(strinfo, 1, len);
+        allinfo += info + ";";*/
+
+        String info;
+        if (ret == 0) {
+            info = "success";
+        } else {
+            info = "failed";
+        }
         allinfo += info + ";";
         result.setText(allinfo);
     }
@@ -138,9 +310,11 @@ public class MainActivity extends Activity {
      * @throws RemoteException
      */
     public void get_ntsc_status(View view) throws RemoteException {
+        byte strinfo[] = new byte[256];
         String allinfo = "get_ntsc_status,ret:";
         ret = hwtestService.get_ntsc_status(strinfo);
-        allinfo += ret + "\n get_ntsc_status info:";
+        //  Log.i(TAG,"get_ntsc_status:"+ret);
+        allinfo += ret + "\ninfo:";
         byte len = strinfo[0];
         String info = new String(strinfo, 1, len);
         allinfo += info + ";";
@@ -153,6 +327,7 @@ public class MainActivity extends Activity {
      * @throws RemoteException
      */
     public void get_disk_mmc(View view) throws RemoteException {
+        byte strinfo[] = new byte[256];
         int funcid = 1;
         String allinfo = "All:";
         ret = hwtestService.get_disk_mmc(funcid, strinfo);
@@ -183,23 +358,27 @@ public class MainActivity extends Activity {
      * @throws RemoteException
      */
     public void get_disk_sdcard(View view) throws RemoteException {
+        byte strinfo[] = new byte[256];
         int funcid = 1;
-        String allinfo = "All:";
+        String allinfo = " sdcard all:";
         ret = hwtestService.get_disk_sdcard(funcid, strinfo);
+        Log.i(TAG, "sdcard ret1:"+ret);
         byte len = strinfo[0];
         String allmem = new String(strinfo, 1, len);
         allinfo += allmem;
-        allinfo += "kb;\nUsed:";
+        allinfo += "kb;\nsdcard used:";
 
         funcid = 2;
         ret = hwtestService.get_disk_sdcard(funcid, strinfo);
+        Log.i(TAG, "sdcard ret2:"+ret);
         len = strinfo[0];
         String used = new String(strinfo, 1, len);
         allinfo += used;
-        allinfo += "kb;\nfree:";
+        allinfo += "kb;\nsdcard free:";
 
         funcid = 3;
         ret = hwtestService.get_disk_sdcard(funcid, strinfo);
+        Log.i(TAG, "sdcard ret3:"+ret);
         len = strinfo[0];
         String free = new String(strinfo, 1, len);
         allinfo += free;
@@ -213,11 +392,20 @@ public class MainActivity extends Activity {
      * @throws RemoteException
      */
     public void test_wifi(View view) throws RemoteException {
+        byte strinfo[] = new byte[256];
         String allinfo = "test_wifi:";
         ret = hwtestService.test_wifi(strinfo);
-        byte len = strinfo[0];
-        String info = new String(strinfo, 1, len);
+        Log.i(TAG, "test_wifi:" + ret);
+        String info;
+        if (ret == 0) {
+            info = "success";
+        } else {
+            info = "failed";
+        }
         allinfo += info + ";";
+      /*  byte len = strinfo[0];
+        String info = new String(strinfo, 1, len);
+        allinfo += info + ";";*/
         result.setText(allinfo);
     }
 
@@ -225,10 +413,19 @@ public class MainActivity extends Activity {
      * 检测bluetooth设备是否挂载成功
      */
     public void test_bluetooth(View view) throws RemoteException {
+        byte strinfo[] = new byte[256];
         String allinfo = "test_bluetooth:";
         ret = hwtestService.test_bluetooth(strinfo);
-        byte len = strinfo[0];
+       /* byte len = strinfo[0];
         String info = new String(strinfo, 1, len);
+        allinfo += info + ";";*/
+        Log.i(TAG, "test_bluetooth:" + ret);
+        String info;
+        if (ret == 0) {
+            info = "success";
+        } else {
+            info = "failed";
+        }
         allinfo += info + ";";
         result.setText(allinfo);
     }
@@ -237,11 +434,21 @@ public class MainActivity extends Activity {
      * 检测rfid主控制器是否ready
      */
     public void test_rfid(View view) throws RemoteException {
+        byte strinfo[] = new byte[256];
         int funid = 1;
         String allinfo = "test_rfid:";
         ret = hwtestService.test_rfid(funid, strinfo);
-        byte len = strinfo[0];
+       /* byte len = strinfo[0];
         String info = new String(strinfo, 1, len);
+        allinfo += info + ";";*/
+
+        Log.i(TAG, "test_bluetooth:" + ret);
+        String info;
+        if (ret == 0) {
+            info = "success";
+        } else {
+            info = "failed";
+        }
         allinfo += info + ";";
         result.setText(allinfo);
     }
@@ -252,6 +459,7 @@ public class MainActivity extends Activity {
      * @throws RemoteException
      */
     public void get_ethernet(View view) throws RemoteException {
+        byte strinfo[] = new byte[256];
         int funcid = 1;
         String allinfo = "eth0:";
         ret = hwtestService.get_ethernet(funcid, strinfo);
@@ -289,14 +497,47 @@ public class MainActivity extends Activity {
      * @throws RemoteException
      */
     public void test_sdcard(View view) throws RemoteException {
+        byte strinfo[] = new byte[256];
         int funid = 1;
         String allinfo = "test_sdcard:";
         ret = hwtestService.test_sdcard(funid, strinfo);
-        byte len = strinfo[0];
+       /* byte len = strinfo[0];
         String info = new String(strinfo, 1, len);
+        allinfo += info + ";";*/
+        Log.i(TAG, "test_sdcard:" + ret);
+        String info;
+        if (ret == 0) {
+            info = "success";
+        } else {
+            info = "failed";
+        }
         allinfo += info + ";";
         result.setText(allinfo);
 
+    }
+
+    /**
+     * 检测sdcard是否插入
+     *
+     * @throws RemoteException
+     */
+    public void test_usb(View view) throws RemoteException {
+        byte strinfo[] = new byte[256];
+        int funid = 1;
+        String allinfo = "test_usb:";
+        ret = hwtestService.test_usb(funid, strinfo);
+       /* byte len = strinfo[0];
+        String info = new String(strinfo, 1, len);
+        allinfo += info + ";";*/
+        Log.i(TAG, "test_usb:" + ret);
+        String info;
+        if (ret == 0) {
+            info = "success";
+        } else {
+            info = "failed";
+        }
+        allinfo += info + ";";
+        result.setText(allinfo);
     }
 
     /**
@@ -305,10 +546,21 @@ public class MainActivity extends Activity {
      * @throws RemoteException
      */
     public void test_lcd(View view) throws RemoteException {
+        byte strinfo[] = new byte[256];
         String allinfo = "test_lcd:";
         ret = hwtestService.test_lcd(strinfo);
-        byte len = strinfo[0];
+        /*byte len = strinfo[0];
         String info = new String(strinfo, 1, len);
+        allinfo += info + ";";*/
+
+
+        //Log.i(TAG,"test_lcd:"+ret);
+        String info;
+        if (ret == 0) {
+            info = "success";
+        } else {
+            info = "failed";
+        }
         allinfo += info + ";";
         result.setText(allinfo);
 
@@ -320,6 +572,7 @@ public class MainActivity extends Activity {
      * @throws RemoteException
      */
     public void get_led1(View view) throws RemoteException {
+        byte strinfo[] = new byte[256];
         int funid = 1;
         String allinfo = "get_led1:";
         ret = hwtestService.get_led(funid, strinfo);
@@ -335,6 +588,7 @@ public class MainActivity extends Activity {
      * @throws RemoteException
      */
     public void get_led2(View view) throws RemoteException {
+        byte strinfo[] = new byte[256];
         int funid = 2;
         String allinfo = "get_led2:";
         ret = hwtestService.get_led(funid, strinfo);
@@ -351,6 +605,7 @@ public class MainActivity extends Activity {
      * @throws RemoteException
      */
     public void get_led3(View view) throws RemoteException {
+        byte strinfo[] = new byte[256];
         int funid = 3;
         String allinfo = "get_led3:";
         ret = hwtestService.get_led(funid, strinfo);
@@ -367,6 +622,7 @@ public class MainActivity extends Activity {
      * @throws RemoteException
      */
     public void set_led1(View view) throws RemoteException {
+        byte strinfo[] = new byte[256];
         int led = 1;
         String allinfo = "set_led1:";
         if (value1 % 2 == 0) {
@@ -388,6 +644,7 @@ public class MainActivity extends Activity {
      * @throws RemoteException
      */
     public void set_led2(View view) throws RemoteException {
+        byte strinfo[] = new byte[256];
         int led = 2;
         String allinfo = "set_led2:";
         if (value2 % 2 == 0) {
@@ -409,6 +666,7 @@ public class MainActivity extends Activity {
      * @throws RemoteException
      */
     public void set_led3(View view) throws RemoteException {
+        byte strinfo[] = new byte[256];
         int led = 3;
         String allinfo = "set_led3:";
         if (value3 % 2 == 0) {

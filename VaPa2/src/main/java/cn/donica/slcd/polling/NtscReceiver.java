@@ -1,5 +1,4 @@
 package cn.donica.slcd.polling;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -23,13 +22,6 @@ public class NtscReceiver extends BroadcastReceiver {
         String status = intent.getStringExtra("ntsc");
 //        Toast.makeText(context, "NTSC状态改变，状态为：" + status, Toast.LENGTH_SHORT).show();
         LogUtil.d(TAG, "NTSC状态改变，状态为：" + status);
-//        if (status.equals("open")) {
-//            LogUtil.d(TAG, "切换到NTSC源");
-//            String commandStr[] = {MyApplication.ShellAppSuStr, MyApplication.ShellAppRunStr};
-//            ShellUtils.execCommand(commandStr, true);
-//        } else if(status.equals("close")) {
-//            ShellUtils.execCommand(MyApplication.ShellKillAllStr, true);
-//            LogUtil.d(TAG, "切回Android画面");
-//        }
+
     }
 }

@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 23
+    compileSdkVersion 18
     buildToolsVersion '25.0.0'
 
     defaultConfig {
         applicationId "cn.donica.demo"
         minSdkVersion 18
-        targetSdkVersion 23
+        targetSdkVersion 18
         versionCode 1
         versionName "1.0"
     }
@@ -15,12 +15,6 @@ android {
         release {
             //是否输出日志
             buildConfigField("boolean", "debug", "false")
-            //是否混淆
-            minifyEnabled true
-            //移除无用的resource文件
-            shrinkResources true
-            zipAlignEnabled true
-            //默认混淆文件
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
@@ -30,7 +24,6 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.4.0'
+    provided files('libs/classes_V0.5.jar')
 }

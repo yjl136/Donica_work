@@ -570,7 +570,6 @@ public class AdvFunTest extends Activity {
                     tinfo[TestItem] += "V3: ";
                     tinfo[TestItem] += info;
                     tinfo[TestItem] += "mV\n";
-
                     bundle.putString("rtinfo", tinfo[TestItem]);
                 } catch (RemoteException e) {
                     Log.e("AdvFunTest", "Remote Exception.");
@@ -580,7 +579,6 @@ public class AdvFunTest extends Activity {
                 try {
                     byte len;
                     String info;
-
                     ret = hwtestService.test_ntsc(strinfo);
                     len = strinfo[0];
                     info = new String(strinfo, 1, len);
@@ -872,7 +870,6 @@ public class AdvFunTest extends Activity {
                     //String info = new String(strinfo, "UTF8");
                     String info = new String(strinfo, 1, len);
                     tinfo[TestItem] += info;
-
                     bundle.putString("rtinfo", tinfo[TestItem]);
                 } catch (RemoteException e) {
                     Log.e("AdvFunTest", "Remote Exception.");

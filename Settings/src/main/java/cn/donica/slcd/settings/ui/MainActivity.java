@@ -46,31 +46,19 @@ public class MainActivity extends Activity {
         initDefaultPattern();
         brightness_seekbar = (SeekBar) findViewById(R.id.brightness_seekbar);
         volume_seekbar = (SeekBar) findViewById(R.id.volume_seekbar);
-        brightness_seekbar.setOnSeekBarChangeListener(new SeekBarChangeListener());
         mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-        volume_seekbar.setOnSeekBarChangeListener(new SeekBarChangeListener());
         initSeekBar();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-
     }
 
     /**
      * 设置标题栏
      */
     private void initToolBar() {
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
-//        toolbar.setNavigationIcon(R.mipmap.ico_system2);//设置ToolBar头部图标
-//        toolbar.setTitle(getString(R.string.system_Settings));//设置标题，也可以在xml中静态实现
-//        toolbar.setTitleTextColor(Color.rgb(255, 255, 255));
-//        toolbar.setTitleTextAppearance(this, R.style.Toolbar_TitleText);
-//        setSupportActionBar(toolbar);//使活动支持ToolBar
-//        Drawable image = getResources().getDrawable(R.mipmap.ico_more);
-//        toolbar.setOverflowIcon(image);
-
         String title = "<h5>" + getString(R.string.system_settings) + "</h5>";
         ActionBar actionBar = this.getActionBar();
         actionBar.setTitle(Html.fromHtml(title));
@@ -99,15 +87,21 @@ public class MainActivity extends Activity {
     }
 
     private void initSeekBar() {
-        //volume_seekbar.setMax(mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC));
+        volume_seekbar.setMax(mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC));
         volume_seekbar.setProgress(mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC));
+        brightness_seekbar.setMax(255);
         try {
             mIsAutoMode = Settings.System.getInt(getContentResolver(), Settings.System.SCREEN_BRIGHTNESS_MODE) == Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC;
-
             if (!mIsAutoMode) {
                 // 获取系统亮度
                 int brightness = Settings.System.getInt(BaseApplication.getContext().getContentResolver(),
                         Settings.System.SCREEN_BRIGHTNESS, 100);
+                if (brightness >= 255) {
+                    brightness = 255;
+                }
+                if (brightness <= 10) {
+                    brightness = 10;
+                }
                 brightness_seekbar.setProgress(brightness);
             } else {
                 Toast.makeText(BaseApplication.getContext(), "Auto mode!!!", Toast.LENGTH_SHORT).show();
@@ -115,17 +109,18 @@ public class MainActivity extends Activity {
         } catch (Settings.SettingNotFoundException e) {
             e.printStackTrace();
         }
+        brightness_seekbar.setOnSeekBarChangeListener(new SeekBarChangeListener());
+        volume_seekbar.setOnSeekBarChangeListener(new SeekBarChangeListener());
     }
 
     private void changeCurrentBrightness(int progress) {
-
+        if (progress >= 255) {
+            progress = 255;
+        }
+        if (progress <= 10) {
+            progress = 10;
+        }
         Settings.System.putInt(getContentResolver(), Settings.System.SCREEN_BRIGHTNESS, progress);
-//        WindowManager.LayoutParams windowLayoutParams = getWindow().getAttributes();
-//        float brightnessPercentage = (float) progress / 255;
-//        if (brightnessPercentage > 0 && brightnessPercentage <= 1) {
-//            windowLayoutParams.screenBrightness = brightnessPercentage;
-//        }
-//        this.getWindow().setAttributes(windowLayoutParams);
     }
 
     public class SeekBarChangeListener implements SeekBar.OnSeekBarChangeListener {
@@ -140,17 +135,10 @@ public class MainActivity extends Activity {
             int viewId = seekBar.getId();
             switch (viewId) {
                 case R.id.brightness_seekbar:
-                    // save brightness to system settings
-                  //  Settings.System.putInt(BaseApplication.getContext().getContentResolver(), Settings.System.SCREEN_BRIGHTNESS, progress);
-                    // change current window's brightness
-                    // Toast.makeText(TestActivity.this,"progress is:"+progress,Toast.LENGTH_SHORT).show();
-
                     changeCurrentBrightness(progress);
                     break;
                 case R.id.volume_seekbar:
-                    // save brightness to system settings
                     mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, progress, AudioManager.FLAG_PLAY_SOUND);
-                    // change current window's brightness
                     break;
                 default:
                     break;

@@ -48,7 +48,6 @@
                 android:maxHeight="2dp"
                 android:paddingLeft="50dp"
                 android:paddingRight="50dp"
-                android:progress="50"
                 android:progressDrawable="@drawable/seekbar_bg"
                 android:thumb="@mipmap/ico_slider" />
 

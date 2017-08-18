@@ -10,6 +10,7 @@ import android.os.IHwtestService;
 import android.os.Message;
 import android.os.RemoteException;
 import android.os.ServiceManager;
+import android.util.Log;
 import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
 import android.widget.Toast;
@@ -19,16 +20,11 @@ import cn.donica.slcd.utils.ShellUtils;
 
 public class NtscService extends Service {
     private IHwtestService hwtestService = null;
-    public static final String LOCK_ACTION = "lock";
-    public static final String UNLOCK_ACTION = "unlock";
     private Context mContext;
     private WindowManager windowManager;
     private ScreenSaverView screenView;
     private static final String TAG = "NtscService";
-    byte ret = 0;
-    byte strinfo[] = new byte[256];
     private WorkerThread workerThread;
-    private int value = 0;
 
     public NtscService() {
     }
@@ -52,19 +48,6 @@ public class NtscService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-//
-//        String action = intent.getAction();
-//        if(TextUtils.equals(action, LOCK_ACTION)) {
-//            addView();
-////            closeNavigationbar();
-//        }
-//        else if(TextUtils.equals(action, UNLOCK_ACTION))
-//        {
-//            removeView();
-////            openNavigationbar();
-//            stopSelf();
-//        }
-        // LogUtil.d(TAG, "onStartCommand");
         hwtestService = IHwtestService.Stub.asInterface(ServiceManager.getService("hwtest"));
         workerThread = new WorkerThread();
         workerThread.start();
@@ -84,17 +67,17 @@ public class NtscService extends Service {
      * @throws RemoteException
      */
     public boolean get_ntsc_status() throws RemoteException {
-        String info;
-        ret = hwtestService.get_ntsc_status(strinfo);
-        //  LogUtil.d(TAG, "get_ntsc_status ret:" + ret);
-        byte len = strinfo[0];
-        info = new String(strinfo, 1, len);
-        LogUtil.d(TAG, "get_ntsc_status info:" + info);
-        if (value % 2 == 0) {
-            value++;
-            return true;
+        byte strinfo[] = new byte[256];
+        byte ret = hwtestService.get_ntsc_status(strinfo);
+        if (ret == 0) {
+            byte len = strinfo[0];
+            String info = new String(strinfo, 1, len);
+            if (info.contains("1")) {
+                return true;
+            } else {
+                return false;
+            }
         } else {
-            value++;
             return false;
         }
     }
@@ -108,27 +91,23 @@ public class NtscService extends Service {
     private void processData() {
         try {
             if (get_ntsc_status() == true) {
-                LogUtil.d(TAG, "get_ntsc_status()==true");
-                if (MyApplication.ntscIsOpen == false) {
+                if (!MyApplication.ntscIsOpen) {
                     MyApplication.ntscIsOpen = true;
-//                    sendNtscOpenBroadCast();
                     Message msg = new Message();
                     msg.what = 1;
-                    //这里设置为1750毫秒是因为切换到VA需要1S多时间，把静态画面延迟1750ms再取消，为了在视觉上更好的过渡
                     mHandler.sendMessageDelayed(msg, 1750);
                     shellAppRunStr();
-
                 }
+                Log.i("NTSC", "true");
             } else {
                 if (MyApplication.ntscIsOpen) {
-                    LogUtil.d(TAG, "get_ntsc_status()==false");
                     MyApplication.ntscIsOpen = false;
-//                    sendNtscCloseBroadCast();
                     Message msg = new Message();
                     msg.what = 0;
                     mHandler.sendMessageDelayed(msg, 10);
                     shellKillAllStr();
                 }
+                Log.i("NTSC", "false");
             }
         } catch (RemoteException e) {
             e.printStackTrace();
@@ -157,24 +136,11 @@ public class NtscService extends Service {
     }
 
     private void shellAppRunStr() {
-        // String commandStr[] = {MyApplication.ShellAppSuStr, MyApplication.ShellAppRunStr};
         ShellUtils.execCommand(MyApplication.ShellAppRunStr, true);
-
-        // command(MyApplication.ShellAppSuStr);
-//        shellRun();
-////        command("pwd");
-//
-////        command(MyApplication.ShellAppRunStr);
-        LogUtil.d(TAG, "切换到NTSC源");
-//        LogUtil.d(TAG, "shellRun():" + shellRun());
-//        LogUtil.d(TAG, "command():"+command(MyApplication.ShellAppRunStr));
-//       LogUtil.d(TAG, "sysCmd2():"+sysCmd2(MyApplication.ShellAppRunStr));
     }
 
     private void shellKillAllStr() {
         ShellUtils.execCommand(MyApplication.ShellKillAllStr, true);
-        LogUtil.d(TAG, "切回Android画面");
-        //  command(MyApplication.ShellKillAllStr);
     }
 
     public void addView() {
@@ -183,8 +149,6 @@ public class NtscService extends Service {
             LayoutParams param = new LayoutParams();
             param.type = LayoutParams.TYPE_SYSTEM_ALERT;
             param.format = PixelFormat.RGBA_8888;
-            // mParam.flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
-            // | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
             param.width = LayoutParams.MATCH_PARENT;
             param.height = LayoutParams.MATCH_PARENT;
             windowManager.addView(screenView, param);
@@ -237,18 +201,6 @@ public class NtscService extends Service {
             }
         }
     };
-
-    static {
-        // System.loadLibrary("shell");
-    }
-
-    public native static String command(String cmd);
-
-    public native static String sysCmd1(String cmd);
-
-    public native static String sysCmd2(String cmd);
-
-    public native static String shellRun();
 }
 
 

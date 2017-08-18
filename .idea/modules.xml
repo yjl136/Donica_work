@@ -2,11 +2,18 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/C9MJ/C9MJ.iml" filepath="$PROJECT_DIR$/C9MJ/C9MJ.iml" />
       <module fileurl="file://$PROJECT_DIR$/DBluetooth/DBluetooth.iml" filepath="$PROJECT_DIR$/DBluetooth/DBluetooth.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DBootCount/DBootCount.iml" filepath="$PROJECT_DIR$/DBootCount/DBootCount.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DControler/DControler.iml" filepath="$PROJECT_DIR$/DControler/DControler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DGattServer/DGattServer.iml" filepath="$PROJECT_DIR$/DGattServer/DGattServer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DLauncher/DLauncher.iml" filepath="$PROJECT_DIR$/DLauncher/DLauncher.iml" />
       <module fileurl="file://$PROJECT_DIR$/DManager/DManager.iml" filepath="$PROJECT_DIR$/DManager/DManager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DServer/DServer.iml" filepath="$PROJECT_DIR$/DServer/DServer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DShell_lib/DShell_lib.iml" filepath="$PROJECT_DIR$/DShell_lib/DShell_lib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DVa/DVa.iml" filepath="$PROJECT_DIR$/DVa/DVa.iml" />
       <module fileurl="file://$PROJECT_DIR$/DemoMarsdaemon/DemoMarsdaemon.iml" filepath="$PROJECT_DIR$/DemoMarsdaemon/DemoMarsdaemon.iml" />
       <module fileurl="file://$PROJECT_DIR$/Donica.iml" filepath="$PROJECT_DIR$/Donica.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Donica_Launcher0523/Donica_Launcher0523.iml" filepath="$PROJECT_DIR$/Donica_Launcher0523/Donica_Launcher0523.iml" />
       <module fileurl="file://$PROJECT_DIR$/Donica_Sensor/Donica_Sensor.iml" filepath="$PROJECT_DIR$/Donica_Sensor/Donica_Sensor.iml" />
       <module fileurl="file://$PROJECT_DIR$/LibMarsdaemon/LibMarsdaemon.iml" filepath="$PROJECT_DIR$/LibMarsdaemon/LibMarsdaemon.iml" />
       <module fileurl="file://$PROJECT_DIR$/Settings/Settings.iml" filepath="$PROJECT_DIR$/Settings/Settings.iml" />

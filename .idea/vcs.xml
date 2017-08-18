@@ -2,5 +2,10 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/DBootCount" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/DControler" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/DServer" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/DShell_lib" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/DVa" vcs="Git" />
   </component>
 </project>

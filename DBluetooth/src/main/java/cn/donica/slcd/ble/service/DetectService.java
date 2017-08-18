@@ -13,7 +13,10 @@ import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
 import android.os.Handler;
 import android.os.IBinder;
+import android.os.IHwtestService;
 import android.os.Message;
+import android.os.RemoteException;
+import android.os.ServiceManager;
 import android.support.annotation.Nullable;
 
 import java.io.File;
@@ -21,11 +24,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.lang.reflect.Method;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.SocketException;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import android_serialport_api.SerialPort;
 import cn.donica.slcd.ble.cmd.CmdManage;
@@ -40,44 +45,39 @@ import cn.donica.slcd.ble.utils.FloatWindowManager;
 import cn.donica.slcd.ble.utils.PayloadParseHelper;
 import cn.donica.slcd.ble.utils.StringUtil;
 import cn.donica.slcd.ble.utils.UnitUtils;
+import cn.donica.slcd.shell.Shell;
 
 /**
  * Created by yejianlin 2016/10/19.
  * 用于检测是否有card靠近
  */
 public class DetectService extends Service implements AsyncTask.IStatus {
+    //是否正在播放va
+    private boolean isPlaying = false;
     private final static int DELAY_TIME = 4000;
-    //测试用的蓝牙mac地址
-    private final static String SP_MAC = "68:FB:7E:EE:C7:95";
-    private final static String jin_MAC = "00:07:5B:00:B9:1B";
-    private final static String MAC = "DC:2C:26:02:41:2C";
-    private final static String H60_MAC = "24:09:95:B2:65:23";
     private final static String PAIRING_REQUEST = "android.bluetooth.device.action.PAIRING_REQUEST";
+    private final static String ACTION_PA = "cn.donica.slcd.action.PA";
+    private final static String ACTION_VA = "cn.donica.slcd.action.VA";
+    //开始Va
+    private final static String ACTION_PLAY = "cn.donica.slcd.action.PLAY";
+    //停止VA
+    private final static String ACTION_STOP = "cn.donica.slcd.action.STOP";
+    public final static String CMD_STOP = "busybox killall mxc-v4l2-tvin";
+    private final static String PA_KEY = "pa";
     private InputStream mInputStream;
     private OutputStream mOutputStream;
     private SerialPort mSerialPort;
     private boolean isIdel;
-
-
     private BluetoothAdapter adapter;
-    /**
-     * 串口文件描述符
-     */
     private final int BUFSIZE = 512;
-    private List<Byte> ndef;
-    //需要读取多少个字节数据
-    private int count;
-    //剩余需要读取多少块数据
     private Timer timer = new Timer();
     private static final int DELAY_REMOVE_CMD = 0x102;
     private static final int READ_CARD_CMD = 0x100;
     private static final int READ_CARD = 0x200;
-
     protected final int READ_BLOCK_SUCCESS = 0x101;
     protected final int READ_BLOCK_FAIL = 0x103;
     private PairReceiver mPairReceiver;
     private ExecutorService mExecutorService;
-
 
     @Nullable
     @Override
@@ -89,8 +89,16 @@ public class DetectService extends Service implements AsyncTask.IStatus {
     public void onCreate() {
         super.onCreate();
         DLog.info("onCreate");
+        //设置led
+        initLed();
+        //设置LCD size
+        // initLCD();
+        //监听5000端口，获取PA状态
+        initPA();
+        //开启Va轮询
+        initVa();
         //打开蓝牙
-        enable();
+      /*  enable();
         if (open()) {
             //打开串口成功
             this.mInputStream = mSerialPort.getInputStream();
@@ -100,13 +108,182 @@ public class DetectService extends Service implements AsyncTask.IStatus {
             //创建一个线程池对象
             mExecutorService = Executors.newSingleThreadExecutor();
             timer.schedule(task, 0, 500);
-
         } else {
             DLog.warn("Fail to open " + Constant.devName + "!");
             stopSelf();
+        }*/
 
+    }
+
+    //每隔1000毫秒去查询Va状态
+    private TimerTask VaTask = new TimerTask() {
+        @Override
+        public void run() {
+            DLog.info("thread:" + Thread.currentThread().getName() + "  status:" + get_ntsc_status() + "  isPlaying:" + isPlaying);
+            if (get_ntsc_status()) {
+                if (!isPlaying) {
+                    isPlaying = true;
+                    startVa();
+                }
+            } else {
+                if (isPlaying) {
+                    isPlaying = false;
+                    executeCMD(CMD_STOP);
+                    // stopVa();
+                }
+            }
+        }
+    };
+
+    /**
+     * 开始Va
+     */
+    private void startVa() {
+        Intent intent = new Intent(this, VaService.class);
+        intent.setAction(ACTION_PLAY);
+        startService(intent);
+    }
+
+    /**
+     * 停止Va
+     */
+    private void stopVa() {
+        Intent intent = new Intent(this, VaService.class);
+        intent.setAction(ACTION_STOP);
+        startService(intent);
+    }
+
+    /**
+     * 执行命令
+     *
+     * @param cmd
+     */
+    private void executeCMD(String cmd) {
+        List<String> result = Shell.SU.run(cmd);
+        if (result != null) {
+            for (String line : result) {
+                DLog.info(line);
+            }
+        }
+    }
+
+    /**
+     * 查询Va状态
+     */
+    private void initVa() {
+        timer.schedule(VaTask, 0, 1000);
+    }
+
+    /**
+     * 获得7282m的连接状态
+     *
+     * @throws RemoteException
+     */
+    public boolean get_ntsc_status() {
+        boolean isNtscOpen = false;
+        IHwtestService hwtest = IHwtestService.Stub.asInterface(ServiceManager.getService("hwtest"));
+        byte strinfo[] = new byte[256];
+        try {
+            byte ret = hwtest.get_ntsc_status(strinfo);
+            if (ret == 0) {
+                byte len = strinfo[0];
+                String info = new String(strinfo, 1, len);
+                if (info.contains("1")) {
+                    isNtscOpen = true;
+                } else {
+                    isNtscOpen = false;
+                }
+            } else {
+                isNtscOpen = false;
+            }
+        } catch (RemoteException e) {
+            e.printStackTrace();
+            isNtscOpen = false;
+        } finally {
+            return isNtscOpen;
         }
 
+    }
+
+    /**
+     * 监听5000端口，获取Pa状态
+     */
+    private void initPA() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                DatagramSocket socket = null;
+                try {
+                    socket = new DatagramSocket(5000);
+                } catch (SocketException e) {
+                    e.printStackTrace();
+                }
+                if (socket == null) {
+                    DLog.info("socket==null");
+                    return;
+                }
+                while (true) {
+                    byte[] buffer = null;
+                    DatagramPacket packet = null;
+                    try {
+                        buffer = new byte[BUFSIZE];
+                        packet = new DatagramPacket(buffer, BUFSIZE);
+                        DLog.info("wait data!!");
+                        socket.receive(packet);
+                        int len = packet.getLength();
+                        byte[] content = packet.getData();
+                        DLog.info("content[85]:" + StringUtil.byte2Hex(content[85]) + "  content[86]:" + StringUtil.byte2Hex(content[86]));
+                        Intent intent = new Intent();
+                        if (content != null && len > 86 && ("31".equals(StringUtil.byte2Hex(content[85])) || "31".equals(StringUtil.byte2Hex(content[86])))) {
+                            DLog.warn("PA");
+                            intent.putExtra(PA_KEY, 1);
+                        } else {
+                            DLog.warn("No PA");
+                            intent.putExtra(PA_KEY, 0);
+                        }
+                        intent.setAction(ACTION_PA);
+                        sendBroadcast(intent);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    } finally {
+                        packet = null;
+                        buffer = null;
+                    }
+                }
+            }
+        }).start();
+
+    }
+
+    /**
+     * 针对国航10.1寸屏改装
+     */
+    private void initLCD() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String cmd = "wm size 1220x800";
+                executeCMD(cmd);
+            }
+        }).start();
+    }
+
+    /**
+     * 初始化usb/power led
+     */
+    private void initLed() {
+        IHwtestService hwtest = IHwtestService.Stub.asInterface(ServiceManager.getService("hwtest"));
+        if (hwtest != null) {
+            try {
+                hwtest.set_led(1, 0);
+                hwtest.set_led(2, 0);
+                hwtest.set_led(3, 0);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        } else {
+            DLog.warn("hwtest==null");
+        }
     }
 
     @Override
@@ -255,9 +432,9 @@ public class DetectService extends Service implements AsyncTask.IStatus {
     }
 
     public void setIdel(final boolean isIdel) {
-        if(isIdel){
+        if (isIdel) {
             //是空闲延迟设置idel
-            if(FloatWindowManager.isFloating()){
+            if (FloatWindowManager.isFloating()) {
                 handler.sendEmptyMessageDelayed(DELAY_REMOVE_CMD, DELAY_TIME);
                 //设置延迟
                 handler.postDelayed(new Runnable() {
@@ -265,11 +442,11 @@ public class DetectService extends Service implements AsyncTask.IStatus {
                     public void run() {
                         DetectService.this.isIdel = isIdel;
                     }
-                },DELAY_TIME);
-            }else{
+                }, DELAY_TIME);
+            } else {
                 this.isIdel = isIdel;
             }
-        }else{
+        } else {
             //不是空闲
             this.isIdel = isIdel;
         }
@@ -361,6 +538,7 @@ public class DetectService extends Service implements AsyncTask.IStatus {
         if (adapter == null) {
             adapter = BluetoothAdapter.getDefaultAdapter();
         }
+
         if (adapter == null) {
             DLog.warn("Fail to get BluetoothAdapter ");
             setIdel(true);
@@ -392,6 +570,10 @@ public class DetectService extends Service implements AsyncTask.IStatus {
                 boolean isBond = ClsUtils.createBond(device.getClass(),
                         device);
                 DLog.info("createBond:" + isBond);
+                if (!isBond) {
+                    FloatWindowManager.updateFloatView("请重新读取。。。。");
+                    setIdel(true);
+                }
             } catch (Exception e) {
                 FloatWindowManager.updateFloatView("蓝牙配对失败。。。。");
                 setIdel(true);
@@ -421,7 +603,6 @@ public class DetectService extends Service implements AsyncTask.IStatus {
                 try {
                     // 1.确认配对
                     ClsUtils.setPairingConfirmation(btDevice.getClass(), btDevice, true);
-
                 } catch (Exception e) {
                     setIdel(true);
                     DLog.error("setPairingConfirmation" + e.getMessage());
@@ -454,7 +635,6 @@ public class DetectService extends Service implements AsyncTask.IStatus {
         private BluetoothDevice device;
 
         public MyServiceListener(BluetoothDevice device) {
-
             this.device = device;
         }
 
