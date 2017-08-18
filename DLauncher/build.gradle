@@ -1,0 +1,47 @@
+apply plugin: 'com.android.application'
+
+
+android {
+    compileSdkVersion 18
+    buildToolsVersion '25.0.2'
+
+    signingConfigs {
+        release {
+            keyAlias 'donica'
+            keyPassword 'donica2016'
+            storeFile file('donica.jks')
+            storePassword 'donica2016'
+        }
+    }
+    defaultConfig {
+        applicationId "cn.donica.slcd.launcher"
+        minSdkVersion 18
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+        signingConfig signingConfigs.release
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            debuggable true
+            jniDebuggable false
+            renderscriptDebuggable false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+            zipAlignEnabled true
+        }
+
+    }
+    dexOptions {
+        preDexLibraries true
+        dexInProcess true
+        setThreadCount 8
+    }
+}
+dependencies {
+    compile fileTree(include: '*.jar', dir: 'libs')
+    compile files('libs/android-support-v4.jar')
+    testCompile 'junit:junit:4.12'
+}

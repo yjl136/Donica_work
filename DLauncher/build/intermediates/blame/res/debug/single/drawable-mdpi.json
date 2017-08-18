@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\DLauncher\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\you.png",
+        "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\DLauncher\\src\\main\\res\\drawable-mdpi\\you.png"
+    },
+    {
+        "merged": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\DLauncher\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\page_indicator.png",
+        "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\DLauncher\\src\\main\\res\\drawable-mdpi\\page_indicator.png"
+    },
+    {
+        "merged": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\DLauncher\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\page_indicator_focused.png",
+        "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\DLauncher\\src\\main\\res\\drawable-mdpi\\page_indicator_focused.png"
+    },
+    {
+        "merged": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\DLauncher\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\icon.png",
+        "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\DLauncher\\src\\main\\res\\drawable-mdpi\\icon.png"
+    },
+    {
+        "merged": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\DLauncher\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\zuo.png",
+        "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\DLauncher\\src\\main\\res\\drawable-mdpi\\zuo.png"
+    },
+    {
+        "merged": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\DLauncher\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\background.png",
+        "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\DLauncher\\src\\main\\res\\drawable-mdpi\\background.png"
+    }
+]

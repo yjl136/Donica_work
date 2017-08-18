@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="PageIndicator">
+        <attr name="indicator_gap" format="dimension" />
+    </declare-styleable>
+    <declare-styleable name="DotView">
+        <attr name="selectedColor" format="color" />
+        <attr name="defaultColor" format="color" />
+        <attr name="defaultSize" format="dimension" />
+        <attr name="selectedSize" format="dimension" />
+    </declare-styleable>
+
+</resources>
