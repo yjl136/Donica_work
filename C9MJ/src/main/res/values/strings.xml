@@ -1,0 +1,75 @@
+<resources>
+    <string name="app_name">C9MJ</string>
+    <!--通用-->
+    <string name="progress_loading">正在努力工作，请稍等…</string>
+    <string name="explore">发现</string>
+    <string name="user">我的</string>
+    <string name="enter">确定</string>
+    <string name="cancel">取消</string>
+    <string name="send">发送</string>
+    <string name="second_exit">"再按一次Back键退出程序"</string>
+    <string name="error_grant">部分所需权限请求被拒绝，程序可能会出现崩溃！</string>
+
+
+    <!--发现-->
+    <string name="explore_footer">无更多内容</string>
+    <string name="explore_empty">暂无内容</string>
+    <string name="explore_relative_sys">相关新闻</string>
+    <string name="explore_drag">1.长按排序 </string>
+    <string name="explore_delete">2.向右侧滑删除</string>
+    <string name="explore_tag_doc">doc</string>
+    <string name="explore_tag_photoset">photoset</string>
+
+    <!--直播-->
+    <string name="live_lol">英雄联盟</string>
+    <string name="live_ow">守望先锋</string>
+    <string name="live_dota2">DOTA2</string>
+    <string name="live_hs">炉石传说</string>
+    <string name="live_csgo">CSGO</string>
+    <string name="live_footer">无更多直播</string>
+    <string name="live_loadmore_error">点击尝试加载更多</string>
+    <string name="live_empty">暂无直播</string>
+    <string name="game_type_lol">lol</string>
+    <string name="game_type_ow">ow</string>
+    <string name="game_type_dota2">dota2</string>
+    <string name="game_type_hs">hs</string>
+    <string name="game_type_csgo">csgo</string>
+    <string name="stream_1080p">超清</string>
+    <string name="stream_360p">普清</string>
+    <string name="chat_name">我</string>
+    <string name="live_visitor">游客</string>
+    <string name="live_platform">平台</string>
+    <string name="live_quote">：</string>
+    <string name="live_roomname">直播间名称</string>
+    <string name="live_nickname">主播昵称：</string>
+    <string name="live_live_platform">直播平台：</string>
+    <string name="live_game_type">游戏分类：</string>
+    <string name="live_exchange">切换栏目</string>
+    <string name="live_danmu">弹幕</string>
+    <string name="live_send_danmu">输入发送弹幕(15字以内)</string>
+    <string name="live_1080p">超清</string>
+    <string name="live_720p">高清</string>
+
+    <!--我的-->
+    <string name="user_carema">拍照</string>
+    <string name="user_carema_cancel">取消拍照</string>
+    <string name="user_gallery">相册</string>
+    <string name="user_name">姓名</string>
+    <string name="user_industry">行业</string>
+    <string name="user_career">职业经历</string>
+    <string name="user_job">职位</string>
+    <string name="user_education">教育经历</string>
+    <string name="user_school_subject">学校 · 专业</string>
+    <string name="user_introduce">个人描述</string>
+    <string name="user_code">写代码的</string>
+
+
+    <!--网络错误-->
+    <string name="error_unknown">未知错误！</string>
+
+    <!--预览图片-->
+    <string name="gallery">预览图片</string>
+    <string name="loadmore_end">所有数据加载完成</string>
+    <string name="loadmore_fail">加载失败，点击重试</string>
+
+</resources>
