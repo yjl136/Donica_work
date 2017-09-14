@@ -49,15 +49,9 @@ public class SuperUserTimerService extends Service {
         return super.onStartCommand(intent, flags, startId);
     }
 
-//    @Override
-//    public int onStartCommand(Intent intent, int flags, int startId) {
-//        // TODO Auto-generated method stub
-//
-//    }
 
     @Override
     public void onDestroy() {
-        // TODO Auto-generated method stub
         super.onDestroy();
         ActivityUtil.isAdditionOn = false;
         LogUtil.d(TAG, "销毁计时服务");
@@ -79,8 +73,6 @@ public class SuperUserTimerService extends Service {
         public void handleMessage(Message msg) {
             if (msg.what == SuperUserTimer.IN_RUNNING) {// 正在倒计时
             } else if (msg.what == SuperUserTimer.END_RUNNING) {// 完成倒计时
-                LogUtil.d(TAG, "停止计时服务");
-//				mCodeTimer.cancel();
                 mCodeTimer = null;
                 stopSelf();
                 Config.isSuperUserTimerRun = false;

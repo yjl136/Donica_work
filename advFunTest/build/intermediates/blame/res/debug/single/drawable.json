@@ -116,12 +116,12 @@
         "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\src\\main\\res\\drawable\\th_five_dice_white.png"
     },
     {
-        "merged": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\build\\intermediates\\res\\merged\\debug\\drawable\\tab_camera_indicator.xml",
-        "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\src\\main\\res\\drawable\\tab_camera_indicator.xml"
-    },
-    {
         "merged": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\build\\intermediates\\res\\merged\\debug\\drawable\\top_tab_indicator_left.xml",
         "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\src\\main\\res\\drawable\\top_tab_indicator_left.xml"
+    },
+    {
+        "merged": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\build\\intermediates\\res\\merged\\debug\\drawable\\tab_camera_indicator.xml",
+        "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\src\\main\\res\\drawable\\tab_camera_indicator.xml"
     },
     {
         "merged": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\advFunTest\\build\\intermediates\\res\\merged\\debug\\drawable\\ic_hotel_city.png",

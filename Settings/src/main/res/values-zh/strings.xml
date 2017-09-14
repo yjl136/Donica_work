@@ -31,9 +31,11 @@
     <string name="seat_configuration">座位位置配置</string>
     <string name="ip_seat_configuration">IP地址和座位位置编号配置</string>
     <string name="Please_enter_the_IP_address">请输入机载服务器IP地址</string>
+    <string name="ip_format_error">非法格式IP地址</string>
     <string name="Please_input_your_seat_location_number">请输入座位位置编号</string>
     <string name="cancel">取消</string>
     <string name="try_again">重试</string>
+    <string name="wait">等待</string>
     <string name="goon">继续</string>
     <string name="confirm">确认</string>
 
@@ -45,7 +47,10 @@
     <string name="enter_password">请输入系统管理员密码</string>
     <string name="password">密码</string>
     <string name="language_input">语言和输入法</string>
-
+    <string name="diff_password">密码不一致，请重新输入</string>
+    <string name="setting_success">设置成功</string>
+    <string name="enter_pattern">请输入解锁图案</string>
+    <string name="enter_pattern_again">请再次输入解锁图案</string>
     <string name="udisk_upgrade">USB升级系统</string>
     <string name="sdcard_upgrade">SD升级系统</string>
     <string name="network_upgrade">网络升级系统</string>
@@ -63,4 +68,10 @@
 
     <string name="display_app">显示APP</string>
     <string name="hidden_app">隐藏APP</string>
+    <string name="countdown">请%1$sS后再次输入密码</string>
+    <string name="password_error">手势密码输入错误,你还剩%1$d次输入机会</string>
+    <string name="install_config">安装配置</string>
+    <string name="install_seatback">安装在椅背</string>
+    <string name="input_config_info">请输入配置信息</string>
+    <string name="seat_validate_tip">座位号只能包含字母和数字</string>
 </resources>

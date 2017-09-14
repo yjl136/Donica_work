@@ -22,7 +22,6 @@ import cn.donica.slcd.settings.R;
 import cn.donica.slcd.settings.services.AdminTimerService;
 import cn.donica.slcd.settings.services.CountdownTimerService;
 import cn.donica.slcd.settings.ui.LockPatternView.Cell;
-import cn.donica.slcd.settings.ui.LockPatternView.DisplayMode;
 import cn.donica.slcd.settings.utils.ActivityUtil;
 import cn.donica.slcd.settings.utils.Config;
 import cn.donica.slcd.settings.utils.CountdownTimer;
@@ -37,11 +36,8 @@ public class LockActivity extends Activity implements LockPatternView.OnPatternL
     private List<Cell> lockPattern;
     private LockPatternView lockPatternView;
     private Intent mIntent;
-
-
     public static String countdownTime = "60";
-    private boolean unlock = false;
-    private long tryAgain = 0;
+
 
 
     @Override
@@ -53,8 +49,9 @@ public class LockActivity extends Activity implements LockPatternView.OnPatternL
                 MODE_PRIVATE);
         String patternString = preferences.getString(BaseApplication.LOCK_KEY,
                 null);
+        Log.d(TAG, "lockPattern is:" + patternString);
         lockPattern = LockPatternView.stringToPattern(patternString);
-        Log.d(TAG, "lockPattern is:" + lockPattern);
+
         setContentView(R.layout.activity_lock);
         initToolbar();
         lockPatternView = (LockPatternView) findViewById(R.id.lock_pattern);
@@ -118,16 +115,17 @@ public class LockActivity extends Activity implements LockPatternView.OnPatternL
             finish();
 
         } else {
-            lockPatternView.setDisplayMode(DisplayMode.Wrong);
-            //  Toast.makeText(this, getString(R.string.enter_password_error), Toast.LENGTH_SHORT).show();
+            // lockPatternView.setDisplayMode(DisplayMode.Wrong);
+            lockPatternView.clearPattern();
+            lockPatternView.enableInput();
             if (Config.lockCount != 0) {
                 --Config.lockCount;
-                Toast.makeText(LockActivity.this, "手势密码输入错误,你还剩" + Config.lockCount + "次输入机会", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LockActivity.this, String.format(getResources().getString(R.string.password_error), Config.lockCount), Toast.LENGTH_SHORT).show();
                 if (Config.lockCount == 0) {
                     if (!ActivityUtil.isServiceWork(LockActivity.this, "cn.donica.slcd.settings.services.CountdownTimerService")) {
                         CountdownTimerService.setHandler(mCodeHandler);
                         mIntent = new Intent(LockActivity.this, CountdownTimerService.class);
-                        Toast.makeText(LockActivity.this, "请" + countdownTime + "s后再次输入密码", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LockActivity.this, String.format(getResources().getString(R.string.countdown), countdownTime), Toast.LENGTH_SHORT).show();
                         startService(mIntent);
                     }
                     finish();
@@ -138,7 +136,7 @@ public class LockActivity extends Activity implements LockPatternView.OnPatternL
 
     public void checkInputState() {
         if (Config.lockCount == 0) {
-            Toast.makeText(BaseApplication.getContext(), "请" + countdownTime + "s后再次输入密码", Toast.LENGTH_SHORT).show();
+            Toast.makeText(BaseApplication.getContext(), String.format(getResources().getString(R.string.countdown), countdownTime), Toast.LENGTH_SHORT).show();
             finish();
         }
     }

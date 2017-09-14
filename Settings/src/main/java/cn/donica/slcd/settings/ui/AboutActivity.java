@@ -3,6 +3,7 @@ package cn.donica.slcd.settings.ui;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.text.Html;
@@ -15,6 +16,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.text.SimpleDateFormat;
 
 import cn.donica.slcd.settings.BaseApplication;
 import cn.donica.slcd.settings.R;
@@ -72,7 +75,6 @@ public class AboutActivity extends Activity {
                     startActivity(intent);
                 } else {
                     System.arraycopy(mHits, 1, mHits, 0, mHits.length - 1);
-                    //实现左移，然后最后一个位置更新距离开机的时间，如果最后一个时间和最开始时间小于1250，即五次点击
                     mHits[mHits.length - 1] = SystemClock.uptimeMillis();
                     if (mHits[0] >= (SystemClock.uptimeMillis() - 1250)) {
                         showPasswordDialog();
@@ -105,15 +107,18 @@ public class AboutActivity extends Activity {
         updateTime_title = (TextView) findViewById(R.id.updateTime_title);
         updateTime_content = (TextView) findViewById(R.id.updateTime_content);
         updateTime_title.setText(getString(R.string.updateTime_title));
-        updateTime_content.setText(R.string.updateTime_content);
+        long time = Build.TIME;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String content = sdf.format(time);
+        updateTime_content.setText(content);
+
 
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            mIntent = new Intent(AboutActivity.this, MainActivity.class);
-            startActivity(mIntent);
+            finish();
             return true;
         }
         return super.onOptionsItemSelected(item);

@@ -31,11 +31,6 @@ public class MainActivity extends Activity {
     private boolean mIsAutoMode = true;
     private SeekBar brightness_seekbar, volume_seekbar;
     private List<LockPatternView.Cell> choosePattern;
-    MenuItem moreItem;
-    /**
-     * 设置第一次点击的时间
-     */
-    private long firstTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

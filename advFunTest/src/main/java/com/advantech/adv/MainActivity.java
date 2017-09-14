@@ -557,7 +557,9 @@ public class MainActivity extends Activity {
         //Log.i(TAG,"test_lcd:"+ret);
         String info;
         if (ret == 0) {
-            info = "success";
+            // info = "success";
+            byte len = strinfo[0];
+            info = new String(strinfo, 1, len);
         } else {
             info = "failed";
         }

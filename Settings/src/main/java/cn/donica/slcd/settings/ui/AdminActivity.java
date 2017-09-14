@@ -4,8 +4,12 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ComponentName;
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.text.Html;
@@ -16,6 +20,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -27,14 +32,11 @@ import java.util.regex.Pattern;
 
 import cn.donica.slcd.settings.R;
 import cn.donica.slcd.settings.appiconmanage.AppIconManageActivity;
-import cn.donica.slcd.settings.utils.Config;
 
 
 public class AdminActivity extends Activity implements OnClickListener {
     private AlertDialog.Builder builder;
     private SharedPreferences prference;
-    private AlertDialog ip_seat_dialog;
-
     private Intent mIntent;
 
     @Override
@@ -56,6 +58,7 @@ public class AdminActivity extends Activity implements OnClickListener {
         addSettingItem(R.id.ethernet, getString(R.string.Ethernet_Configuration), R.mipmap.ico_wlan);
         addSettingItem(R.id.language, getString(R.string.language_input), R.mipmap.ico_language);
         addSettingItem(R.id.ip_seat_configuration, getString(R.string.ip_seat_configuration), R.mipmap.ico_language);
+        addSettingItem(R.id.install_configuration, getString(R.string.install_config), R.mipmap.ico_setup);
     }
 
     @Override
@@ -126,11 +129,15 @@ public class AdminActivity extends Activity implements OnClickListener {
                 startActivity(intent);
                 break;
             case R.id.restore_factory_settings:
-                Toast.makeText(AdminActivity.this, "点击了恢复出厂设置", Toast.LENGTH_LONG).show();
+                // Toast.makeText(AdminActivity.this, "点击了恢复出厂设置", Toast.LENGTH_LONG).show();
                 break;
             case R.id.ip_seat_configuration:
                 showInputDialog();
                 break;
+            case R.id.install_configuration:
+                showInstallConfigDialog();
+                break;
+
             default:
                 return;
         }
@@ -146,15 +153,9 @@ public class AdminActivity extends Activity implements OnClickListener {
     }
 
 
-    /**
-     * 检查是否是数字
-     *
-     * @param value
-     * @return
-     */
-    public static boolean checkNumber(String value) {
-        String regex = "^(-?[1-9]\\d*\\.?\\d*)|(-?0\\.\\d*[1-9])|(-?[0])|(-?[0]\\.\\d*)$";
-        return value.matches(regex);
+    private boolean checkSeat(String seat) {
+        String rexp = "^[A-Za-z0-9]+$";
+        return seat.matches(rexp);
     }
 
     /**
@@ -178,12 +179,87 @@ public class AdminActivity extends Activity implements OnClickListener {
     }
 
     /**
+     * 获取ip配置
+     *
+     * @return
+     */
+    private String getIpConfig() {
+        String ip = "";
+        Uri uri = Uri.parse("content://cn.donica.slcd.provider/config/ip");
+        ContentResolver resolver = getContentResolver();
+        Cursor cursor = resolver.query(uri, null, null, null, null, null);
+        if (cursor.moveToFirst()) {
+            int index = cursor.getColumnIndex("value");
+            ip = cursor.getString(index);
+        }
+        return ip;
+    }
+
+    /**
+     * 获取seat配置
+     *
+     * @return
+     */
+    private String getSeatConfig() {
+        String seat = "";
+        Uri uri = Uri.parse("content://cn.donica.slcd.provider/config/seat");
+        ContentResolver resolver = getContentResolver();
+        Cursor cursor = resolver.query(uri, null, null, null, null, null);
+        if (cursor.moveToFirst()) {
+            int index = cursor.getColumnIndex("value");
+            seat = cursor.getString(index);
+        }
+        return seat;
+    }
+
+    /**
+     * 保存ip配置
+     */
+    private void saveIpConfig(String ip) {
+        Uri uri = Uri.parse("content://cn.donica.slcd.provider/config/ip");
+        ContentResolver resolver = getContentResolver();
+        Cursor cursor = resolver.query(uri, null, null, null, null, null);
+        if (cursor.moveToFirst()) {
+            //更新
+            ContentValues values = new ContentValues();
+            values.put("value", ip);
+            resolver.update(uri, values, null, null);
+        } else {
+            //保存
+            ContentValues values = new ContentValues();
+            values.put("name", "ip");
+            values.put("value", ip);
+            resolver.insert(uri, values);
+        }
+    }
+
+    /**
+     * 保存seat配置
+     */
+    private void saveSeatConfig(String seat) {
+        Uri uri = Uri.parse("content://cn.donica.slcd.provider/config/seat");
+        ContentResolver resolver = getContentResolver();
+        Cursor cursor = resolver.query(uri, null, null, null, null, null);
+        if (cursor.moveToFirst()) {
+            //更新
+            ContentValues values = new ContentValues();
+            values.put("value", seat);
+            resolver.update(uri, values, null, null);
+        } else {
+            //保存
+            ContentValues values = new ContentValues();
+            values.put("name", "seat");
+            values.put("value", seat);
+            resolver.insert(uri, values);
+        }
+    }
+
+    /**
      * 显示IP地址和座位位置配置对话框
      */
     public void showInputDialog() {
-        prference = getSharedPreferences(Config.PREF_NAME, MODE_WORLD_READABLE);
-        String ip = prference.getString("IP", "192.168.2.99");
-        String seat = prference.getString("Seat", "A10");
+        final String ip = getIpConfig();
+        final String seat = getSeatConfig();
         android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
         LayoutInflater inflater = LayoutInflater.from(this);
         View view = inflater.inflate(R.layout.show_ip_seat_dialog, null);
@@ -194,26 +270,98 @@ public class AdminActivity extends Activity implements OnClickListener {
         et_ip.setText(ip);
         et_seat.setText(seat);
         builder.setView(view);
-        ip_seat_dialog = builder.create();
-
+        final AlertDialog ip_seat_dialog = builder.create();
         ip_seat_dialog.show();
-        //
+        ip_seat_dialog.setCanceledOnTouchOutside(false);
         btn_ok.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (isIP(et_ip.getText().toString())) {
-                    prference.edit().clear();
-                    prference.edit().putString("IP", et_ip.getText().toString()).commit();
-                    prference.edit().putString("Seat", et_seat.getText().toString()).commit();
-                    ip_seat_dialog.dismiss();
-                } else {
-                    Toast.makeText(AdminActivity.this, "输入非法格式IP地址", Toast.LENGTH_SHORT).show();
+                if (!checkSeat(et_seat.getText().toString())) {
+                    Toast.makeText(AdminActivity.this, R.string.seat_validate_tip, Toast.LENGTH_SHORT).show();
+                    return;
                 }
+                if (!isIP(et_ip.getText().toString())) {
+                    Toast.makeText(AdminActivity.this, R.string.ip_format_error, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                saveIpConfig(et_ip.getText().toString());
+                saveSeatConfig(et_seat.getText().toString());
+                ip_seat_dialog.dismiss();
             }
         });
         //取消操作
         btn_cancel.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 ip_seat_dialog.dismiss();
+            }
+        });
+    }
+
+    /**
+     * 获取安装配置
+     *
+     * @return
+     */
+    private boolean isSeatBack() {
+        boolean isSeatBack = false;
+        Uri uri = Uri.parse("content://cn.donica.slcd.provider/monitor/seatback");
+        ContentResolver resolver = getContentResolver();
+        Cursor cursor = resolver.query(uri, null, null, null, null, null);
+        if (cursor.moveToFirst()) {
+            int index = cursor.getColumnIndex("value");
+            int value = cursor.getInt(index);
+            if (value == 1) {
+                isSeatBack = true;
+            }
+        }
+        return isSeatBack;
+    }
+
+    /**
+     * 保存安装配置
+     */
+    private void saveInstallConfig(boolean isCheck) {
+        Uri uri = Uri.parse("content://cn.donica.slcd.provider/monitor/seatback");
+        ContentResolver resolver = getContentResolver();
+        Cursor cursor = resolver.query(uri, null, null, null, null, null);
+        if (cursor.moveToFirst()) {
+            //更新
+            ContentValues values = new ContentValues();
+            values.put("value", isCheck ? 1 : 0);
+            resolver.update(uri, values, null, null);
+        } else {
+            //保存
+            ContentValues values = new ContentValues();
+            values.put("name", "seatback");
+            values.put("value", isCheck ? 1 : 0);
+            resolver.insert(uri, values);
+        }
+    }
+
+    /**
+     * 显示安装配置对话框
+     */
+    public void showInstallConfigDialog() {
+        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View view = inflater.inflate(R.layout.install_config, null);
+        Button btn_ok = (Button) view.findViewById(R.id.ok);
+        Button btn_cancel = (Button) view.findViewById(R.id.cancel);
+        final CheckBox installCB = (CheckBox) view.findViewById(R.id.installCB);
+        installCB.setChecked(isSeatBack());
+        builder.setView(view);
+        final AlertDialog dialog = builder.create();
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
+        btn_ok.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                saveInstallConfig(installCB.isChecked());
+                dialog.dismiss();
+            }
+        });
+        //取消操作
+        btn_cancel.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                dialog.dismiss();
             }
         });
     }

@@ -27,14 +27,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="80dp"
-            android:layout_marginRight="80dp"/>
+            android:layout_marginRight="80dp" />
 
         <cn.donica.slcd.launcher.ui.PageControlView
             android:id="@+id/pageControl"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_alignParentBottom="true"
-            android:gravity="center"/>
+            android:gravity="center" />
     </RelativeLayout>
 </LinearLayout>
 

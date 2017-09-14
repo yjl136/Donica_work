@@ -79,6 +79,12 @@
 
                 <include layout="@layout/line" />
 
+                <include
+                    android:id="@+id/install_configuration"
+                    layout="@layout/btn_item" />
+
+                <include layout="@layout/line" />
+
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

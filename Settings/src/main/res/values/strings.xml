@@ -31,10 +31,12 @@
     <string name="ip_seat_configuration">IP address and Seat location number configuration</string>
     <string name="Please_enter_the_IP_address">Please enter the airborne server IP address</string>
     <string name="Please_input_your_seat_location_number">Please input your seat location number</string>
+    <string name="ip_format_error">Illegal format IP address</string>
     <string name="you_click_on_five_times">You click on five times</string>
     <string name="cancel">Cancel</string>
     <string name="try_again">Try Again</string>
-    <string name="goon">Goon</string>
+    <string name="wait">Wait</string>
+    <string name="goon">Go on</string>
     <string name="confirm">Confirm</string>
     <string name="lockpattern_recording_incorrect_too_short">lockpattern recording incorrect too short</string>
     <string name="lockpattern_error">Lockpattern Error</string>
@@ -48,10 +50,16 @@
     <string name="lockscreen_access_pattern_detected">Pattern completed</string>
     <string name="enter_a_gesture_password">Enter Gesture Password</string>
 
+    <string name="diff_password">passwords are not consistent. Please re-enter</string>
+    <string name="setting_success">setting success</string>
+    <string name="enter_pattern">Please enter the unlock pattern</string>
+    <string name="enter_pattern_again">Please re-enter the unlock pattern</string>
+
     <string name="enter_password_successfully">Enter password successfully</string>
     <string name="enter_password_error">Enter password error</string>
     <string name="reset_password">Reset password</string>
     <string name="enter_password">Enter password</string>
+    <string name="confirm_password">confirm your password</string>
     <string name="password">password</string>
 
     <string name="udisk_upgrade">Udisk Upgrade</string>
@@ -67,4 +75,12 @@
     <string name="show_more">Show More</string>
     <string name="display_app">Display App</string>
     <string name="hidden_app">Hidden App</string>
+
+
+    <string name="countdown">Please enter the password again after %1$sS</string>
+    <string name="password_error">Password error,you have %1$d chance</string>
+    <string name="install_config">Install configuration</string>
+    <string name="install_seatback">Install Seatback</string>
+    <string name="input_config_info">Please enter configuration information</string>
+    <string name="seat_validate_tip">Seat Numbers can only contain letters and Numbers</string>
 </resources>

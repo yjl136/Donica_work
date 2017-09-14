@@ -9,15 +9,18 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.database.ContentObserver;
+import android.net.Uri;
 import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
 import android.os.Handler;
 import android.os.IBinder;
-import android.os.IHwtestService;
 import android.os.Message;
-import android.os.RemoteException;
-import android.os.ServiceManager;
+import android.provider.Settings;
 import android.support.annotation.Nullable;
+
+import org.litepal.crud.DataSupport;
+import org.litepal.tablemanager.Connector;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,7 +36,9 @@ import java.util.TimerTask;
 import java.util.concurrent.ExecutorService;
 
 import android_serialport_api.SerialPort;
+import cn.donica.slcd.ble.check.SlcdTest;
 import cn.donica.slcd.ble.cmd.CmdManage;
+import cn.donica.slcd.ble.entity.Monitor;
 import cn.donica.slcd.ble.task.AsyncTask;
 import cn.donica.slcd.ble.task.entity.ResultEntity;
 import cn.donica.slcd.ble.task.entity.TLVEntity;
@@ -45,7 +50,11 @@ import cn.donica.slcd.ble.utils.FloatWindowManager;
 import cn.donica.slcd.ble.utils.PayloadParseHelper;
 import cn.donica.slcd.ble.utils.StringUtil;
 import cn.donica.slcd.ble.utils.UnitUtils;
+import cn.donica.slcd.ble.window.PaWindow;
+import cn.donica.slcd.ble.window.VaWindow;
 import cn.donica.slcd.shell.Shell;
+
+import static cn.donica.slcd.ble.check.SlcdTest.get_ntsc_status;
 
 /**
  * Created by yejianlin 2016/10/19.
@@ -57,12 +66,9 @@ public class DetectService extends Service implements AsyncTask.IStatus {
     private final static int DELAY_TIME = 4000;
     private final static String PAIRING_REQUEST = "android.bluetooth.device.action.PAIRING_REQUEST";
     private final static String ACTION_PA = "cn.donica.slcd.action.PA";
-    private final static String ACTION_VA = "cn.donica.slcd.action.VA";
-    //开始Va
     private final static String ACTION_PLAY = "cn.donica.slcd.action.PLAY";
-    //停止VA
-    private final static String ACTION_STOP = "cn.donica.slcd.action.STOP";
     public final static String CMD_STOP = "busybox killall mxc-v4l2-tvin";
+    private final static Uri SEATBACK_URI = Uri.parse("content://cn.donica.slcd.provider");
     private final static String PA_KEY = "pa";
     private InputStream mInputStream;
     private OutputStream mOutputStream;
@@ -71,13 +77,19 @@ public class DetectService extends Service implements AsyncTask.IStatus {
     private BluetoothAdapter adapter;
     private final int BUFSIZE = 512;
     private Timer timer = new Timer();
-    private static final int DELAY_REMOVE_CMD = 0x102;
-    private static final int READ_CARD_CMD = 0x100;
-    private static final int READ_CARD = 0x200;
+    private final int DELAY_REMOVE_CMD = 0x102;
+    private final int READ_CARD_CMD = 0x100;
+    private final int READ_CARD = 0x200;
     protected final int READ_BLOCK_SUCCESS = 0x101;
     protected final int READ_BLOCK_FAIL = 0x103;
+    protected final int SHOW_PA_VIEW = 0x104;
+    protected final int REMOVE_PA_VIEW = 0x105;
+    protected final int SHOW_VA_VIEW = 0x106;
+    protected final int REMOVE_VA_VIEW = 0x107;
     private PairReceiver mPairReceiver;
     private ExecutorService mExecutorService;
+    private VaWindow mVaWindow;
+    private PaWindow mPaWindow;
 
     @Nullable
     @Override
@@ -88,17 +100,22 @@ public class DetectService extends Service implements AsyncTask.IStatus {
     @Override
     public void onCreate() {
         super.onCreate();
-        DLog.info("onCreate");
-        //设置led
-        initLed();
+        //初始化数据库
+        initDB();
+        //自检
+        initTest();
         //设置LCD size
-        // initLCD();
+        initLCD();
+        getContentResolver().registerContentObserver(SEATBACK_URI, true, new SeatBackObserver());
         //监听5000端口，获取PA状态
         initPA();
         //开启Va轮询
         initVa();
-        //打开蓝牙
-      /*  enable();
+        //设置休眠时间
+        initScreenOffTime();
+
+     /* //打开蓝牙
+        enable();
         if (open()) {
             //打开串口成功
             this.mInputStream = mSerialPort.getInputStream();
@@ -112,7 +129,10 @@ public class DetectService extends Service implements AsyncTask.IStatus {
             DLog.warn("Fail to open " + Constant.devName + "!");
             stopSelf();
         }*/
+    }
 
+    private void initDB() {
+        Connector.getDatabase();
     }
 
     //每隔1000毫秒去查询Va状态
@@ -123,35 +143,49 @@ public class DetectService extends Service implements AsyncTask.IStatus {
             if (get_ntsc_status()) {
                 if (!isPlaying) {
                     isPlaying = true;
-                    startVa();
+                    saveVaPa("va", 1);
+                    handler.sendEmptyMessage(SHOW_VA_VIEW);
                 }
             } else {
                 if (isPlaying) {
                     isPlaying = false;
-                    executeCMD(CMD_STOP);
-                    // stopVa();
+                    handler.sendEmptyMessage(REMOVE_VA_VIEW);
                 }
+                saveVaPa("va", 0);
             }
         }
     };
-
+    private TimerTask checkTask = new TimerTask() {
+        @Override
+        public void run() {
+            DLog.info("self-----Test");
+            SlcdTest.selfCheck(DetectService.this);
+        }
+    };
     /**
-     * 开始Va
+     * 设置休眠时间5分钟
      */
-    private void startVa() {
-        Intent intent = new Intent(this, VaService.class);
-        intent.setAction(ACTION_PLAY);
-        startService(intent);
+    private void initScreenOffTime() {
+        try {
+            Settings.System.putInt(getContentResolver(), Settings.System.SCREEN_OFF_TIMEOUT,
+                    5 * 60 * 1000);
+        } catch (Exception localException) {
+            localException.printStackTrace();
+        }
+    }
+    /**
+     * 保存va 、pa状态
+     *
+     * @param name
+     * @param value
+     */
+    private void saveVaPa(String name, int value) {
+        Monitor monitor = new Monitor();
+        monitor.setValue(value);
+        monitor.setName(name);
+        monitor.saveOrUpdate("name=?", name);
     }
 
-    /**
-     * 停止Va
-     */
-    private void stopVa() {
-        Intent intent = new Intent(this, VaService.class);
-        intent.setAction(ACTION_STOP);
-        startService(intent);
-    }
 
     /**
      * 执行命令
@@ -171,44 +205,20 @@ public class DetectService extends Service implements AsyncTask.IStatus {
      * 查询Va状态
      */
     private void initVa() {
-        timer.schedule(VaTask, 0, 1000);
-    }
-
-    /**
-     * 获得7282m的连接状态
-     *
-     * @throws RemoteException
-     */
-    public boolean get_ntsc_status() {
-        boolean isNtscOpen = false;
-        IHwtestService hwtest = IHwtestService.Stub.asInterface(ServiceManager.getService("hwtest"));
-        byte strinfo[] = new byte[256];
-        try {
-            byte ret = hwtest.get_ntsc_status(strinfo);
-            if (ret == 0) {
-                byte len = strinfo[0];
-                String info = new String(strinfo, 1, len);
-                if (info.contains("1")) {
-                    isNtscOpen = true;
-                } else {
-                    isNtscOpen = false;
-                }
-            } else {
-                isNtscOpen = false;
-            }
-        } catch (RemoteException e) {
-            e.printStackTrace();
-            isNtscOpen = false;
-        } finally {
-            return isNtscOpen;
+        if (mVaWindow == null) {
+            mVaWindow = new VaWindow(this);
         }
-
+        timer.schedule(VaTask, 0, 100);
     }
+
 
     /**
      * 监听5000端口，获取Pa状态
      */
     private void initPA() {
+        if (mPaWindow == null) {
+            mPaWindow = new PaWindow(this);
+        }
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -232,14 +242,18 @@ public class DetectService extends Service implements AsyncTask.IStatus {
                         socket.receive(packet);
                         int len = packet.getLength();
                         byte[] content = packet.getData();
-                        DLog.info("content[85]:" + StringUtil.byte2Hex(content[85]) + "  content[86]:" + StringUtil.byte2Hex(content[86]));
+                        DLog.info("content[43]:" + StringUtil.byte2Hex(content[43]) + "  content[44]:" + StringUtil.byte2Hex(content[44]));
                         Intent intent = new Intent();
-                        if (content != null && len > 86 && ("31".equals(StringUtil.byte2Hex(content[85])) || "31".equals(StringUtil.byte2Hex(content[86])))) {
+                        if (content != null && len > 45 && ("31".equals(StringUtil.byte2Hex(content[43])) || "31".equals(StringUtil.byte2Hex(content[44])))) {
                             DLog.warn("PA");
                             intent.putExtra(PA_KEY, 1);
+                            saveVaPa("pa", 1);
+                            handler.sendEmptyMessage(SHOW_PA_VIEW);
                         } else {
                             DLog.warn("No PA");
                             intent.putExtra(PA_KEY, 0);
+                            saveVaPa("pa", 0);
+                            handler.sendEmptyMessage(REMOVE_PA_VIEW);
                         }
                         intent.setAction(ACTION_PA);
                         sendBroadcast(intent);
@@ -262,28 +276,34 @@ public class DetectService extends Service implements AsyncTask.IStatus {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                String cmd = "wm size 1220x800";
+                String cmd = "";
+                if (isSeatBack()) {
+                    cmd = "wm size 1220x800";
+                } else {
+                    cmd = "wm size 1280x800";
+                }
                 executeCMD(cmd);
             }
         }).start();
     }
 
     /**
-     * 初始化usb/power led
+     * 判断是否安装在椅背
+     * @return
      */
-    private void initLed() {
-        IHwtestService hwtest = IHwtestService.Stub.asInterface(ServiceManager.getService("hwtest"));
-        if (hwtest != null) {
-            try {
-                hwtest.set_led(1, 0);
-                hwtest.set_led(2, 0);
-                hwtest.set_led(3, 0);
-            } catch (RemoteException e) {
-                e.printStackTrace();
-            }
-        } else {
-            DLog.warn("hwtest==null");
+    private boolean isSeatBack() {
+        Monitor monitor = DataSupport.where("name=?", "seatback").findFirst(Monitor.class);
+        if (monitor != null && monitor.getValue() == 1) {
+            return true;
         }
+        return false;
+    }
+
+    /**
+     * 自检，开机自检，定时自检
+     */
+    private void initTest() {
+        timer.schedule(checkTask, 10000, 20000);
     }
 
     @Override
@@ -342,10 +362,36 @@ public class DetectService extends Service implements AsyncTask.IStatus {
                 case DELAY_REMOVE_CMD:
                     FloatWindowManager.removeFloatView(DetectService.this);
                     break;
+                case SHOW_PA_VIEW:
+                    mPaWindow.startPa();
+                    break;
+                case REMOVE_PA_VIEW:
+                    mPaWindow.stopPa();
+                    break;
+                case SHOW_VA_VIEW:
+                    mVaWindow.startVa();
+                    break;
+                case REMOVE_VA_VIEW:
+                    mVaWindow.stopVa();
+                    break;
 
             }
         }
     };
+
+    private class SeatBackObserver extends ContentObserver {
+        public SeatBackObserver() {
+            super(new Handler());
+        }
+
+        @Override
+        public void onChange(boolean selfChange) {
+            super.onChange(selfChange);
+            DLog.info("onChange");
+            initLCD();
+        }
+
+    }
 
     private void write(byte[] cmdBytes) {
         try {
@@ -511,17 +557,6 @@ public class DetectService extends Service implements AsyncTask.IStatus {
             DLog.error("init NdnfMessage error  " + e.getMessage());
         }
     }
-
-
-    /**
-     * 获取到蓝牙mac，进行蓝牙配对
-     */
-    public void pair(String mac) {
-        enable();
-        BluetoothDevice device = adapter.getRemoteDevice(mac);
-        pair(device);
-    }
-
     /**
      * 获取到蓝牙mac，进行蓝牙配对
      */
@@ -538,7 +573,6 @@ public class DetectService extends Service implements AsyncTask.IStatus {
         if (adapter == null) {
             adapter = BluetoothAdapter.getDefaultAdapter();
         }
-
         if (adapter == null) {
             DLog.warn("Fail to get BluetoothAdapter ");
             setIdel(true);

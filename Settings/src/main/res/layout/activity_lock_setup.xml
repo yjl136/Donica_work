@@ -15,12 +15,11 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/change_password"
+            android:id="@+id/tipTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="确认你的密码"
             android:textColor="#9999cc"
-            android:textSize="18sp" />
+            android:textSize="25dp" />
     </LinearLayout>
 
     <RelativeLayout
@@ -41,6 +40,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/btLayout"
             android:layout_width="400dp"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -53,6 +53,7 @@
                 android:layout_height="60dp"
                 android:layout_marginRight="40dp"
                 android:layout_weight="1"
+                android:text="@string/try_again"
                 android:textColor="@color/white"
                 android:background="@drawable/shallow_button"
                 android:onClick="onClick" />
@@ -63,6 +64,7 @@
                 android:layout_height="60dp"
                 android:layout_weight="1"
                 android:textColor="@color/white"
+                android:text="@string/confirm"
                 android:background="@drawable/depth_button"
                 android:onClick="onClick" />
         </LinearLayout>

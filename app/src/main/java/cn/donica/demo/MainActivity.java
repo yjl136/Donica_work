@@ -2,27 +2,26 @@ package cn.donica.demo;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
+import android.database.Cursor;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.IHwtestService;
-import android.os.RecoverySystem;
 import android.os.RemoteException;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.io.File;
-import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.SocketException;
 import java.util.Timer;
 
 public class MainActivity extends Activity {
+    private final static String PACKET_NAME = "cn.donica.slcd.ble";
     private final static String ACTION_PA = "cn.donica.slcd.action.PA";
     private final static String PA_KEY = "pa";
     private static String TAG = "MainActivity";
@@ -30,11 +29,22 @@ public class MainActivity extends Activity {
     private TextView paTv;
     private IHwtestService hwtestService;
     private Timer timer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        button = (Button) findViewById(R.id.bt);
+        ContentResolver resolver = getContentResolver();
+        Cursor cursor = resolver.query(Uri.parse("content://cn.donica.slcd.provider/monitor/pa"), null, null, null, null, null);
+        cursor.moveToFirst();
+        int valueIndex = cursor.getColumnIndex("value");
+        int nameIndex = cursor.getColumnIndex("name");
+        int value = cursor.getInt(valueIndex);
+        String name = cursor.getString(nameIndex);
+
+        Log.i(TAG, name + ":" + value);
+
+       /* button = (Button) findViewById(R.id.bt);
         paTv = (TextView) findViewById(R.id.paTv);
         IntentFilter filter = new IntentFilter();
         filter.addAction(ACTION_PA);
@@ -48,20 +58,19 @@ public class MainActivity extends Activity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
-                    /*new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                RecoverySystem.rebootWipeUserData(MainActivity.this);
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            RecoverySystem.rebootWipeUserData(MainActivity.this);
+                        } catch (IOException e) {
+                            e.printStackTrace();
                         }
-                    }).start();*/
+                    }
+                }).start();
             }
         });
-
+*/
 
 
 

@@ -5,17 +5,17 @@
 
     >
 
-   <cn.donica.slcd.launcher.ui.DotView
+    <cn.donica.slcd.launcher.ui.DotView
         android:id="@+id/dot"
         android:layout_width="800dp"
         android:layout_height="100dp"
         android:layout_centerInParent="true" />
-  <TextView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_alignParentBottom="true"
-      android:text="page indicator dotview"
-      android:layout_centerHorizontal="true"
-      android:textColor="@android:color/white"
-      />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="page indicator dotview"
+        android:layout_centerHorizontal="true"
+        android:textColor="@android:color/white" />
 </RelativeLayout>

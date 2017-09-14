@@ -5,6 +5,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ResolveInfo;
+import android.database.ContentObserver;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -12,7 +13,10 @@ import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -54,6 +58,7 @@ public class MainActivity extends Activity {
     private ScrollLayout mScrollLayout;
     private LinearLayout linearLayout;
     private Bitmap bitmap;
+    private Uri APPS_URI = Uri.parse("content://cn.donica.slcd.launcher.contentprovider");
 
     /**
      * Called when the activity is first created.
@@ -68,7 +73,6 @@ public class MainActivity extends Activity {
         mScrollLayout = (ScrollLayout) findViewById(R.id.ScrollLayoutTest);
         linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
         seatTv = (TextView) findViewById(R.id.seatTv);
-        seatTv.setText(Config.getSeatPosition());
         mContext = getBaseContext();
         loadWallpaper();
         dbHelper = new SqliteHelperUtil(this);
@@ -78,8 +82,33 @@ public class MainActivity extends Activity {
             loadDbApp();
         }
         initGridView();
+        getContentResolver().registerContentObserver(APPS_URI, true, new AppObserver());
     }
 
+    private class AppObserver extends ContentObserver {
+        public AppObserver() {
+            super(new Handler());
+        }
+
+        @Override
+        public void onChange(boolean selfChange) {
+            super.onChange(selfChange);
+            Log.i(TAG, "onChange");
+            if (dbHelper.getAppsSize() == 0) {
+                loadApp();
+            } else {
+                loadDbApp();
+            }
+            mScrollLayout.removeAllViews();
+            initGridView();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        seatTv.setText(Config.getSeatPosition(this));
+    }
 
     /**
      * 根据指定路径加载壁纸

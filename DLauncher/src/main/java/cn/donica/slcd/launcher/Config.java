@@ -1,8 +1,9 @@
 package cn.donica.slcd.launcher;
 
+import android.content.ContentResolver;
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.net.Uri;
 
 /**
  * Created by liangmingjie on 2016/4/8.
@@ -23,19 +24,14 @@ public class Config {
     /**
      * @return 获取座位位置信息
      */
-    public static String getSeatPosition() {
-        String FILENAME = "Ip_And_Seat";
-        String QUERY_KEY = "Seat";
+    public static String getSeatPosition(Context context) {
         String seat = "";
-        Context c = null;
-        try {
-            c = BaseApplication.getContext().createPackageContext("cn.donica.slcd.settings", android.content.Context.CONTEXT_IGNORE_SECURITY);
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
-        if (c != null) {
-            SharedPreferences prefercences = c.getSharedPreferences(FILENAME, Context.MODE_PRIVATE);
-            seat = prefercences.getString(QUERY_KEY, "");
+        Uri uri = Uri.parse("content://cn.donica.slcd.provider/config/seat");
+        ContentResolver resolver = context.getContentResolver();
+        Cursor cursor = resolver.query(uri, null, null, null, null, null);
+        if (cursor.moveToFirst()) {
+            int index = cursor.getColumnIndex("value");
+            seat = cursor.getString(index);
         }
         return seat;
     }

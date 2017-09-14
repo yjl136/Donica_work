@@ -197,6 +197,7 @@ public class AppsContentProvider extends ContentProvider {
             default:
                 break;
         }
+        getContext().getContentResolver().notifyChange(uri, null);
         return updatedRows;
     }
 }
