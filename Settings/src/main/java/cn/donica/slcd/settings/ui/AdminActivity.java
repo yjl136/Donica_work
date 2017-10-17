@@ -3,11 +3,11 @@ package cn.donica.slcd.settings.ui;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.DialogFragment;
 import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -31,13 +31,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import cn.donica.slcd.settings.R;
-import cn.donica.slcd.settings.appiconmanage.AppIconManageActivity;
-
+import cn.donica.slcd.settings.bite.BiteActivity;
+import cn.donica.slcd.settings.lang.LocaleDialog;
+import cn.donica.slcd.settings.restore.RestoreFactoryDialog;
 
 public class AdminActivity extends Activity implements OnClickListener {
-    private AlertDialog.Builder builder;
-    private SharedPreferences prference;
-    private Intent mIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,23 +47,20 @@ public class AdminActivity extends Activity implements OnClickListener {
     }
 
     private void initView() {
-        addSettingItem(R.id.appIconManager, getString(R.string.appIconManager), R.mipmap.ico_program);
-        addSettingItem(R.id.system_settings, getString(R.string.system_settings), R.mipmap.ico_setup);
-        addSettingItem(R.id.uninstall, getString(R.string.uninstall), R.mipmap.ico_uninstall);
         addSettingItem(R.id.restore_factory_settings, getString(R.string.restore_factory_settings), R.mipmap.ico_recovery);
-        addSettingItem(R.id.wlan, getString(R.string.wlan), R.mipmap.ico_wifi);
-        addSettingItem(R.id.bluetooth, getString(R.string.bluetooth), R.mipmap.ico_bluetooth);
-        addSettingItem(R.id.ethernet, getString(R.string.Ethernet_Configuration), R.mipmap.ico_wlan);
+        addSettingItem(R.id.network, getString(R.string.network), R.mipmap.ico_lan_h);
         addSettingItem(R.id.language, getString(R.string.language_input), R.mipmap.ico_language);
-        addSettingItem(R.id.ip_seat_configuration, getString(R.string.ip_seat_configuration), R.mipmap.ico_language);
         addSettingItem(R.id.install_configuration, getString(R.string.install_config), R.mipmap.ico_setup);
+        addSettingItem(R.id.bite, getString(R.string.system_bite), R.mipmap.ico_m_bite_h);
+        addSettingItem(R.id.about, getString(R.string.action_about), R.mipmap.ico_about);
+        addSettingItem(R.id.reset_password, getString(R.string.reset_password), R.mipmap.ico_m_password_h);
+        addSettingItem(R.id.upgrade, getString(R.string.system_upgrade), R.mipmap.ico_backup);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            mIntent = new Intent(AdminActivity.this, AboutActivity.class);
-            startActivity(mIntent);
+            finish();
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -91,53 +86,40 @@ public class AdminActivity extends Activity implements OnClickListener {
     @Override
     public void onClick(View v) {
         Intent intent = null;
+        DialogFragment dialog=null;
         switch (v.getId()) {
-            case R.id.appIconManager:
-                intent = new Intent(AdminActivity.this, AppIconManageActivity.class);
-                startActivity(intent);
-                break;
-            case R.id.wlan:
+            case R.id.network:
                 intent = new Intent(Settings.ACTION_WIFI_SETTINGS);
                 startActivity(intent);
                 break;
-            case R.id.bluetooth:
-                intent = new Intent(Settings.ACTION_BLUETOOTH_SETTINGS);
-                startActivity(intent);
-                break;
-            case R.id.ethernet:
-                intent = new Intent();
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                ComponentName comp = new ComponentName("com.android.settings", "com.android.settings.Settings$EthernetSettingsActivity");
-                intent.setComponent(comp);
-                intent.setAction("android.intent.action.VIEW");
-                startActivity(intent);
-                break;
             case R.id.language:
-                intent = new Intent();
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                ComponentName compLanguage = new ComponentName("com.android.settings", "com.android.settings.Settings$InputMethodAndLanguageSettingsActivity");
-                intent.setComponent(compLanguage);
-                intent.setAction("android.intent.action.VIEW");
-                startActivity(intent);
-                break;
-            case R.id.system_settings:
-                intent = new Intent(Settings.ACTION_SETTINGS);
-                startActivity(intent);
-                break;
-            case R.id.uninstall:
-                intent = new Intent(Settings.ACTION_MANAGE_APPLICATIONS_SETTINGS);
-                startActivity(intent);
+                 dialog= new LocaleDialog();
+                dialog.show(getFragmentManager(),"LocaleDialog");
                 break;
             case R.id.restore_factory_settings:
-                // Toast.makeText(AdminActivity.this, "点击了恢复出厂设置", Toast.LENGTH_LONG).show();
+                dialog=new RestoreFactoryDialog();
+                dialog.show(getFragmentManager(),"RestoreDialog");
                 break;
-            case R.id.ip_seat_configuration:
-                showInputDialog();
+            case R.id.upgrade:
+                intent=new Intent();
+                intent.setComponent(new ComponentName("com.fsl.android.ota","com.fsl.android.ota.OtaAppActivity"));
+                startActivity(intent);
                 break;
             case R.id.install_configuration:
                 showInstallConfigDialog();
                 break;
-
+            case R.id.bite:
+                intent = new Intent(this, BiteActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.about:
+                intent = new Intent(this, AboutActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.reset_password:
+                intent = new Intent(this, LockSetupActivity.class);
+                startActivity(intent);
+                break;
             default:
                 return;
         }
@@ -184,15 +166,25 @@ public class AdminActivity extends Activity implements OnClickListener {
      * @return
      */
     private String getIpConfig() {
+        Cursor cursor = null;
         String ip = "";
-        Uri uri = Uri.parse("content://cn.donica.slcd.provider/config/ip");
-        ContentResolver resolver = getContentResolver();
-        Cursor cursor = resolver.query(uri, null, null, null, null, null);
-        if (cursor.moveToFirst()) {
-            int index = cursor.getColumnIndex("value");
-            ip = cursor.getString(index);
+        try {
+            Uri uri = Uri.parse("content://cn.donica.slcd.provider/config/ip");
+            ContentResolver resolver = getContentResolver();
+            cursor = resolver.query(uri, null, null, null, null, null);
+            if (cursor.moveToFirst()) {
+                int index = cursor.getColumnIndex("value");
+                ip = cursor.getString(index);
+            }
+        } catch (Exception e) {
+            ip = "";
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+                cursor=null;
+            }
+            return ip;
         }
-        return ip;
     }
 
     /**
@@ -202,56 +194,86 @@ public class AdminActivity extends Activity implements OnClickListener {
      */
     private String getSeatConfig() {
         String seat = "";
-        Uri uri = Uri.parse("content://cn.donica.slcd.provider/config/seat");
-        ContentResolver resolver = getContentResolver();
-        Cursor cursor = resolver.query(uri, null, null, null, null, null);
-        if (cursor.moveToFirst()) {
-            int index = cursor.getColumnIndex("value");
-            seat = cursor.getString(index);
+        Cursor cursor = null;
+        try {
+            Uri uri = Uri.parse("content://cn.donica.slcd.provider/config/seat");
+            ContentResolver resolver = getContentResolver();
+            cursor = resolver.query(uri, null, null, null, null, null);
+            if (cursor.moveToFirst()) {
+                int index = cursor.getColumnIndex("value");
+                seat = cursor.getString(index);
+            }
+        } catch (Exception e) {
+            seat = "";
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+                cursor = null;
+            }
+            return seat;
         }
-        return seat;
     }
 
     /**
      * 保存ip配置
      */
     private void saveIpConfig(String ip) {
-        Uri uri = Uri.parse("content://cn.donica.slcd.provider/config/ip");
-        ContentResolver resolver = getContentResolver();
-        Cursor cursor = resolver.query(uri, null, null, null, null, null);
-        if (cursor.moveToFirst()) {
-            //更新
-            ContentValues values = new ContentValues();
-            values.put("value", ip);
-            resolver.update(uri, values, null, null);
-        } else {
-            //保存
-            ContentValues values = new ContentValues();
-            values.put("name", "ip");
-            values.put("value", ip);
-            resolver.insert(uri, values);
+        Cursor cursor=null;
+        try {
+            Uri uri = Uri.parse("content://cn.donica.slcd.provider/config/ip");
+            ContentResolver resolver = getContentResolver();
+            cursor = resolver.query(uri, null, null, null, null, null);
+            if (cursor.moveToFirst()) {
+                //更新
+                ContentValues values = new ContentValues();
+                values.put("value", ip);
+                resolver.update(uri, values, null, null);
+            } else {
+                //保存
+                ContentValues values = new ContentValues();
+                values.put("name", "ip");
+                values.put("value", ip);
+                resolver.insert(uri, values);
+            }
+        }catch (Exception e){
+        }finally {
+            if(cursor!=null){
+                cursor.close();
+                cursor=null;
+            }
         }
+
     }
 
     /**
      * 保存seat配置
      */
     private void saveSeatConfig(String seat) {
-        Uri uri = Uri.parse("content://cn.donica.slcd.provider/config/seat");
-        ContentResolver resolver = getContentResolver();
-        Cursor cursor = resolver.query(uri, null, null, null, null, null);
-        if (cursor.moveToFirst()) {
-            //更新
-            ContentValues values = new ContentValues();
-            values.put("value", seat);
-            resolver.update(uri, values, null, null);
-        } else {
-            //保存
-            ContentValues values = new ContentValues();
-            values.put("name", "seat");
-            values.put("value", seat);
-            resolver.insert(uri, values);
+        Cursor cursor=null;
+        try {
+            Uri uri = Uri.parse("content://cn.donica.slcd.provider/config/seat");
+            ContentResolver resolver = getContentResolver();
+            cursor = resolver.query(uri, null, null, null, null, null);
+            if (cursor.moveToFirst()) {
+                //更新
+                ContentValues values = new ContentValues();
+                values.put("value", seat);
+                resolver.update(uri, values, null, null);
+            } else {
+                //保存
+                ContentValues values = new ContentValues();
+                values.put("name", "seat");
+                values.put("value", seat);
+                resolver.insert(uri, values);
+            }
+        }catch (Exception e){
+        }finally {
+            if(cursor!=null){
+                cursor.close();
+                cursor=null;
+            }
         }
+
     }
 
     /**
@@ -303,38 +325,61 @@ public class AdminActivity extends Activity implements OnClickListener {
      */
     private boolean isSeatBack() {
         boolean isSeatBack = false;
-        Uri uri = Uri.parse("content://cn.donica.slcd.provider/monitor/seatback");
-        ContentResolver resolver = getContentResolver();
-        Cursor cursor = resolver.query(uri, null, null, null, null, null);
-        if (cursor.moveToFirst()) {
-            int index = cursor.getColumnIndex("value");
-            int value = cursor.getInt(index);
-            if (value == 1) {
-                isSeatBack = true;
+        Cursor cursor=null;
+        try {
+            Uri uri = Uri.parse("content://cn.donica.slcd.provider/monitor/seatback");
+            ContentResolver resolver = getContentResolver();
+            cursor = resolver.query(uri, null, null, null, null, null);
+            if (cursor.moveToFirst()) {
+                int index = cursor.getColumnIndex("value");
+                int value = cursor.getInt(index);
+                if (value == 1) {
+                    isSeatBack = true;
+                }
             }
+        }catch (Exception e){
+
+        }finally {
+            if(cursor!=null){
+                cursor.close();
+                cursor=null;
+            }
+            return isSeatBack;
         }
-        return isSeatBack;
+
+
     }
 
     /**
      * 保存安装配置
      */
     private void saveInstallConfig(boolean isCheck) {
-        Uri uri = Uri.parse("content://cn.donica.slcd.provider/monitor/seatback");
-        ContentResolver resolver = getContentResolver();
-        Cursor cursor = resolver.query(uri, null, null, null, null, null);
-        if (cursor.moveToFirst()) {
-            //更新
-            ContentValues values = new ContentValues();
-            values.put("value", isCheck ? 1 : 0);
-            resolver.update(uri, values, null, null);
-        } else {
-            //保存
-            ContentValues values = new ContentValues();
-            values.put("name", "seatback");
-            values.put("value", isCheck ? 1 : 0);
-            resolver.insert(uri, values);
+        Cursor cursor=null;
+        try {
+            Uri uri = Uri.parse("content://cn.donica.slcd.provider/monitor/seatback");
+            ContentResolver resolver = getContentResolver();
+            cursor = resolver.query(uri, null, null, null, null, null);
+            if (cursor.moveToFirst()) {
+                //更新
+                ContentValues values = new ContentValues();
+                values.put("value", isCheck ? 1 : 0);
+                resolver.update(uri, values, null, null);
+            } else {
+                //保存
+                ContentValues values = new ContentValues();
+                values.put("name", "seatback");
+                values.put("value", isCheck ? 1 : 0);
+                resolver.insert(uri, values);
+            }
+        }catch (Exception e){
+
+        }finally {
+            if(cursor!=null){
+                cursor.close();
+                cursor=null;
+            }
         }
+
     }
 
     /**

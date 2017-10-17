@@ -46,7 +46,7 @@
             android:layout_marginRight="40dp"
             android:layout_weight="1"
             android:background="@drawable/shallow_button"
-            android:text="@string/confirm"
+            android:text="@string/cancel"
             android:textColor="@color/right_text_color"
             android:textSize="20sp" />
 

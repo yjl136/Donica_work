@@ -1,4 +1,4 @@
-#Wed Sep 13 15:29:48 CST 2017
+#Tue Oct 10 16:48:30 CST 2017
 base.0=E\:\\WorkSpace\\Android_Studio\\Android\\Donica\\DLauncher\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\1f\\main
 renamed.0=classes.dex
 file.0=E\:\\WorkSpace\\Android_Studio\\Android\\Donica\\DLauncher\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\1f\\main\\classes.dex
