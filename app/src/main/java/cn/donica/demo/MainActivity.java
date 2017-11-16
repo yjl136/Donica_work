@@ -5,13 +5,19 @@ import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.database.Cursor;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
 import android.net.Uri;
+import android.net.ethernet.EthernetManager;
 import android.os.Bundle;
 import android.os.IHwtestService;
+import android.os.PowerManager;
 import android.os.RemoteException;
+import android.os.storage.StorageManager;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -29,48 +35,43 @@ public class MainActivity extends Activity {
     private TextView paTv;
     private IHwtestService hwtestService;
     private Timer timer;
+    private EthernetManager mEthernetManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ContentResolver resolver = getContentResolver();
-        Cursor cursor = resolver.query(Uri.parse("content://cn.donica.slcd.provider/monitor/pa"), null, null, null, null, null);
-        cursor.moveToFirst();
-        int valueIndex = cursor.getColumnIndex("value");
-        int nameIndex = cursor.getColumnIndex("name");
-        int value = cursor.getInt(valueIndex);
-        String name = cursor.getString(nameIndex);
+        button = (Button) findViewById(R.id.bt);
+        PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
+        StorageManager ms = (StorageManager) getSystemService(Context.STORAGE_SERVICE);
 
-        Log.i(TAG, name + ":" + value);
-
-       /* button = (Button) findViewById(R.id.bt);
-        paTv = (TextView) findViewById(R.id.paTv);
         IntentFilter filter = new IntentFilter();
-        filter.addAction(ACTION_PA);
-        registerReceiver(new PaReceiver(), filter);
+        filter.addAction(Intent.ACTION_MEDIA_BAD_REMOVAL);
+        filter.addAction(Intent.ACTION_MEDIA_MOUNTED);
+        filter.addAction(Intent.ACTION_MEDIA_UNMOUNTED);
+        filter.addAction(Intent.ACTION_MEDIA_EJECT);
+        filter.addAction(Intent.ACTION_MEDIA_CHECKING);
+        filter.addAction(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+        filter.addAction(Intent.ACTION_MEDIA_SCANNER_FINISHED);
+        filter.addDataScheme("file");
+        registerReceiver(new USBReceiver(), filter);
+      /*  IntentFilter filter = new IntentFilter();
+        filter.addAction(WifiManager.WIFI_STATE_CHANGED_ACTION);
+        filter.addAction(WifiManager.NETWORK_STATE_CHANGED_ACTION);
+        filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(new NetworkConnectChangedReceiver(), filter);*/
+
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    File packageFile = new File("/mnt/extsd/update.zip");
-                    RecoverySystem.installPackage(MainActivity.this, packageFile);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            RecoverySystem.rebootWipeUserData(MainActivity.this);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }).start();
+                ConnectivityManager conMgr = (ConnectivityManager) MainActivity.this.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+
             }
         });
-*/
+
+
 
 
 
@@ -86,6 +87,24 @@ public class MainActivity extends Activity {
                 }
             }
         },0,500);*/
+    }
+
+    private class NetworkConnectChangedReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+
+        }
+    }
+
+    private void queryMonitor() {
+        ContentResolver resolver = getContentResolver();
+        Cursor cursor = resolver.query(Uri.parse("content://cn.donica.slcd.provider/monitor/pa"), null, null, null, null, null);
+        cursor.moveToFirst();
+        int valueIndex = cursor.getColumnIndex("value");
+        int nameIndex = cursor.getColumnIndex("name");
+        int value = cursor.getInt(valueIndex);
+        String name = cursor.getString(nameIndex);
+
     }
 
     public void test_audio_signal() throws RemoteException {
@@ -144,6 +163,18 @@ public class MainActivity extends Activity {
 
     }
 
+    class USBReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Log.i(TAG, "action:" + intent.getAction());
+            String mountPath = intent.getData().getPath();
+            Log.d(TAG, "mountPath = " + mountPath);
+            if (Intent.ACTION_MEDIA_MOUNTED.equals(intent.getAction())) {
+                //  String mountPath = intent.getData().getPath();
+                Log.d(TAG, "mountPath = " + mountPath);
+            }
+        }
+    }
 
     class PaReceiver extends BroadcastReceiver {
         @Override

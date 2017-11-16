@@ -4,7 +4,6 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DialogFragment;
-import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Intent;
@@ -13,6 +12,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.text.Html;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -34,8 +34,13 @@ import cn.donica.slcd.settings.R;
 import cn.donica.slcd.settings.bite.BiteActivity;
 import cn.donica.slcd.settings.lang.LocaleDialog;
 import cn.donica.slcd.settings.restore.RestoreFactoryDialog;
+import cn.donica.slcd.settings.upgrade.UpgradeDialog;
+import cn.donica.slcd.settings.utils.XmlUtils;
+
+import static cn.donica.slcd.settings.R.id.installCB;
 
 public class AdminActivity extends Activity implements OnClickListener {
+    private final String TAG = "AdminActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +51,19 @@ public class AdminActivity extends Activity implements OnClickListener {
         initView();
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.i(TAG, "onPause");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.i(TAG, "onStop");
+        //  finish();
+    }
+
     private void initView() {
         addSettingItem(R.id.restore_factory_settings, getString(R.string.restore_factory_settings), R.mipmap.ico_recovery);
         addSettingItem(R.id.network, getString(R.string.network), R.mipmap.ico_lan_h);
@@ -54,6 +72,7 @@ public class AdminActivity extends Activity implements OnClickListener {
         addSettingItem(R.id.bite, getString(R.string.system_bite), R.mipmap.ico_m_bite_h);
         addSettingItem(R.id.about, getString(R.string.action_about), R.mipmap.ico_about);
         addSettingItem(R.id.reset_password, getString(R.string.reset_password), R.mipmap.ico_m_password_h);
+        addSettingItem(R.id.debug, getString(R.string.debug), R.mipmap.ico_m_password_h);
         addSettingItem(R.id.upgrade, getString(R.string.system_upgrade), R.mipmap.ico_backup);
     }
 
@@ -86,27 +105,30 @@ public class AdminActivity extends Activity implements OnClickListener {
     @Override
     public void onClick(View v) {
         Intent intent = null;
-        DialogFragment dialog=null;
+        DialogFragment dialog = null;
         switch (v.getId()) {
             case R.id.network:
                 intent = new Intent(Settings.ACTION_WIFI_SETTINGS);
                 startActivity(intent);
+                finish();
                 break;
             case R.id.language:
-                 dialog= new LocaleDialog();
-                dialog.show(getFragmentManager(),"LocaleDialog");
+                dialog = new LocaleDialog();
+                dialog.show(getFragmentManager(), "LocaleDialog");
                 break;
             case R.id.restore_factory_settings:
-                dialog=new RestoreFactoryDialog();
-                dialog.show(getFragmentManager(),"RestoreDialog");
+                dialog = new RestoreFactoryDialog();
+                dialog.show(getFragmentManager(), "RestoreDialog");
                 break;
             case R.id.upgrade:
-                intent=new Intent();
-                intent.setComponent(new ComponentName("com.fsl.android.ota","com.fsl.android.ota.OtaAppActivity"));
-                startActivity(intent);
+                dialog = new UpgradeDialog();
+                dialog.show(getFragmentManager(), "UpgradeDialog");
                 break;
             case R.id.install_configuration:
                 showInstallConfigDialog();
+                break;
+            case R.id.debug:
+                showDebugDialog();
                 break;
             case R.id.bite:
                 intent = new Intent(this, BiteActivity.class);
@@ -181,7 +203,7 @@ public class AdminActivity extends Activity implements OnClickListener {
         } finally {
             if (cursor != null) {
                 cursor.close();
-                cursor=null;
+                cursor = null;
             }
             return ip;
         }
@@ -218,7 +240,7 @@ public class AdminActivity extends Activity implements OnClickListener {
      * 保存ip配置
      */
     private void saveIpConfig(String ip) {
-        Cursor cursor=null;
+        Cursor cursor = null;
         try {
             Uri uri = Uri.parse("content://cn.donica.slcd.provider/config/ip");
             ContentResolver resolver = getContentResolver();
@@ -235,11 +257,11 @@ public class AdminActivity extends Activity implements OnClickListener {
                 values.put("value", ip);
                 resolver.insert(uri, values);
             }
-        }catch (Exception e){
-        }finally {
-            if(cursor!=null){
+        } catch (Exception e) {
+        } finally {
+            if (cursor != null) {
                 cursor.close();
-                cursor=null;
+                cursor = null;
             }
         }
 
@@ -249,7 +271,7 @@ public class AdminActivity extends Activity implements OnClickListener {
      * 保存seat配置
      */
     private void saveSeatConfig(String seat) {
-        Cursor cursor=null;
+        Cursor cursor = null;
         try {
             Uri uri = Uri.parse("content://cn.donica.slcd.provider/config/seat");
             ContentResolver resolver = getContentResolver();
@@ -266,11 +288,11 @@ public class AdminActivity extends Activity implements OnClickListener {
                 values.put("value", seat);
                 resolver.insert(uri, values);
             }
-        }catch (Exception e){
-        }finally {
-            if(cursor!=null){
+        } catch (Exception e) {
+        } finally {
+            if (cursor != null) {
                 cursor.close();
-                cursor=null;
+                cursor = null;
             }
         }
 
@@ -324,8 +346,8 @@ public class AdminActivity extends Activity implements OnClickListener {
      * @return
      */
     private boolean isSeatBack() {
-        boolean isSeatBack = false;
-        Cursor cursor=null;
+       /* boolean isSeatBack = false;
+        Cursor cursor = null;
         try {
             Uri uri = Uri.parse("content://cn.donica.slcd.provider/monitor/seatback");
             ContentResolver resolver = getContentResolver();
@@ -337,24 +359,56 @@ public class AdminActivity extends Activity implements OnClickListener {
                     isSeatBack = true;
                 }
             }
-        }catch (Exception e){
+        } catch (Exception e) {
 
-        }finally {
-            if(cursor!=null){
+        } finally {
+            if (cursor != null) {
                 cursor.close();
-                cursor=null;
+                cursor = null;
             }
             return isSeatBack;
+        }*/
+        if (XmlUtils.getSeatBack() == 1) {
+            return true;
         }
+        return false;
+    }
 
+    /**
+     * 获取调试模式
+     *
+     * @return
+     */
+    private boolean isDebug() {
+        boolean isDebug = false;
+        Cursor cursor = null;
+        try {
+            Uri uri = Uri.parse("content://cn.donica.slcd.provider/monitor/debug");
+            ContentResolver resolver = getContentResolver();
+            cursor = resolver.query(uri, null, null, null, null, null);
+            if (cursor.moveToFirst()) {
+                int index = cursor.getColumnIndex("value");
+                int value = cursor.getInt(index);
+                if (value == 1) {
+                    isDebug = true;
+                }
+            }
+        } catch (Exception e) {
 
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+                cursor = null;
+            }
+            return isDebug;
+        }
     }
 
     /**
      * 保存安装配置
      */
     private void saveInstallConfig(boolean isCheck) {
-        Cursor cursor=null;
+        Cursor cursor = null;
         try {
             Uri uri = Uri.parse("content://cn.donica.slcd.provider/monitor/seatback");
             ContentResolver resolver = getContentResolver();
@@ -371,15 +425,72 @@ public class AdminActivity extends Activity implements OnClickListener {
                 values.put("value", isCheck ? 1 : 0);
                 resolver.insert(uri, values);
             }
-        }catch (Exception e){
-
-        }finally {
-            if(cursor!=null){
+        } catch (Exception e) {
+        } finally {
+            if (cursor != null) {
                 cursor.close();
-                cursor=null;
+                cursor = null;
             }
         }
+    }
 
+    /**
+     * 保存debug配置
+     */
+    private void saveDebugConfig(boolean isCheck) {
+        Cursor cursor = null;
+        try {
+            Uri uri = Uri.parse("content://cn.donica.slcd.provider/monitor/debug");
+            ContentResolver resolver = getContentResolver();
+            cursor = resolver.query(uri, null, null, null, null, null);
+            if (cursor.moveToFirst()) {
+                //更新
+                ContentValues values = new ContentValues();
+                values.put("value", isCheck ? 1 : 0);
+                resolver.update(uri, values, null, null);
+            } else {
+                //保存
+                ContentValues values = new ContentValues();
+                values.put("name", "debug");
+                values.put("value", isCheck ? 1 : 0);
+                resolver.insert(uri, values);
+            }
+        } catch (Exception e) {
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+                cursor = null;
+            }
+        }
+    }
+
+    /**
+     * 显示是否调试模式dialog
+     */
+    public void showDebugDialog() {
+        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View view = inflater.inflate(R.layout.debug_config, null);
+        Button btn_ok = (Button) view.findViewById(R.id.ok);
+        Button btn_cancel = (Button) view.findViewById(R.id.cancel);
+        final CheckBox debugCB = (CheckBox) view.findViewById(installCB);
+        debugCB.setChecked(isDebug());
+        builder.setView(view);
+        final AlertDialog dialog = builder.create();
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
+        btn_ok.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                saveDebugConfig(debugCB.isChecked());
+                dialog.dismiss();
+            }
+        });
+        //取消操作
+        btn_cancel.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
     }
 
     /**
@@ -387,7 +498,7 @@ public class AdminActivity extends Activity implements OnClickListener {
      */
     public void showInstallConfigDialog() {
         android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
-        LayoutInflater inflater = LayoutInflater.from(this);
+        final LayoutInflater inflater = LayoutInflater.from(this);
         View view = inflater.inflate(R.layout.install_config, null);
         Button btn_ok = (Button) view.findViewById(R.id.ok);
         Button btn_cancel = (Button) view.findViewById(R.id.cancel);
@@ -399,6 +510,7 @@ public class AdminActivity extends Activity implements OnClickListener {
         dialog.show();
         btn_ok.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                XmlUtils.saveConfigValue(AdminActivity.this, installCB.isChecked() ? 1 : 0);
                 saveInstallConfig(installCB.isChecked());
                 dialog.dismiss();
             }

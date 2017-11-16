@@ -20,13 +20,16 @@
     <string name="updateTime_content">2015-10-20 18:30</string>
 
     <string name="appIconManager">App Icon Manager</string>
+    <string name="volume_and_brightness">Volume/Brightness Configuration</string>
     <string name="system_settings">Settings</string>
     <string name="restore_factory_settings">Restore Factory Settings</string>
+    <string name="restore_factory">Restore Factory Settings?</string>
+    <string name="system_upgrade_ask">System Upgrade？</string>
     <string name="uninstall">Uninstall</string>
-    <string name="wlan">WLAN</string>
+    <string name="network">NetWork Configuration</string>
     <string name="bluetooth">Bluetooth</string>
     <string name="Ethernet_Configuration">Ethernet Configuration</string>
-    <string name="language_input">Language And Input</string>
+    <string name="language_input">Language &amp; Input</string>
     <string name="seat_configuration">Seat Configuration</string>
     <string name="ip_seat_configuration">IP address and Seat location number configuration</string>
     <string name="Please_enter_the_IP_address">Please enter the airborne server IP address</string>
@@ -57,11 +60,12 @@
 
     <string name="enter_password_successfully">Enter password successfully</string>
     <string name="enter_password_error">Enter password error</string>
-    <string name="reset_password">Reset password</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="debug">Debug Mode</string>
     <string name="enter_password">Enter password</string>
     <string name="confirm_password">confirm your password</string>
     <string name="password">password</string>
-
+    <string name="system_Settings">System Setting</string>
     <string name="udisk_upgrade">Udisk Upgrade</string>
     <string name="sdcard_upgrade">SDCard Upgrade</string>
     <string name="network_upgrade">NetWork Upgrade</string>
@@ -79,8 +83,25 @@
 
     <string name="countdown">Please enter the password again after %1$sS</string>
     <string name="password_error">Password error,you have %1$d chance</string>
-    <string name="install_config">Install configuration</string>
+    <string name="install_config">Install Configuration</string>
     <string name="install_seatback">Install Seatback</string>
     <string name="input_config_info">Please enter configuration information</string>
     <string name="seat_validate_tip">Seat Numbers can only contain letters and Numbers</string>
+
+
+    <string name="cpu_temperature">CPU Temperature</string>
+    <string name="cpu_usage">CPU Usage</string>
+
+    <string name="memory_all">Total memory space</string>
+    <string name="memory_free">Free memory space</string>
+    <string name="memory_used">Memory space used</string>
+
+    <string name="ssd_all">Total ssd space</string>
+    <string name="ssd_free">Free ssd space</string>
+    <string name="ssd_used">SSD space used</string>
+
+    <string name="system_bite">System BITE</string>
+    <string name="system_upgrade">System Upgrade</string>
+    <string name="lang">Language</string>
+    <string name="english">English</string>
 </resources>

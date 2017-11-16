@@ -1,6 +1,12 @@
 -- Merging decision tree log ---
 manifest
 ADDED from E:\WorkSpace\Android_Studio\Android\Donica\DLauncher\src\main\AndroidManifest.xml:2:1-75:12
+INJECTED from E:\WorkSpace\Android_Studio\Android\Donica\DLauncher\src\main\AndroidManifest.xml:2:1-75:12
+INJECTED from E:\WorkSpace\Android_Studio\Android\Donica\DLauncher\src\main\AndroidManifest.xml:2:1-75:12
+INJECTED from E:\WorkSpace\Android_Studio\Android\Donica\DLauncher\src\main\AndroidManifest.xml:2:1-75:12
+INJECTED from E:\WorkSpace\Android_Studio\Android\Donica\DLauncher\src\main\AndroidManifest.xml:2:1-75:12
+INJECTED from E:\WorkSpace\Android_Studio\Android\Donica\DLauncher\src\main\AndroidManifest.xml:2:1-75:12
+INJECTED from E:\WorkSpace\Android_Studio\Android\Donica\DLauncher\src\main\AndroidManifest.xml:2:1-75:12
 	package
 		ADDED from E:\WorkSpace\Android_Studio\Android\Donica\DLauncher\src\main\AndroidManifest.xml:3:5-38
 		INJECTED from E:\WorkSpace\Android_Studio\Android\Donica\DLauncher\src\main\AndroidManifest.xml
@@ -9,14 +15,18 @@ ADDED from E:\WorkSpace\Android_Studio\Android\Donica\DLauncher\src\main\Android
 		ADDED from E:\WorkSpace\Android_Studio\Android\Donica\DLauncher\src\main\AndroidManifest.xml:5:5-30
 		INJECTED from E:\WorkSpace\Android_Studio\Android\Donica\DLauncher\src\main\AndroidManifest.xml
 		INJECTED from E:\WorkSpace\Android_Studio\Android\Donica\DLauncher\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from E:\WorkSpace\Android_Studio\Android\Donica\DLauncher\src\main\AndroidManifest.xml:2:11-69
 	android:versionCode
 		ADDED from E:\WorkSpace\Android_Studio\Android\Donica\DLauncher\src\main\AndroidManifest.xml:4:5-28
 		INJECTED from E:\WorkSpace\Android_Studio\Android\Donica\DLauncher\src\main\AndroidManifest.xml
 		INJECTED from E:\WorkSpace\Android_Studio\Android\Donica\DLauncher\src\main\AndroidManifest.xml
-	xmlns:android
-		ADDED from E:\WorkSpace\Android_Studio\Android\Donica\DLauncher\src\main\AndroidManifest.xml:2:11-69
 uses-sdk
 ADDED from E:\WorkSpace\Android_Studio\Android\Donica\DLauncher\src\main\AndroidManifest.xml:7:5-9:41
+INJECTED from E:\WorkSpace\Android_Studio\Android\Donica\DLauncher\src\main\AndroidManifest.xml:7:5-9:41
+INJECTED from E:\WorkSpace\Android_Studio\Android\Donica\DLauncher\src\main\AndroidManifest.xml:7:5-9:41
+INJECTED from E:\WorkSpace\Android_Studio\Android\Donica\DLauncher\src\main\AndroidManifest.xml:7:5-9:41
+INJECTED from E:\WorkSpace\Android_Studio\Android\Donica\DLauncher\src\main\AndroidManifest.xml:7:5-9:41
 	android:targetSdkVersion
 		ADDED from E:\WorkSpace\Android_Studio\Android\Donica\DLauncher\src\main\AndroidManifest.xml:9:9-38
 		INJECTED from E:\WorkSpace\Android_Studio\Android\Donica\DLauncher\src\main\AndroidManifest.xml
@@ -61,10 +71,10 @@ application
 ADDED from E:\WorkSpace\Android_Studio\Android\Donica\DLauncher\src\main\AndroidManifest.xml:20:5-72:19
 	android:label
 		ADDED from E:\WorkSpace\Android_Studio\Android\Donica\DLauncher\src\main\AndroidManifest.xml:24:9-41
-	android:allowBackup
-		ADDED from E:\WorkSpace\Android_Studio\Android\Donica\DLauncher\src\main\AndroidManifest.xml:22:9-35
 	android:icon
 		ADDED from E:\WorkSpace\Android_Studio\Android\Donica\DLauncher\src\main\AndroidManifest.xml:23:9-38
+	android:allowBackup
+		ADDED from E:\WorkSpace\Android_Studio\Android\Donica\DLauncher\src\main\AndroidManifest.xml:22:9-35
 	android:name
 		ADDED from E:\WorkSpace\Android_Studio\Android\Donica\DLauncher\src\main\AndroidManifest.xml:21:9-40
 activity#cn.donica.slcd.launcher.MainActivity

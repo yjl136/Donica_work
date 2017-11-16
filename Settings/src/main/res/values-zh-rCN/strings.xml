@@ -22,10 +22,13 @@
     <string name="you_click_on_five_times">你点击了五次</string>
 
     <string name="appIconManager">桌面图标管理</string>
+    <string name="volume_and_brightness">音量/亮度配置</string>
     <string name="system_settings">设置</string>
     <string name="restore_factory_settings">恢复出厂设置</string>
+    <string name="restore_factory">是否恢复出厂设置？</string>
+    <string name="system_upgrade_ask">是否系统升级？</string>
     <string name="uninstall">卸载应用</string>
-    <string name="wlan">WLAN</string>
+    <string name="network">网络配置</string>
     <string name="bluetooth">蓝牙</string>
     <string name="Ethernet_Configuration">以太网配置</string>
     <string name="seat_configuration">座位位置配置</string>
@@ -44,6 +47,7 @@
     <string name="enter_password_successfully">输入密码成功</string>
     <string name="enter_password_error">输入密码错误</string>
     <string name="reset_password">重设管理员密码</string>
+    <string name="debug">调试模式</string>
     <string name="confirm_password">确认你的密码</string>
     <string name="enter_password">请输入系统管理员密码</string>
     <string name="diff_password">密码不一致，请重新输入</string>
@@ -72,4 +76,20 @@
     <string name="install_seatback">安装在椅背</string>
     <string name="input_config_info">请输入配置信息</string>
     <string name="seat_validate_tip">座位号只能包含字母和数字</string>
+
+    <string name="cpu_temperature">CPU温度</string>
+    <string name="cpu_usage">CPU使用率</string>
+
+    <string name="memory_all">总内存空间</string>
+    <string name="memory_free">空闲内存空间</string>
+    <string name="memory_used">已使用内存空间</string>
+
+    <string name="ssd_all">总硬盘空间</string>
+    <string name="ssd_free">空闲硬盘空间</string>
+    <string name="ssd_used">已使用硬盘空间</string>
+    <string name="system_bite">系统自检</string>
+    <string name="system_upgrade">系统升级</string>
+    <string name="lang">语言</string>
+    <string name="english">英文</string>
+
 </resources>

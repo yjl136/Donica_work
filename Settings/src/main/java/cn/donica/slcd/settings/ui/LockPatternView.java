@@ -60,7 +60,6 @@ public class LockPatternView extends View {
     private static final int ASPECT_LOCK_HEIGHT = 2; // Fixed height; width will be minimum of (w,h)
 
     public static final int MIN_LOCK_PATTERN_SIZE = 4;
-
     private static final boolean PROFILE_DRAWING = false;
     private static final String TAG = "LockPatternView";
     private boolean mDrawingProfilingStarted = false;
@@ -80,7 +79,6 @@ public class LockPatternView extends View {
      * It didn't seem to have much impact on the devices tested, so currently set to 0.
      */
     private static final float DRAG_THRESHHOLD = 0.0f;
-
     private OnPatternListener mOnPatternListener;
     private ArrayList<Cell> mPattern = new ArrayList<Cell>(9);
 
@@ -252,9 +250,7 @@ public class LockPatternView extends View {
     @SuppressLint("Recycle")
     public LockPatternView(Context context, AttributeSet attrs) {
         super(context, attrs);
-
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.LockPatternView);
-
         final String aspect = a.getString(R.styleable.LockPatternView_aspect);
         if ("square".equals(aspect)) {
             mAspect = ASPECT_SQUARE;

@@ -10,19 +10,21 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/C9MJ" />
-            <option value="$PROJECT_DIR$/DBluetooth" />
             <option value="$PROJECT_DIR$/DBootCount" />
             <option value="$PROJECT_DIR$/DControler" />
             <option value="$PROJECT_DIR$/DGattServer" />
             <option value="$PROJECT_DIR$/DLauncher" />
             <option value="$PROJECT_DIR$/DManager" />
+            <option value="$PROJECT_DIR$/DMonitor" />
             <option value="$PROJECT_DIR$/DServer" />
             <option value="$PROJECT_DIR$/DShell_lib" />
             <option value="$PROJECT_DIR$/DVa" />
             <option value="$PROJECT_DIR$/DemoMarsdaemon" />
             <option value="$PROJECT_DIR$/Donica_Sensor" />
             <option value="$PROJECT_DIR$/LibMarsdaemon" />
+            <option value="$PROJECT_DIR$/PaVa" />
             <option value="$PROJECT_DIR$/Settings" />
+            <option value="$PROJECT_DIR$/Test" />
             <option value="$PROJECT_DIR$/VaPa2" />
             <option value="$PROJECT_DIR$/advFunTest" />
             <option value="$PROJECT_DIR$/app" />

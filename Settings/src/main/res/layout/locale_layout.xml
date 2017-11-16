@@ -1,0 +1,63 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="500dp"
+        android:layout_height="300dp"
+        android:background="@color/background"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:text="@string/lang"
+            android:textColor="@android:color/white"
+            android:textSize="20dp" />
+
+        <include layout="@layout/line" />
+
+        <RadioGroup
+            android:id="@+id/localeGroup"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:paddingLeft="20dp"
+            android:layout_weight="1">
+
+            <RadioButton
+                android:id="@+id/ChineseRb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:layout_marginTop="20dp"
+                android:paddingLeft="15dp"
+                android:button="@drawable/checkbox_style"
+                android:textSize="20dp"
+                android:text="中文(简体)" />
+
+            <RadioButton
+                android:id="@+id/taiwanRb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:layout_marginTop="20dp"
+                android:visibility="gone"
+                android:button="@drawable/checkbox_style"
+                android:paddingLeft="15dp"
+                android:textSize="20dp"
+                android:text="中文(繁体)" />
+
+            <RadioButton
+                android:id="@+id/englishRb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:paddingLeft="15dp"
+                android:button="@drawable/checkbox_style"
+                android:textColor="@android:color/white"
+                android:textSize="18dp"
+                android:text="@string/english" />
+        </RadioGroup>
+    </LinearLayout>
+</FrameLayout>

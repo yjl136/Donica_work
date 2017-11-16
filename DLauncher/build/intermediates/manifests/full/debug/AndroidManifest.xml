@@ -20,6 +20,7 @@
     <application
         android:name="cn.donica.slcd.launcher.BaseApplication"
         android:allowBackup="true"
+        android:debuggable="true"
         android:icon="@drawable/icon"
         android:label="@string/app_name" >
         <activity

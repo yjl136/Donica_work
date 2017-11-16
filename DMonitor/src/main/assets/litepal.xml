@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<litepal>
+    <dbname value="slcd"></dbname>
+
+    <version value="3"></version>
+
+    <list>
+        <mapping class="cn.donica.slcd.ble.entity.Monitor"></mapping>
+    </list>
+    <list>
+        <mapping class="cn.donica.slcd.ble.entity.Config"></mapping>
+    </list>
+    <list>
+        <mapping class="cn.donica.slcd.ble.entity.Bite"></mapping>
+    </list>
+</litepal>

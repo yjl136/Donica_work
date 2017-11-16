@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     android:background="@color/background"
     android:orientation="vertical">
-    <!--<include layout="@layout/toolbar" />-->
     <include layout="@layout/line" />
 
     <LinearLayout
@@ -13,7 +12,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <!--<include layout="@layout/toolbar" />-->
         <ScrollView
             android:id="@+id/scrollView1"
             android:layout_width="match_parent"
@@ -22,29 +20,10 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 android:orientation="vertical">
 
                 <include
-                    android:id="@+id/appIconManager"
-                    layout="@layout/btn_item" />
-
-                <include layout="@layout/line" />
-
-                <include
-                    android:id="@+id/wlan"
-                    layout="@layout/btn_item" />
-
-                <include layout="@layout/line" />
-
-                <include
-                    android:id="@+id/bluetooth"
-                    layout="@layout/btn_item" />
-
-                <include layout="@layout/line" />
-
-                <include
-                    android:id="@+id/ethernet"
+                    android:id="@+id/network"
                     layout="@layout/btn_item" />
 
                 <include layout="@layout/line" />
@@ -56,31 +35,39 @@
                 <include layout="@layout/line" />
 
                 <include
-                    android:id="@+id/uninstall"
-                    layout="@layout/btn_item" />
-
-                <include layout="@layout/line" />
-
-                <include
-                    android:id="@+id/system_settings"
-                    layout="@layout/btn_item" />
-
-                <include layout="@layout/line" />
-
-                <include
                     android:id="@+id/restore_factory_settings"
                     layout="@layout/btn_item" />
 
                 <include layout="@layout/line" />
-
                 <include
-                    android:id="@+id/ip_seat_configuration"
+                    android:id="@+id/upgrade"
+                    layout="@layout/btn_item" />
+
+                <include layout="@layout/line" />
+                <include
+                    android:id="@+id/install_configuration"
                     layout="@layout/btn_item" />
 
                 <include layout="@layout/line" />
 
                 <include
-                    android:id="@+id/install_configuration"
+                    android:id="@+id/bite"
+                    layout="@layout/btn_item" />
+
+                <include layout="@layout/line" />
+
+                <include
+                    android:id="@+id/reset_password"
+                    layout="@layout/btn_item" />
+
+                <include layout="@layout/line" />
+                <include
+                    android:id="@+id/debug"
+                    layout="@layout/btn_item" />
+
+                <include layout="@layout/line" />
+                <include
+                    android:id="@+id/about"
                     layout="@layout/btn_item" />
 
                 <include layout="@layout/line" />

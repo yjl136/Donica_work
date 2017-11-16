@@ -1,6 +1,12 @@
 -- Merging decision tree log ---
 manifest
 ADDED from E:\WorkSpace\Android_Studio\Android\Donica\advFunTest\src\main\AndroidManifest.xml:2:1-81:12
+INJECTED from E:\WorkSpace\Android_Studio\Android\Donica\advFunTest\src\main\AndroidManifest.xml:2:1-81:12
+INJECTED from E:\WorkSpace\Android_Studio\Android\Donica\advFunTest\src\main\AndroidManifest.xml:2:1-81:12
+INJECTED from E:\WorkSpace\Android_Studio\Android\Donica\advFunTest\src\main\AndroidManifest.xml:2:1-81:12
+INJECTED from E:\WorkSpace\Android_Studio\Android\Donica\advFunTest\src\main\AndroidManifest.xml:2:1-81:12
+INJECTED from E:\WorkSpace\Android_Studio\Android\Donica\advFunTest\src\main\AndroidManifest.xml:2:1-81:12
+INJECTED from E:\WorkSpace\Android_Studio\Android\Donica\advFunTest\src\main\AndroidManifest.xml:2:1-81:12
 	package
 		ADDED from E:\WorkSpace\Android_Studio\Android\Donica\advFunTest\src\main\AndroidManifest.xml:3:5-39
 		INJECTED from E:\WorkSpace\Android_Studio\Android\Donica\advFunTest\src\main\AndroidManifest.xml
@@ -9,14 +15,18 @@ ADDED from E:\WorkSpace\Android_Studio\Android\Donica\advFunTest\src\main\Androi
 		ADDED from E:\WorkSpace\Android_Studio\Android\Donica\advFunTest\src\main\AndroidManifest.xml:5:5-30
 		INJECTED from E:\WorkSpace\Android_Studio\Android\Donica\advFunTest\src\main\AndroidManifest.xml
 		INJECTED from E:\WorkSpace\Android_Studio\Android\Donica\advFunTest\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from E:\WorkSpace\Android_Studio\Android\Donica\advFunTest\src\main\AndroidManifest.xml:2:11-69
 	android:versionCode
 		ADDED from E:\WorkSpace\Android_Studio\Android\Donica\advFunTest\src\main\AndroidManifest.xml:4:5-28
 		INJECTED from E:\WorkSpace\Android_Studio\Android\Donica\advFunTest\src\main\AndroidManifest.xml
 		INJECTED from E:\WorkSpace\Android_Studio\Android\Donica\advFunTest\src\main\AndroidManifest.xml
-	xmlns:android
-		ADDED from E:\WorkSpace\Android_Studio\Android\Donica\advFunTest\src\main\AndroidManifest.xml:2:11-69
 uses-sdk
 ADDED from E:\WorkSpace\Android_Studio\Android\Donica\advFunTest\src\main\AndroidManifest.xml:7:5-9:41
+INJECTED from E:\WorkSpace\Android_Studio\Android\Donica\advFunTest\src\main\AndroidManifest.xml:7:5-9:41
+INJECTED from E:\WorkSpace\Android_Studio\Android\Donica\advFunTest\src\main\AndroidManifest.xml:7:5-9:41
+INJECTED from E:\WorkSpace\Android_Studio\Android\Donica\advFunTest\src\main\AndroidManifest.xml:7:5-9:41
+INJECTED from E:\WorkSpace\Android_Studio\Android\Donica\advFunTest\src\main\AndroidManifest.xml:7:5-9:41
 	android:targetSdkVersion
 		ADDED from E:\WorkSpace\Android_Studio\Android\Donica\advFunTest\src\main\AndroidManifest.xml:9:9-38
 		INJECTED from E:\WorkSpace\Android_Studio\Android\Donica\advFunTest\src\main\AndroidManifest.xml
@@ -77,10 +87,10 @@ application
 ADDED from E:\WorkSpace\Android_Studio\Android\Donica\advFunTest\src\main\AndroidManifest.xml:27:5-79:19
 	android:label
 		ADDED from E:\WorkSpace\Android_Studio\Android\Donica\advFunTest\src\main\AndroidManifest.xml:30:9-41
-	android:allowBackup
-		ADDED from E:\WorkSpace\Android_Studio\Android\Donica\advFunTest\src\main\AndroidManifest.xml:28:9-35
 	android:icon
 		ADDED from E:\WorkSpace\Android_Studio\Android\Donica\advFunTest\src\main\AndroidManifest.xml:29:9-45
+	android:allowBackup
+		ADDED from E:\WorkSpace\Android_Studio\Android\Donica\advFunTest\src\main\AndroidManifest.xml:28:9-35
 	android:theme
 		ADDED from E:\WorkSpace\Android_Studio\Android\Donica\advFunTest\src\main\AndroidManifest.xml:31:9-62
 activity#com.advantech.adv.MainActivity
