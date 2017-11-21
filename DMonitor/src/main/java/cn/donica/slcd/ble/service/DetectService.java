@@ -25,6 +25,7 @@ import android.os.Message;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.os.SystemClock;
+import android.os.UserHandle;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
 
@@ -35,6 +36,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -132,6 +134,20 @@ public class DetectService extends Service implements AsyncTask.IStatus {
         setScreenOffTime(5 * 60 * 1000);
         //initNFC();
         initUsbReceiver();
+        //清楚Cache分区下的update.zip
+        initCache();
+    }
+
+    /**
+     * 如果存在update.zip ，则删除，防止下次升级报错
+     */
+    private void initCache() {
+        String filePath = "/cache/update.zip";
+        File file = new File(filePath);
+        if (file.exists()) {
+            boolean delete = file.delete();
+            DLog.info("delete:" + delete);
+        }
     }
 
     private void initUsbReceiver() {
@@ -297,9 +313,29 @@ public class DetectService extends Service implements AsyncTask.IStatus {
                 handler.sendEmptyMessage(REMOVE_VA_VIEW);
             }
             intent.setAction(ACTION_VA);
-            sendBroadcast(intent);
+            UserHandle uh = getUserHandle();
+            if (uh != null) {
+                sendBroadcastAsUser(intent, uh);
+            } else {
+                sendBroadcast(intent);
+            }
+
         }
     };
+
+    private UserHandle getUserHandle() {
+        UserHandle uh = null;
+        try {
+            Class clazz = UserHandle.class;
+            Field field = clazz.getField("ALL");
+            uh = (UserHandle) field.get(null);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            return uh;
+        }
+    }
+
     private TimerTask checkTask = new TimerTask() {
         @Override
         public void run() {
@@ -401,7 +437,14 @@ public class DetectService extends Service implements AsyncTask.IStatus {
                             handler.sendEmptyMessage(REMOVE_PA_VIEW);
                         }
                         intent.setAction(ACTION_PA);
-                        sendBroadcast(intent);
+                        UserHandle uh = getUserHandle();
+                        if (uh != null) {
+                            DLog.warn("uh != null");
+                            sendBroadcastAsUser(intent, uh);
+                        } else {
+                            sendBroadcast(intent);
+                        }
+
                     } catch (Exception e) {
                         e.printStackTrace();
                     } finally {
@@ -472,7 +515,7 @@ public class DetectService extends Service implements AsyncTask.IStatus {
      * 自检，开机自检，定时自检
      */
     private void initTest() {
-        timer.schedule(checkTask, 10000, 30000);
+        timer.schedule(checkTask, 10000, 60000);
     }
 
     private void initLed() {

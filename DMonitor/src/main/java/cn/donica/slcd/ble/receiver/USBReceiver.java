@@ -32,7 +32,7 @@ public class USBReceiver extends BroadcastReceiver {
         DLog.info("mount path:" + mountPath + "  isDebug:" + isDebug());
         if (Intent.ACTION_MEDIA_MOUNTED.equals(intent.getAction())) {
             try {
-                if ("/mnt/udisk".equals(mountPath) || "/mnt/extsd".equals(mountPath)) {
+                if ("/mnt/udisk".equals(mountPath)) {
                     if (isDebug()) {
                         mMountService.mountVolume(mountPath);
                     } else {

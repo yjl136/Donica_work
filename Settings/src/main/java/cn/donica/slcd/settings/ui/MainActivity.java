@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import cn.donica.slcd.settings.BaseApplication;
@@ -23,13 +24,14 @@ public class MainActivity extends Activity {
     private boolean mIsAutoMode = true;
     private SeekBar brightness_seekbar, volume_seekbar;
     private ImageView moreLv;
+    private TextView titleTv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         brightness_seekbar = (SeekBar) findViewById(R.id.brightness_seekbar);
         volume_seekbar = (SeekBar) findViewById(R.id.volume_seekbar);
-
+        titleTv = (TextView) findViewById(R.id.titleTv);
         mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         initSeekBar();
         moreLv = (ImageView) findViewById(R.id.moreLv);
@@ -39,6 +41,14 @@ public class MainActivity extends Activity {
                 Intent intent = new Intent(MainActivity.this, LockActivity.class);
                 MainActivity.this.startActivity(intent);
                 //  MainActivity.this.finish();
+            }
+        });
+        titleTv.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                Intent intent = new Intent(MainActivity.this, LockActivity.class);
+                MainActivity.this.startActivity(intent);
+                return true;
             }
         });
         setFinishOnTouchOutside(true);

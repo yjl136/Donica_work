@@ -9,7 +9,6 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/C9MJ" />
             <option value="$PROJECT_DIR$/DBootCount" />
             <option value="$PROJECT_DIR$/DControler" />
             <option value="$PROJECT_DIR$/DGattServer" />

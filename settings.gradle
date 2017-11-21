@@ -1,2 +1,2 @@
-include ':app', ':advFunTest', ':DLauncher', ':DManager', ':VaPa2', ':Settings', ':Donica_Sensor', ':DMonitor', ':LibMarsdaemon', ':DemoMarsdaemon', ':C9MJ', ':DShell_lib', ':DBootCount', ':DControler', ':DGattServer', ':DServer', ':DVa', ':PaVa', ':Test'
+include ':app', ':advFunTest', ':DLauncher', ':DManager', ':VaPa2', ':Settings', ':Donica_Sensor', ':DMonitor', ':LibMarsdaemon', ':DemoMarsdaemon', ':DShell_lib', ':DBootCount', ':DControler', ':DGattServer', ':DServer', ':DVa', ':PaVa', ':Test'
 include ':fSLOta'
