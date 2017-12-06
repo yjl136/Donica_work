@@ -1,4 +1,4 @@
-#Mon Nov 20 16:03:19 CST 2017
+#Wed Dec 06 15:43:15 CST 2017
 base.0=E\:\\WorkSpace\\Android_Studio\\Android\\Donica\\DManager\\build\\intermediates\\transforms\\dexMerger\\debug\\0
 renamed.0=classes.dex
 file.0=E\:\\WorkSpace\\Android_Studio\\Android\\Donica\\DManager\\build\\intermediates\\transforms\\dexMerger\\debug\\0\\classes.dex

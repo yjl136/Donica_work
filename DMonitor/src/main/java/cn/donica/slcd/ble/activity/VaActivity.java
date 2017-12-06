@@ -31,6 +31,7 @@ public class VaActivity extends Activity implements TextureView.SurfaceTextureLi
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        overridePendingTransition(0, 0);
         super.onCreate(savedInstanceState);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
                 | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
@@ -41,13 +42,14 @@ public class VaActivity extends Activity implements TextureView.SurfaceTextureLi
         filter.addAction(ACTION_VA);
         mVaReceiver = new VaReceiver();
         registerReceiver(mVaReceiver, filter);
+
     }
 
     class VaReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            DLog.info("onReceive");
             int va = intent.getIntExtra(VA_KEY, 0);
+            DLog.info("onReceive va:" + va);
             if (va == 0) {
                 if (mCamera != null) {
                     mCamera.stopPreview();
@@ -56,6 +58,7 @@ public class VaActivity extends Activity implements TextureView.SurfaceTextureLi
                 }
                 mTextureView = null;
                 VaActivity.this.finish();
+                overridePendingTransition(0, 0);
             }
         }
     }
@@ -83,6 +86,7 @@ public class VaActivity extends Activity implements TextureView.SurfaceTextureLi
         if (mCamera != null) {
             mCamera.stopPreview();
             mCamera.release();
+            mCamera = null;
         }
         return true;
     }

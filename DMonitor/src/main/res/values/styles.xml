@@ -16,7 +16,17 @@
     </style>
     <style name="BrightnessDialogContainer" parent="@style/BaseBrightnessDialogContainer" />
 
-
+    <style name="reboot_activity_style" parent="android:style/Theme.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:width">500dp</item>
+        <item name="android:height">300dp</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@drawable/dialog_bg</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
     <style name="dialog_style" parent="android:style/Theme.Dialog">
         <item name="android:windowNoTitle">true</item>
         <item name="android:width">1280dp</item>
@@ -30,7 +40,7 @@
     </style>
 
     <style name="activity_style" parent="@android:style/Theme.NoTitleBar.Fullscreen">
-        <!--  <item name="android:windowBackground">@color/colorAccent</item>-->
+        <item name="android:windowBackground">@mipmap/activity_bg</item>
     </style>
 
     <style name="notAnimation">

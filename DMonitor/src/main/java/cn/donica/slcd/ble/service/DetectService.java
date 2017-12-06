@@ -466,7 +466,7 @@ public class DetectService extends Service implements AsyncTask.IStatus {
             public void run() {
                 //延迟10s，等待sata挂载
                 if (delay) {
-                    SystemClock.sleep(8000);
+                    SystemClock.sleep(15000);
                 }
                 String cmd = "";
                 if (isSeatBack()) {

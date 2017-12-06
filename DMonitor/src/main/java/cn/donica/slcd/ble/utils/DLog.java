@@ -7,7 +7,7 @@ import android.util.Log;
  * Created by liangmingjie on 2016/10/19.
  */
 public class DLog {
-    private final static boolean isDebug = true;
+    private final static boolean isDebug = false;
     private final static String TAG = "Donica";
 
     /**

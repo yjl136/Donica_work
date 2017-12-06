@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Mon Nov 20 16:03:19 CST 2017
+#Wed Dec 06 15:43:15 CST 2017
 20.set=ANDROID_RESOURCE
 19.set=JAVA_RESOURCE
 8.set=JAVA_RESOURCE
@@ -29,7 +29,7 @@
 17.file=E\:\\WorkSpace\\Android_Studio\\Android\\Donica\\DManager\\build\\intermediates\\res\\debug\\resources-debug.ap_\\res\\layout\\list_item.xml
 17.base=E\:\\WorkSpace\\Android_Studio\\Android\\Donica\\DManager\\build\\intermediates\\res\\debug\\resources-debug.ap_
 7.set=ANDROID_RESOURCE
-19.file=E\:\\WorkSpace\\Android_Studio\\Android\\Donica\\DManager\\build\\intermediates\\transforms\\mergeJavaRes\\debug\\0.jar\\org\\snmp4j\\security\\SecurityProtocols.properties
+19.file=E\:\\WorkSpace\\Android_Studio\\Android\\Donica\\DManager\\build\\intermediates\\transforms\\mergeJavaRes\\debug\\0.jar\\org\\snmp4j\\transport\\dummy-transports.properties
 19.base=E\:\\WorkSpace\\Android_Studio\\Android\\Donica\\DManager\\build\\intermediates\\transforms\\mergeJavaRes\\debug\\0.jar
 14.set=ANDROID_RESOURCE
 3.set=ASSET
@@ -61,7 +61,7 @@
 16.base=E\:\\WorkSpace\\Android_Studio\\Android\\Donica\\DManager\\build\\intermediates\\res\\debug\\resources-debug.ap_
 9.set=JAVA_RESOURCE
 count=22
-18.file=E\:\\WorkSpace\\Android_Studio\\Android\\Donica\\DManager\\build\\intermediates\\transforms\\mergeJavaRes\\debug\\0.jar\\org\\snmp4j\\transport\\dummy-transports.properties
+18.file=E\:\\WorkSpace\\Android_Studio\\Android\\Donica\\DManager\\build\\intermediates\\transforms\\mergeJavaRes\\debug\\0.jar\\org\\snmp4j\\security\\SecurityProtocols.properties
 18.base=E\:\\WorkSpace\\Android_Studio\\Android\\Donica\\DManager\\build\\intermediates\\transforms\\mergeJavaRes\\debug\\0.jar
 16.set=ANDROID_RESOURCE
 5.set=ANDROID_RESOURCE

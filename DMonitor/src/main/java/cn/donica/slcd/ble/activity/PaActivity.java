@@ -25,6 +25,7 @@ public class PaActivity extends Activity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        overridePendingTransition(0, 0);
         super.onCreate(savedInstanceState);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
                 | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
@@ -42,6 +43,7 @@ public class PaActivity extends Activity {
             if (pa == 0) {//伪代码
                 //处于pa状态
                 PaActivity.this.finish();
+                overridePendingTransition(0, 0);
             }
         }
     }

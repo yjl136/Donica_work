@@ -1,6 +1,7 @@
 package cn.donica.demo;
 
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -40,6 +41,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        overridePendingTransition(0, 0);
         setContentView(R.layout.activity_main);
         button = (Button) findViewById(R.id.bt);
         PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
@@ -61,7 +63,8 @@ public class MainActivity extends Activity {
         filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
         registerReceiver(new NetworkConnectChangedReceiver(), filter);*/
 
-
+        ActivityManager activityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        activityManager.killBackgroundProcesses("org.videolan.vlc.debug");
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
