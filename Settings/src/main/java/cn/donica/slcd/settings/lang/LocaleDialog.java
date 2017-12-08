@@ -64,6 +64,7 @@ public class LocaleDialog extends DialogFragment implements RadioGroup.OnChecked
         dismiss();
     }
 
+    // locale = Locale.CHINA 或者 Locale.ENGLISH;
     private void setLocale(Locale locale) {
         try {
             IActivityManager am = ActivityManagerNative.getDefault();
