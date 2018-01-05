@@ -7,9 +7,9 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Color;
-import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.net.ethernet.EthernetManager;
 import android.os.Bundle;
@@ -25,6 +25,7 @@ import android.widget.TextView;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.SocketException;
+import java.util.List;
 import java.util.Timer;
 
 public class MainActivity extends Activity {
@@ -46,7 +47,7 @@ public class MainActivity extends Activity {
         button = (Button) findViewById(R.id.bt);
         PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
         StorageManager ms = (StorageManager) getSystemService(Context.STORAGE_SERVICE);
-
+        Log.i(TAG, "onCreate");
         IntentFilter filter = new IntentFilter();
         filter.addAction(Intent.ACTION_MEDIA_BAD_REMOVAL);
         filter.addAction(Intent.ACTION_MEDIA_MOUNTED);
@@ -63,13 +64,10 @@ public class MainActivity extends Activity {
         filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
         registerReceiver(new NetworkConnectChangedReceiver(), filter);*/
 
-        ActivityManager activityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
-        activityManager.killBackgroundProcesses("org.videolan.vlc.debug");
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ConnectivityManager conMgr = (ConnectivityManager) MainActivity.this.getSystemService(Context.CONNECTIVITY_SERVICE);
-
+                getBasePackage();
 
             }
         });
@@ -90,6 +88,101 @@ public class MainActivity extends Activity {
                 }
             }
         },0,500);*/
+    }
+
+    private void getBasePackage() {
+        ActivityManager am = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningTaskInfo> tasks = am.getRunningTasks(1);
+        ActivityManager.RunningTaskInfo task = tasks.get(0);
+        Log.i(TAG, "BaseActvity: " + task.baseActivity.getPackageName());
+    }
+
+    private void getBackGroudProcess() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                ActivityManager activityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+                // activityManager.killBackgroundProcesses("org.videolan.vlc.debug");
+                List<ActivityManager.RunningAppProcessInfo> processInfoList = activityManager.getRunningAppProcesses();
+                StringBuffer buffer = new StringBuffer();
+                for (ActivityManager.RunningAppProcessInfo info : processInfoList) {
+
+                    buffer.append("\nprocessName: " + info.processName);
+                    buffer.append("  pid: " + info.pid);
+                    buffer.append("  uid: " + info.uid);
+                    buffer.append("  importance: " + info.importance);
+                }
+                Log.i(TAG, buffer.toString());
+                Log.i(TAG, "#########################kill####################");
+                for (ActivityManager.RunningAppProcessInfo info : processInfoList) {
+                    activityManager.killBackgroundProcesses(info.processName);
+                }
+                List<ActivityManager.RunningAppProcessInfo> processInfoList2 = activityManager.getRunningAppProcesses();
+                StringBuffer buffer2 = new StringBuffer();
+                for (ActivityManager.RunningAppProcessInfo info : processInfoList2) {
+
+                    buffer2.append("\nprocessName: " + info.processName);
+                    buffer2.append("  pid: " + info.pid);
+                    buffer2.append("  uid: " + info.uid);
+                    buffer2.append("  importance: " + info.importance);
+                }
+                Log.i(TAG, buffer2.toString());
+            }
+        }).start();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.i(TAG, "onRestart");
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.i(TAG, "onStart");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.i(TAG, "onResume");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.i(TAG, "onStop");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.i(TAG, "onPause");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.i(TAG, "onDestroy");
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Log.i(TAG, "onSaveInstanceState");
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        Log.i(TAG, "onRestoreInstanceState");
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        Log.i(TAG, "onConfigurationChanged");
     }
 
     private class NetworkConnectChangedReceiver extends BroadcastReceiver {

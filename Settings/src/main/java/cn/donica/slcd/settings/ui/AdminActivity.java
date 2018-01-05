@@ -49,6 +49,13 @@ public class AdminActivity extends Activity implements OnClickListener {
         setContentView(R.layout.activity_admin);
         initToolBar();
         initView();
+        Log.i(TAG, "onCreate");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.i(TAG, "onResume");
     }
 
     @Override
@@ -147,6 +154,12 @@ public class AdminActivity extends Activity implements OnClickListener {
         }
     }
 
+    /* @Override
+     public void onConfigurationChanged(Configuration newConfig) {
+         Log.i(TAG, "onConfigurationChanged");
+         super.onConfigurationChanged(newConfig);
+     }
+ */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {

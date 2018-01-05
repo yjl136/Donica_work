@@ -65,7 +65,7 @@
     <string name="enter_password">Enter password</string>
     <string name="confirm_password">confirm your password</string>
     <string name="password">password</string>
-    <string name="system_Settings">System Setting</string>
+    <string name="system_Settings">System Settings</string>
     <string name="udisk_upgrade">Udisk Upgrade</string>
     <string name="sdcard_upgrade">SDCard Upgrade</string>
     <string name="network_upgrade">NetWork Upgrade</string>

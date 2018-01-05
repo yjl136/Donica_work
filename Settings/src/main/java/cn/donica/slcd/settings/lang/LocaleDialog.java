@@ -48,6 +48,7 @@ public class LocaleDialog extends DialogFragment implements RadioGroup.OnChecked
         return view;
     }
 
+
     @Override
     public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
         Locale locale = null;
