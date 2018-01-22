@@ -426,10 +426,17 @@ public class DetectService extends Service implements AsyncTask.IStatus {
                         DLog.info("content[43]:" + StringUtil.byte2Hex(content[43]) + "  content[44]:" + StringUtil.byte2Hex(content[44]));
                         Intent intent = new Intent();
                         if (content != null && len > 45 && ("31".equals(StringUtil.byte2Hex(content[43])) || "31".equals(StringUtil.byte2Hex(content[44])))) {
-                            DLog.warn("PA");
-                            intent.putExtra(PA_KEY, 1);
-                            saveMonitor("pa", 1);
-                            handler.sendEmptyMessage(SHOW_PA_VIEW);
+                            if (get_ntsc_status()) {
+                                DLog.warn("No NTSC/PA");
+                                intent.putExtra(PA_KEY, 0);
+                                saveMonitor("pa", 0);
+                                handler.sendEmptyMessage(REMOVE_PA_VIEW);
+                            } else {
+                                DLog.warn("PA");
+                                intent.putExtra(PA_KEY, 1);
+                                saveMonitor("pa", 1);
+                                handler.sendEmptyMessage(SHOW_PA_VIEW);
+                            }
                         } else {
                             DLog.warn("No PA");
                             intent.putExtra(PA_KEY, 0);
