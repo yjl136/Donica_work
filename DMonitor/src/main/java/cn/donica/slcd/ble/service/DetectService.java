@@ -118,6 +118,8 @@ public class DetectService extends Service implements AsyncTask.IStatus {
         super.onCreate();
         //初始化数据库
         initDB();
+        //设置udp最大接收缓存区
+        initMaxNetReceiverBufferSize();
         initWifi();
         initLCD(true);
         //国航需要将led灯关闭
@@ -136,6 +138,17 @@ public class DetectService extends Service implements AsyncTask.IStatus {
         initUsbReceiver();
         //清楚Cache分区下的update.zip
         initCache();
+    }
+
+    private void initMaxNetReceiverBufferSize() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String cmd = "busybox sysctl -w net.core.rmem_max=20971520";
+                executeCMD(cmd);
+            }
+        }).start();
+
     }
 
     /**
@@ -169,20 +182,21 @@ public class DetectService extends Service implements AsyncTask.IStatus {
      */
     private void initWifi() {
         mWifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
-        if (mWifiManager != null) {
+       /* if (mWifiManager != null) {
             if (!mWifiManager.isWifiEnabled()) {
                 mWifiManager.setWifiEnabled(true);
             }
-        }
-        timer.schedule(wifiTask, 20000, 30000);
+        }*/
+        mWifiManager.setWifiEnabled(false);
+        timer.schedule(checkSysVersionTask, 20000, 30000);
     }
 
-    private TimerTask wifiTask = new TimerTask() {
+    private TimerTask checkSysVersionTask = new TimerTask() {
         @Override
         public void run() {
-            if (!connectSSID()) {
+         /*   if (!connectSSID()) {
                 return;
-            }
+            }*/
             if (OTAManager.checkVersion(DetectService.this)) {
                 if (!isTopActivity("com.fsl.android.ota.OtaAppActivity")) {
                     saveMonitor("system_upgrade", 1);
@@ -296,6 +310,7 @@ public class DetectService extends Service implements AsyncTask.IStatus {
         saveMonitor("system_upgrade", 0);
         saveMonitor("program_upgrade", 0);
         saveMonitor("debug", 0);
+        saveMonitor("demand", 0);
     }
 
     //每隔1000毫秒去查询Va状态
@@ -423,7 +438,17 @@ public class DetectService extends Service implements AsyncTask.IStatus {
                         socket.receive(packet);
                         int len = packet.getLength();
                         byte[] content = packet.getData();
-                        DLog.info("content[43]:" + StringUtil.byte2Hex(content[43]) + "  content[44]:" + StringUtil.byte2Hex(content[44]));
+                        DLog.info("content[38]:" + StringUtil.byte2Hex(content[38]) + "  content[39]:" + StringUtil.byte2Hex(content[39]) + "   content[43]:" + StringUtil.byte2Hex(content[43]) + "  content[44]:" + StringUtil.byte2Hex(content[44]));
+
+                        if (isDebug()) {
+                            if (content != null && len > 45 && ("30".equals(StringUtil.byte2Hex(content[38])) && "30".equals(StringUtil.byte2Hex(content[39])))) {
+                                executeCMD("setprop adv.input off");
+                                startLauncher();
+                                continue;
+                            }
+                            executeCMD("setprop adv.input on");
+                        }
+
                         Intent intent = new Intent();
                         if (content != null && len > 45 && ("31".equals(StringUtil.byte2Hex(content[43])) || "31".equals(StringUtil.byte2Hex(content[44])))) {
                             if (get_ntsc_status()) {
@@ -465,13 +490,23 @@ public class DetectService extends Service implements AsyncTask.IStatus {
     }
 
     /**
+     * 启动Launcher
+     */
+    private void startLauncher() {
+        Intent intent = new Intent();
+        intent.setComponent(new ComponentName("com.lefeel.airlinedonica", "com.lefeel.airlinedonica.FirstActivity"));
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+
+    /**
      * 针对国航10.1寸屏改装
      */
     private void initLCD(final boolean delay) {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                //延迟10s，等待sata挂载
+                //延迟15s，等待sata挂载
                 if (delay) {
                     SystemClock.sleep(15000);
                 }
@@ -518,6 +553,18 @@ public class DetectService extends Service implements AsyncTask.IStatus {
         return false;
     }
 
+    /**
+     * 判断是否正在调试
+     *
+     * @return
+     */
+    private boolean isDebug() {
+        Monitor monitor = DataSupport.where("name=?", "debug").findFirst(Monitor.class);
+        if (monitor != null && monitor.getValue() == 1) {
+            return true;
+        }
+        return false;
+    }
     /**
      * 自检，开机自检，定时自检
      */

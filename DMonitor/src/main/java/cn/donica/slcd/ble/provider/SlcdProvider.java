@@ -31,6 +31,7 @@ public class SlcdProvider extends ContentProvider {
     private final static int CODE_SYSTEM_UPGRADE = 7;
     private final static int CODE_PROGRAM_UPGRADE = 8;
     private final static int CODE_DEBUG = 9;
+    private final static int CODE_DEMAND = 10;
     private UriMatcher matcher;
     private SQLiteDatabase db;
 
@@ -44,6 +45,7 @@ public class SlcdProvider extends ContentProvider {
         matcher.addURI(AUTHORITY, "monitor/program_upgrade", CODE_PROGRAM_UPGRADE);
         matcher.addURI(AUTHORITY, "monitor/debug", CODE_DEBUG);
         matcher.addURI(AUTHORITY, "monitor/seatback", CODE_SEATBACK);
+        matcher.addURI(AUTHORITY, "monitor/demand", CODE_DEMAND);
         matcher.addURI(AUTHORITY, "config/ip", CODE_IP);
         matcher.addURI(AUTHORITY, "config/seat", CODE_SEAT);
         matcher.addURI(AUTHORITY, "bite", CODE_BITE);
@@ -73,6 +75,9 @@ public class SlcdProvider extends ContentProvider {
                 break;
             case CODE_SEATBACK:
                 cursor = db.query(TABLE_MONITOR, null, "name=?", new String[]{"seatback"}, null, null, null);
+                break;
+            case CODE_DEMAND:
+                cursor = db.query(TABLE_MONITOR, null, "name=?", new String[]{"demand"}, null, null, null);
                 break;
             case CODE_IP:
                 cursor = db.query(TABLE_CONFIG, null, "name=?", new String[]{"ip"}, null, null, null);
@@ -107,6 +112,7 @@ public class SlcdProvider extends ContentProvider {
             case CODE_SYSTEM_UPGRADE:
             case CODE_PROGRAM_UPGRADE:
             case CODE_DEBUG:
+            case CODE_DEMAND:
                 db.insert(TABLE_MONITOR, null, values);
                 getContext().getContentResolver().notifyChange(uri, null);
                 break;
@@ -142,6 +148,9 @@ public class SlcdProvider extends ContentProvider {
                 break;
             case CODE_DEBUG:
                 id = db.update(TABLE_MONITOR, values, "name=?", new String[]{"debug"});
+                break;
+            case CODE_DEMAND:
+                id = db.update(TABLE_MONITOR, values, "name=?", new String[]{"demand"});
                 break;
         }
         getContext().getContentResolver().notifyChange(uri, null);

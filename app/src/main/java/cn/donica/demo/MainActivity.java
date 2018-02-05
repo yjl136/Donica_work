@@ -76,6 +76,15 @@ public class MainActivity extends Activity {
 
 
 
+
+
+
+
+
+
+
+
+
        /* timer = new Timer();
         hwtestService = IHwtestService.Stub.asInterface(ServiceManager.getService("hwtest"));
         timer.schedule(new TimerTask() {
@@ -88,6 +97,7 @@ public class MainActivity extends Activity {
                 }
             }
         },0,500);*/
+
     }
 
     private void getBasePackage() {
