@@ -124,6 +124,7 @@ public class DetectService extends Service implements AsyncTask.IStatus {
         initLCD(true);
         //国航需要将led灯关闭
         initLed();
+
         //自检
         initTest();
         mSeatBackObserver = new SeatBackObserver();
