@@ -12,10 +12,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.ContentObserver;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.net.Uri;
-import android.net.ethernet.EthernetManager;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiManager;
@@ -77,7 +74,7 @@ import static cn.donica.slcd.ble.check.SlcdTest.get_ntsc_status;
 /**
  * Created by yejianlin 2016/10/19.
  */
-public class DetectService extends Service implements AsyncTask.IStatus {
+public class DetectService_bak extends Service implements AsyncTask.IStatus {
     //是否正在播放va
     private final static int DELAY_TIME = 4000;
     private final static String PAIRING_REQUEST = "android.bluetooth.device.action.PAIRING_REQUEST";
@@ -109,8 +106,6 @@ public class DetectService extends Service implements AsyncTask.IStatus {
     private WifiManager mWifiManager;
     private SeatBackObserver mSeatBackObserver;
     private USBReceiver mUSBReceiver;
-    private EthernetManager mEthernetManager;
-    private ConnectivityManager cm;
 
     @Nullable
     @Override
@@ -125,10 +120,11 @@ public class DetectService extends Service implements AsyncTask.IStatus {
         initDB();
         //设置udp最大接收缓存区
         initMaxNetReceiverBufferSize();
-        initNetWork();
+        initWifi();
         initLCD(true);
         //国航需要将led灯关闭
         initLed();
+
         //自检
         initTest();
         mSeatBackObserver = new SeatBackObserver();
@@ -136,7 +132,7 @@ public class DetectService extends Service implements AsyncTask.IStatus {
         //监听5000端口，获取PA状态
         initPA();
         //开启Va轮询
-        initVa();
+        //initVa();
         //设置休眠时间
         setScreenOffTime(5 * 60 * 1000);
         //initNFC();
@@ -185,34 +181,24 @@ public class DetectService extends Service implements AsyncTask.IStatus {
     /**
      * 开启wifi
      */
-    private void initNetWork() {
+    private void initWifi() {
         mWifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
-        mEthernetManager = (EthernetManager) getSystemService("ethernet");
-        if (mWifiManager != null) {
+       /* if (mWifiManager != null) {
             if (!mWifiManager.isWifiEnabled()) {
                 mWifiManager.setWifiEnabled(true);
             }
-        }
-        // mWifiManager.setWifiEnabled(false);
+        }*/
+        mWifiManager.setWifiEnabled(false);
         timer.schedule(checkSysVersionTask, 20000, 30000);
     }
 
     private TimerTask checkSysVersionTask = new TimerTask() {
         @Override
         public void run() {
-            if (!isNetWorkAvailable()) {
-                DLog.info("网络不可以用，尝试获取ip");
-                mEthernetManager.setEnabled(false);
-                SystemClock.sleep(500);
-                mEthernetManager.setEnabled(true);
-                SystemClock.sleep(500);
-                if (!isNetWorkAvailable()) {
-                    connectSSID();
-                } else {
-                    DLog.info("Ethernet....");
-                }
-            }
-            if (OTAManager.checkVersion(DetectService.this)) {
+         /*   if (!connectSSID()) {
+                return;
+            }*/
+            if (OTAManager.checkVersion(DetectService_bak.this)) {
                 if (!isTopActivity("com.fsl.android.ota.OtaAppActivity")) {
                     saveMonitor("system_upgrade", 1);
                     Intent intent = new Intent();
@@ -224,26 +210,12 @@ public class DetectService extends Service implements AsyncTask.IStatus {
                     DLog.info("isTopActivity....");
                 }
             } else {
-                DLog.info("Server can not connect or system version is up to date0");
+
+                DLog.info("Server can not connect or system version is up to date");
             }
         }
     };
 
-    /**
-     * ip是否已经获取了
-     *
-     * @return
-     */
-    private boolean isNetWorkAvailable() {
-        if (cm == null) {
-            cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        }
-        NetworkInfo info = cm.getActiveNetworkInfo();
-        if (info != null) {
-            DLog.info("type:" + info.getType());
-        }
-        return info != null;
-    }
 
     /*
      * @param className
@@ -368,6 +340,63 @@ public class DetectService extends Service implements AsyncTask.IStatus {
         }
     };
 
+    /**
+     * 显示VA
+     */
+    private void showVa() {
+        Intent intent = new Intent();
+        intent.putExtra(VA_KEY, 1);
+        saveMonitor("va", 1);
+        handler.sendEmptyMessage(SHOW_VA_VIEW);
+        intent.setAction(ACTION_VA);
+        UserHandle uh = getUserHandle();
+        if (uh != null) {
+            sendBroadcastAsUser(intent, uh);
+        } else {
+            sendBroadcast(intent);
+        }
+    }
+
+    private void showPa() {
+        Intent intent = new Intent();
+        intent.putExtra(PA_KEY, 1);
+        saveMonitor("pa", 1);
+        handler.sendEmptyMessage(SHOW_PA_VIEW);
+        intent.setAction(ACTION_PA);
+        UserHandle uh = getUserHandle();
+        if (uh != null) {
+            sendBroadcastAsUser(intent, uh);
+        } else {
+            sendBroadcast(intent);
+        }
+    }
+
+    private void closeVa() {
+        Intent intent = new Intent();
+        intent.putExtra(VA_KEY, 0);
+        saveMonitor("va", 0);
+        intent.setAction(ACTION_VA);
+        UserHandle uh = getUserHandle();
+        if (uh != null) {
+            sendBroadcastAsUser(intent, uh);
+        } else {
+            sendBroadcast(intent);
+        }
+    }
+
+    private void closePa() {
+        Intent intent = new Intent();
+        intent.putExtra(PA_KEY, 0);
+        saveMonitor("pa", 0);
+        intent.setAction(ACTION_PA);
+        UserHandle uh = getUserHandle();
+        if (uh != null) {
+            sendBroadcastAsUser(intent, uh);
+        } else {
+            sendBroadcast(intent);
+        }
+    }
+
     private UserHandle getUserHandle() {
         UserHandle uh = null;
         try {
@@ -385,7 +414,7 @@ public class DetectService extends Service implements AsyncTask.IStatus {
         @Override
         public void run() {
             DLog.info("self-----Test");
-            SlcdTest.selfCheck(DetectService.this);
+            SlcdTest.selfCheck(DetectService_bak.this);
         }
     };
 
@@ -469,46 +498,28 @@ public class DetectService extends Service implements AsyncTask.IStatus {
                         int len = packet.getLength();
                         byte[] content = packet.getData();
                         DLog.info("content[38]:" + StringUtil.byte2Hex(content[38]) + "  content[39]:" + StringUtil.byte2Hex(content[39]) + "   content[43]:" + StringUtil.byte2Hex(content[43]) + "  content[44]:" + StringUtil.byte2Hex(content[44]));
-
-                        if (isDebug()) {
-                            if (content != null && len > 45 && ("30".equals(StringUtil.byte2Hex(content[38])) && "30".equals(StringUtil.byte2Hex(content[39])))) {
-                                executeCMD("setprop adv.input off");
-                                if (!isTopActivity("com.lefeel.airlinedonica.FirstActivity")) {
-                                    startLauncher();
-                                }
-                                continue;
-                            }
-                            executeCMD("setprop adv.input on");
+                        if (content != null && len > 45 && ("30".equals(StringUtil.byte2Hex(content[38])) && "30".equals(StringUtil.byte2Hex(content[39])))) {
+                            executeCMD("setprop adv.input off");
+                            startLauncher();
+                            continue;
                         }
-
-                        Intent intent = new Intent();
-                        if (content != null && len > 45 && ("31".equals(StringUtil.byte2Hex(content[43])) || "31".equals(StringUtil.byte2Hex(content[44])))) {
-                            if (get_ntsc_status()) {
-                                DLog.warn("No NTSC/PA");
-                                intent.putExtra(PA_KEY, 0);
-                                saveMonitor("pa", 0);
-                                handler.sendEmptyMessage(REMOVE_PA_VIEW);
-                            } else {
-                                DLog.warn("PA");
-                                intent.putExtra(PA_KEY, 1);
-                                saveMonitor("pa", 1);
-                                handler.sendEmptyMessage(SHOW_PA_VIEW);
-                            }
+                        executeCMD("setprop adv.input on");
+                        if (content != null && len > 45 && ("31".equals(StringUtil.byte2Hex(content[43])) && "31".equals(StringUtil.byte2Hex(content[44])))) {
+                            //显示PA
+                            DLog.warn("PA");
+                            showPa();
+                            closeVa();
+                        } else if (content != null && len > 45 && ("31".equals(StringUtil.byte2Hex(content[43])) || "31".equals(StringUtil.byte2Hex(content[44])))) {
+                            //显示VA
+                            DLog.warn("VA");
+                            showVa();
+                            closePa();
                         } else {
-                            DLog.warn("No PA");
-                            intent.putExtra(PA_KEY, 0);
-                            saveMonitor("pa", 0);
-                            handler.sendEmptyMessage(REMOVE_PA_VIEW);
+                            //停止va/pa
+                            DLog.warn("NO PA/VA");
+                            closeVa();
+                            closePa();
                         }
-                        intent.setAction(ACTION_PA);
-                        UserHandle uh = getUserHandle();
-                        if (uh != null) {
-                            DLog.warn("uh != null");
-                            sendBroadcastAsUser(intent, uh);
-                        } else {
-                            sendBroadcast(intent);
-                        }
-
                     } catch (Exception e) {
                         e.printStackTrace();
                     } finally {
@@ -675,26 +686,22 @@ public class DetectService extends Service implements AsyncTask.IStatus {
                     setIdel(true);
                     break;
                 case DELAY_REMOVE_CMD:
-                    FloatWindowManager.removeFloatView(DetectService.this);
+                    FloatWindowManager.removeFloatView(DetectService_bak.this);
                     break;
                 case SHOW_PA_VIEW:
-                    intent = new Intent(DetectService.this, PaActivity.class);
+                    intent = new Intent(DetectService_bak.this, PaActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    DetectService.this.startActivity(intent);
-                    break;
-                case REMOVE_PA_VIEW:
+                    DetectService_bak.this.startActivity(intent);
                     break;
                 case SHOW_VA_VIEW:
-                   /* if (!isPa()) {
-                        intent = new Intent(DetectService.this, VaActivity.class);
+                    /*if (!isPa()) {
+                        intent = new Intent(DetectService_bak.this, VaActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        DetectService.this.startActivity(intent);
+                        DetectService_bak.this.startActivity(intent);
                     }*/
-                    intent = new Intent(DetectService.this, VaActivity.class);
+                    intent = new Intent(DetectService_bak.this, VaActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    DetectService.this.startActivity(intent);
-                    break;
-                case REMOVE_VA_VIEW:
+                    DetectService_bak.this.startActivity(intent);
                     break;
             }
         }
@@ -807,7 +814,7 @@ public class DetectService extends Service implements AsyncTask.IStatus {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        DetectService.this.isIdel = isIdel;
+                        DetectService_bak.this.isIdel = isIdel;
                     }
                 }, DELAY_TIME);
             } else {
@@ -850,7 +857,7 @@ public class DetectService extends Service implements AsyncTask.IStatus {
         if (type1 == (byte) 0x00 && type2 == (byte) 0x44) {
             FloatWindowManager.createFloatView(this, UnitUtils.dp2px(this, 500), UnitUtils.dp2px(this, 300));
             FloatWindowManager.updateFloatView("请将卡靠近NFC,读取NDEF数据中。。。。");
-            AsyncTask.getInstance(DetectService.this).submit(3, mInputStream, mOutputStream);
+            AsyncTask.getInstance(DetectService_bak.this).submit(3, mInputStream, mOutputStream);
         } else {
             // FloatWindowManager.createFloatView(this, UnitUtils.dp2px(this, 500), UnitUtils.dp2px(this, 300));
             DLog.warn("暂时不支持此卡");
@@ -986,7 +993,6 @@ public class DetectService extends Service implements AsyncTask.IStatus {
 
     private BluetoothInputDevice mService = null;
 
-
     private class MyServiceListener
             implements BluetoothProfile.ServiceListener {
         private BluetoothDevice device;
@@ -1000,6 +1006,7 @@ public class DetectService extends Service implements AsyncTask.IStatus {
             DLog.info("onServiceConnected profile: " + profile);
             mService = (BluetoothInputDevice) proxy;
             connect(device);
+
         }
 
         @Override
@@ -1060,7 +1067,7 @@ public class DetectService extends Service implements AsyncTask.IStatus {
      * 启动自己
      */
     public void startSelf() {
-        Intent intent = new Intent(this, DetectService.class);
+        Intent intent = new Intent(this, DetectService_bak.class);
         startService(intent);
     }
 

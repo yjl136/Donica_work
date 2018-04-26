@@ -23,6 +23,7 @@ import cn.donica.slcd.ble.utils.DLog;
  */
 
 public class VaActivity extends Activity implements TextureView.SurfaceTextureListener {
+    private final static String ACTION_PA = "cn.donica.slcd.action.PA";
     private final static String ACTION_VA = "cn.donica.slcd.action.VA";
     private final static String VA_KEY = "va";
     private VaReceiver mVaReceiver;

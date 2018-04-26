@@ -20,6 +20,7 @@ import cn.donica.slcd.ble.R;
 
 public class PaActivity extends Activity {
     private final static String ACTION_PA = "cn.donica.slcd.action.PA";
+    private final static String ACTION_VA = "cn.donica.slcd.action.VA";
     private final static String PA_KEY = "pa";
     private PaReceiver mPaReceiver;
 

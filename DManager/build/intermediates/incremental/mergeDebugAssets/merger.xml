@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="E:\WorkSpace\Android_Studio\Android\Donica\DManager\src\main\assets"><file name="config.properties" path="E:\WorkSpace\Android_Studio\Android\Donica\DManager\src\main\assets\config.properties"/></source><source path="E:\WorkSpace\Android_Studio\Android\Donica\DManager\build\generated\assets\shaders\debug"/></dataSet><dataSet config="debug"><source path="E:\WorkSpace\Android_Studio\Android\Donica\DManager\src\debug\assets"/></dataSet></merger>
