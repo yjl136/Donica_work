@@ -3,16 +3,19 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/DBootCount/DBootCount.iml" filepath="$PROJECT_DIR$/DBootCount/DBootCount.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DClicent/DClicent.iml" filepath="$PROJECT_DIR$/DClicent/DClicent.iml" />
       <module fileurl="file://$PROJECT_DIR$/DControler/DControler.iml" filepath="$PROJECT_DIR$/DControler/DControler.iml" />
       <module fileurl="file://$PROJECT_DIR$/DLauncher/DLauncher.iml" filepath="$PROJECT_DIR$/DLauncher/DLauncher.iml" />
       <module fileurl="file://$PROJECT_DIR$/DMonitor/DMonitor.iml" filepath="$PROJECT_DIR$/DMonitor/DMonitor.iml" />
       <module fileurl="file://$PROJECT_DIR$/DServer/DServer.iml" filepath="$PROJECT_DIR$/DServer/DServer.iml" />
       <module fileurl="file://$PROJECT_DIR$/DShell_lib/DShell_lib.iml" filepath="$PROJECT_DIR$/DShell_lib/DShell_lib.iml" />
       <module fileurl="file://$PROJECT_DIR$/Donica.iml" filepath="$PROJECT_DIR$/Donica.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Server/Server.iml" filepath="$PROJECT_DIR$/Server/Server.iml" />
       <module fileurl="file://$PROJECT_DIR$/Settings/Settings.iml" filepath="$PROJECT_DIR$/Settings/Settings.iml" />
       <module fileurl="file://$PROJECT_DIR$/Test/Test.iml" filepath="$PROJECT_DIR$/Test/Test.iml" />
-      <module fileurl="file://$PROJECT_DIR$/advFunTest/advFunTest.iml" filepath="$PROJECT_DIR$/advFunTest/advFunTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libzxing/libzxing.iml" filepath="$PROJECT_DIR$/libzxing/libzxing.iml" />
+      <module fileurl="file://E:\WorkSpace\Android_Studio\Android\Donica\libzxing\zxinglibrary.iml" filepath="E:\WorkSpace\Android_Studio\Android\Donica\libzxing\zxinglibrary.iml" />
     </modules>
   </component>
 </project>

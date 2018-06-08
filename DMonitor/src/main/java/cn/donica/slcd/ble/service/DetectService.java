@@ -546,7 +546,8 @@ public class DetectService extends Service implements AsyncTask.IStatus {
                 if (isSeatBack()) {
                     cmd = "wm size 1220x800";
                 } else {
-                    cmd = "wm size 1280x800";
+                    cmd = "wm size reset";
+                    //cmd = "wm size 1920x1080";
                 }
                 executeCMD(cmd);
             }
@@ -566,7 +567,6 @@ public class DetectService extends Service implements AsyncTask.IStatus {
 
         DLog.info("XmlUtils.getSeatBack():" + XmlUtils.getSeatBack());
         if (XmlUtils.getSeatBack() == 1) {
-
             return true;
         }
         return false;

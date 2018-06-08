@@ -47,11 +47,6 @@
                 <action android:name="android.media.AUDIO_BECOMING_NOISY" />
             </intent-filter>
         </receiver>
-        <!--  <receiver android:name=".receiver.ShutdownReceiver">
-              <intent-filter>
-                  <action android:name="android.intent.action.ACTION_SHUTDOWN" />
-              </intent-filter>
-          </receiver>-->
 
         <activity
             android:name=".activity.PaActivity"

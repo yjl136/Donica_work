@@ -1,0 +1,94 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+
+    defaultConfig {
+        applicationId "cn.donica.slcd.client"
+        minSdkVersion 19
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0.1"
+        flavorDimensions "versionCode"
+    }
+    signingConfigs {
+        release {
+            keyAlias 'donica'
+            keyPassword 'donica2016'
+            storeFile file('../sign/donica.jks')
+            storePassword 'donica2016'
+        }
+        debug {
+            keyAlias 'donica'
+            keyPassword 'donica2016'
+            storeFile file('../sign/donica.jks')
+            storePassword 'donica2016'
+        }
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            zipAlignEnabled true
+            multiDexEnabled true
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            shrinkResources false
+            zipAlignEnabled false
+            multiDexEnabled false
+            signingConfig signingConfigs.debug
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    dexOptions {
+        preDexLibraries true
+        dexInProcess true
+        setThreadCount 8
+    }
+    productFlavors {
+        wandoujia {
+        }
+        airchina{
+        }
+        baidu {}
+        productFlavors.all { flavor ->
+            flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
+        }
+    }
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            if (!variant.buildType.isDebuggable()) {
+                def sourceFile = ".apk"
+                def replaceFile = "-V${variant.versionName}_${releaseTime()}.apk"
+                outputFileName = output.outputFile.name.replace(sourceFile, replaceFile)
+            }
+        }
+    }
+
+
+
+}
+//获取日期
+def releaseTime() {
+    return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
+}
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    //json解析
+    implementation 'com.alibaba:fastjson:1.2.46'
+    //友盟统计
+    implementation 'com.umeng.analytics:analytics:latest.integration'
+    implementation 'com.umeng.sdk:common:latest.integration'
+    //butterknife相关的库
+    implementation 'com.jakewharton:butterknife:8.6.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
+    //扫码
+    implementation project(':libzxing')
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    implementation "com.android.support:appcompat-v7:$support_version"
+    implementation "com.android.support:design:$support_version"
+}
