@@ -1,0 +1,82 @@
+{
+    "logs": [
+        {
+            "outputFile": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\DLauncher\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values\\values.xml",
+            "map": [
+                {
+                    "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\DLauncher\\src\\main\\res\\values\\strings.xml",
+                    "from": {
+                        "startLines": "3,4,5",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "56,109,153",
+                        "endColumns": "52,43,87",
+                        "endOffsets": "104,148,236"
+                    },
+                    "to": {
+                        "startLines": "5,6,7",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "447,500,544",
+                        "endColumns": "52,43,87",
+                        "endOffsets": "495,539,627"
+                    }
+                },
+                {
+                    "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\DLauncher\\src\\main\\res\\values\\dimens.xml",
+                    "from": {
+                        "startLines": "5",
+                        "startColumns": "4",
+                        "startOffsets": "58",
+                        "endColumns": "44",
+                        "endOffsets": "98"
+                    },
+                    "to": {
+                        "startLines": "4",
+                        "startColumns": "4",
+                        "startOffsets": "402",
+                        "endColumns": "44",
+                        "endOffsets": "442"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\DLauncher\\build\\intermediates\\res\\merged\\release\\values\\values.xml",
+            "map": [
+                {
+                    "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\DLauncher\\src\\main\\res\\values\\strings.xml",
+                    "from": {
+                        "startLines": "3,4,5",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "56,109,153",
+                        "endColumns": "52,43,87",
+                        "endOffsets": "104,148,236"
+                    },
+                    "to": {
+                        "startLines": "5,6,7",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "447,500,544",
+                        "endColumns": "52,43,87",
+                        "endOffsets": "495,539,627"
+                    }
+                },
+                {
+                    "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\DLauncher\\src\\main\\res\\values\\dimens.xml",
+                    "from": {
+                        "startLines": "5",
+                        "startColumns": "4",
+                        "startOffsets": "58",
+                        "endColumns": "44",
+                        "endOffsets": "98"
+                    },
+                    "to": {
+                        "startLines": "4",
+                        "startColumns": "4",
+                        "startOffsets": "402",
+                        "endColumns": "44",
+                        "endOffsets": "442"
+                    }
+                }
+            ]
+        }
+    ]
+}

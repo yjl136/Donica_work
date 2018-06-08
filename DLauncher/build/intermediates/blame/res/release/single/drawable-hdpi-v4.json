@@ -1,0 +1,66 @@
+[
+    {
+        "merged": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\DLauncher\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\android.png",
+        "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\DLauncher\\src\\main\\res\\drawable-hdpi\\android.png"
+    },
+    {
+        "merged": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\DLauncher\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\icon.png",
+        "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\DLauncher\\src\\main\\res\\drawable-hdpi\\icon.png"
+    },
+    {
+        "merged": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\DLauncher\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\k_icon.png",
+        "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\DLauncher\\src\\main\\res\\drawable-hdpi\\k_icon.png"
+    },
+    {
+        "merged": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\DLauncher\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\line_an.png",
+        "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\DLauncher\\src\\main\\res\\drawable-hdpi\\line_an.png"
+    },
+    {
+        "merged": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\DLauncher\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\shortcut_app_item_focus.png",
+        "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\DLauncher\\src\\main\\res\\drawable-hdpi\\shortcut_app_item_focus.png"
+    },
+    {
+        "merged": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\DLauncher\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\wallpager1.png",
+        "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\DLauncher\\src\\main\\res\\drawable-hdpi\\wallpager1.png"
+    },
+    {
+        "merged": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\DLauncher\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\colors.png",
+        "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\DLauncher\\src\\main\\res\\drawable-hdpi\\colors.png"
+    },
+    {
+        "merged": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\DLauncher\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\top_num_normal.png",
+        "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\DLauncher\\src\\main\\res\\drawable-hdpi\\top_num_normal.png"
+    },
+    {
+        "merged": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\DLauncher\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\appitemgrid_appitemicon.xml",
+        "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\DLauncher\\src\\main\\res\\drawable-hdpi\\appitemgrid_appitemicon.xml"
+    },
+    {
+        "merged": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\DLauncher\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\messages.png",
+        "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\DLauncher\\src\\main\\res\\drawable-hdpi\\messages.png"
+    },
+    {
+        "merged": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\DLauncher\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\grid_selector_background_pressed.9.png",
+        "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\DLauncher\\src\\main\\res\\drawable-hdpi\\grid_selector_background_pressed.9.png"
+    },
+    {
+        "merged": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\DLauncher\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\lin_hig.png",
+        "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\DLauncher\\src\\main\\res\\drawable-hdpi\\lin_hig.png"
+    },
+    {
+        "merged": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\DLauncher\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\top_num_focus.png",
+        "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\DLauncher\\src\\main\\res\\drawable-hdpi\\top_num_focus.png"
+    },
+    {
+        "merged": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\DLauncher\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\music.png",
+        "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\DLauncher\\src\\main\\res\\drawable-hdpi\\music.png"
+    },
+    {
+        "merged": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\DLauncher\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\shortcut_app_item.png",
+        "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\DLauncher\\src\\main\\res\\drawable-hdpi\\shortcut_app_item.png"
+    },
+    {
+        "merged": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\DLauncher\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4\\ico_kiora.png",
+        "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\DLauncher\\src\\main\\res\\drawable-hdpi\\ico_kiora.png"
+    }
+]

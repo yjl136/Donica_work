@@ -1,0 +1,228 @@
+android.support.v4.app.BackStackState
+android.support.v4.app.BackStackState: android.os.Parcelable$Creator CREATOR
+android.support.v4.app.Fragment$SavedState
+android.support.v4.app.Fragment$SavedState: android.os.Parcelable$Creator CREATOR
+android.support.v4.app.FragmentActivity
+android.support.v4.app.FragmentManagerState
+android.support.v4.app.FragmentManagerState: android.os.Parcelable$Creator CREATOR
+android.support.v4.app.FragmentState
+android.support.v4.app.FragmentState: android.os.Parcelable$Creator CREATOR
+android.support.v4.app.FragmentTabHost
+android.support.v4.app.FragmentTabHost: FragmentTabHost(android.content.Context,android.util.AttributeSet)
+android.support.v4.app.FragmentTabHost: void setOnTabChangedListener(android.widget.TabHost$OnTabChangeListener)
+android.support.v4.app.FragmentTabHost$SavedState
+android.support.v4.app.FragmentTabHost$SavedState: android.os.Parcelable$Creator CREATOR
+android.support.v4.app.NotificationCompatSideChannelService
+android.support.v4.content.FileProvider
+android.support.v4.content.ModernAsyncTask$Status: android.support.v4.content.ModernAsyncTask$Status[] values()
+android.support.v4.content.ModernAsyncTask$Status: android.support.v4.content.ModernAsyncTask$Status valueOf(java.lang.String)
+android.support.v4.content.WakefulBroadcastReceiver
+android.support.v4.media.MediaDescriptionCompat
+android.support.v4.media.MediaDescriptionCompat: android.os.Parcelable$Creator CREATOR
+android.support.v4.media.MediaMetadataCompat
+android.support.v4.media.MediaMetadataCompat: android.os.Parcelable$Creator CREATOR
+android.support.v4.media.RatingCompat
+android.support.v4.media.RatingCompat: android.os.Parcelable$Creator CREATOR
+android.support.v4.media.session.MediaSessionCompat$QueueItem
+android.support.v4.media.session.MediaSessionCompat$QueueItem: android.os.Parcelable$Creator CREATOR
+android.support.v4.media.session.MediaSessionCompat$ResultReceiverWrapper
+android.support.v4.media.session.MediaSessionCompat$ResultReceiverWrapper: android.os.Parcelable$Creator CREATOR
+android.support.v4.media.session.MediaSessionCompat$Token
+android.support.v4.media.session.MediaSessionCompat$Token: android.os.Parcelable$Creator CREATOR
+android.support.v4.media.session.ParcelableVolumeInfo
+android.support.v4.media.session.ParcelableVolumeInfo: android.os.Parcelable$Creator CREATOR
+android.support.v4.media.session.PlaybackStateCompat
+android.support.v4.media.session.PlaybackStateCompat: android.os.Parcelable$Creator CREATOR
+android.support.v4.media.session.PlaybackStateCompat$CustomAction
+android.support.v4.media.session.PlaybackStateCompat$CustomAction: android.os.Parcelable$Creator CREATOR
+android.support.v4.view.PagerTabStrip
+android.support.v4.view.PagerTabStrip: PagerTabStrip(android.content.Context,android.util.AttributeSet)
+android.support.v4.view.PagerTabStrip: void setTabIndicatorColor(int)
+android.support.v4.view.PagerTabStrip: void setTabIndicatorColorResource(int)
+android.support.v4.view.PagerTabStrip: int getTabIndicatorColor()
+android.support.v4.view.PagerTabStrip: void setTextSpacing(int)
+android.support.v4.view.PagerTabStrip: void setBackgroundDrawable(android.graphics.drawable.Drawable)
+android.support.v4.view.PagerTabStrip: void setBackgroundColor(int)
+android.support.v4.view.PagerTabStrip: void setBackgroundResource(int)
+android.support.v4.view.PagerTabStrip: void setDrawFullUnderline(boolean)
+android.support.v4.view.PagerTabStrip: boolean getDrawFullUnderline()
+android.support.v4.view.PagerTabStrip: int getMinHeight()
+android.support.v4.view.PagerTitleStrip
+android.support.v4.view.PagerTitleStrip: void setSingleLineAllCaps(android.widget.TextView)
+android.support.v4.view.PagerTitleStrip: PagerTitleStrip(android.content.Context,android.util.AttributeSet)
+android.support.v4.view.PagerTitleStrip: void setTextSpacing(int)
+android.support.v4.view.PagerTitleStrip: int getTextSpacing()
+android.support.v4.view.PagerTitleStrip: void setNonPrimaryAlpha(float)
+android.support.v4.view.PagerTitleStrip: void setTextColor(int)
+android.support.v4.view.PagerTitleStrip: void setGravity(int)
+android.support.v4.view.PagerTitleStrip: int getMinHeight()
+android.support.v4.view.ViewPager
+android.support.v4.view.ViewPager: ViewPager(android.content.Context,android.util.AttributeSet)
+android.support.v4.view.ViewPager: void setScrollState(int)
+android.support.v4.view.ViewPager: void setAdapter(android.support.v4.view.PagerAdapter)
+android.support.v4.view.ViewPager: android.support.v4.view.PagerAdapter getAdapter()
+android.support.v4.view.ViewPager: void setOnAdapterChangeListener(android.support.v4.view.ViewPager$OnAdapterChangeListener)
+android.support.v4.view.ViewPager: int getClientWidth()
+android.support.v4.view.ViewPager: void setCurrentItem(int)
+android.support.v4.view.ViewPager: int getCurrentItem()
+android.support.v4.view.ViewPager: void setOnPageChangeListener(android.support.v4.view.ViewPager$OnPageChangeListener)
+android.support.v4.view.ViewPager: void setChildrenDrawingOrderEnabledCompat(boolean)
+android.support.v4.view.ViewPager: int getOffscreenPageLimit()
+android.support.v4.view.ViewPager: void setOffscreenPageLimit(int)
+android.support.v4.view.ViewPager: void setPageMargin(int)
+android.support.v4.view.ViewPager: int getPageMargin()
+android.support.v4.view.ViewPager: void setPageMarginDrawable(android.graphics.drawable.Drawable)
+android.support.v4.view.ViewPager: void setPageMarginDrawable(int)
+android.support.v4.view.ViewPager: void setScrollingCacheEnabled(boolean)
+android.support.v4.view.ViewPager$LayoutParams
+android.support.v4.view.ViewPager$LayoutParams: ViewPager$LayoutParams(android.content.Context,android.util.AttributeSet)
+android.support.v4.view.ViewPager$SavedState
+android.support.v4.view.ViewPager$SavedState: android.os.Parcelable$Creator CREATOR
+android.support.v4.widget.ContentLoadingProgressBar
+android.support.v4.widget.ContentLoadingProgressBar: ContentLoadingProgressBar(android.content.Context,android.util.AttributeSet)
+android.support.v4.widget.DrawerLayout
+android.support.v4.widget.DrawerLayout: DrawerLayout(android.content.Context,android.util.AttributeSet)
+android.support.v4.widget.DrawerLayout: DrawerLayout(android.content.Context,android.util.AttributeSet,int)
+android.support.v4.widget.DrawerLayout: void setScrimColor(int)
+android.support.v4.widget.DrawerLayout: void setDrawerListener(android.support.v4.widget.DrawerLayout$DrawerListener)
+android.support.v4.widget.DrawerLayout: void setDrawerLockMode(int)
+android.support.v4.widget.DrawerLayout: void setStatusBarBackground(android.graphics.drawable.Drawable)
+android.support.v4.widget.DrawerLayout: android.graphics.drawable.Drawable getStatusBarBackgroundDrawable()
+android.support.v4.widget.DrawerLayout: void setStatusBarBackground(int)
+android.support.v4.widget.DrawerLayout: void setStatusBarBackgroundColor(int)
+android.support.v4.widget.DrawerLayout$LayoutParams
+android.support.v4.widget.DrawerLayout$LayoutParams: DrawerLayout$LayoutParams(android.content.Context,android.util.AttributeSet)
+android.support.v4.widget.DrawerLayout$SavedState
+android.support.v4.widget.DrawerLayout$SavedState: android.os.Parcelable$Creator CREATOR
+android.support.v4.widget.SlidingPaneLayout
+android.support.v4.widget.SlidingPaneLayout: SlidingPaneLayout(android.content.Context,android.util.AttributeSet)
+android.support.v4.widget.SlidingPaneLayout: SlidingPaneLayout(android.content.Context,android.util.AttributeSet,int)
+android.support.v4.widget.SlidingPaneLayout: void setParallaxDistance(int)
+android.support.v4.widget.SlidingPaneLayout: int getParallaxDistance()
+android.support.v4.widget.SlidingPaneLayout: void setSliderFadeColor(int)
+android.support.v4.widget.SlidingPaneLayout: int getSliderFadeColor()
+android.support.v4.widget.SlidingPaneLayout: void setCoveredFadeColor(int)
+android.support.v4.widget.SlidingPaneLayout: int getCoveredFadeColor()
+android.support.v4.widget.SlidingPaneLayout: void setPanelSlideListener(android.support.v4.widget.SlidingPaneLayout$PanelSlideListener)
+android.support.v4.widget.SlidingPaneLayout: void setShadowDrawable(android.graphics.drawable.Drawable)
+android.support.v4.widget.SlidingPaneLayout: void setShadowDrawableLeft(android.graphics.drawable.Drawable)
+android.support.v4.widget.SlidingPaneLayout: void setShadowDrawableRight(android.graphics.drawable.Drawable)
+android.support.v4.widget.SlidingPaneLayout: void setShadowResource(int)
+android.support.v4.widget.SlidingPaneLayout: void setShadowResourceLeft(int)
+android.support.v4.widget.SlidingPaneLayout: void setShadowResourceRight(int)
+android.support.v4.widget.SlidingPaneLayout$LayoutParams
+android.support.v4.widget.SlidingPaneLayout$LayoutParams: SlidingPaneLayout$LayoutParams(android.content.Context,android.util.AttributeSet)
+android.support.v4.widget.SlidingPaneLayout$SavedState
+android.support.v4.widget.SlidingPaneLayout$SavedState: android.os.Parcelable$Creator CREATOR
+android.support.v4.widget.SwipeRefreshLayout
+android.support.v4.widget.SwipeRefreshLayout: void setColorViewAlpha(int)
+android.support.v4.widget.SwipeRefreshLayout: void setSize(int)
+android.support.v4.widget.SwipeRefreshLayout: SwipeRefreshLayout(android.content.Context,android.util.AttributeSet)
+android.support.v4.widget.SwipeRefreshLayout: void setOnRefreshListener(android.support.v4.widget.SwipeRefreshLayout$OnRefreshListener)
+android.support.v4.widget.SwipeRefreshLayout: void setRefreshing(boolean)
+android.support.v4.widget.SwipeRefreshLayout: void setAnimationProgress(float)
+android.support.v4.widget.SwipeRefreshLayout: void setProgressBackgroundColor(int)
+android.support.v4.widget.SwipeRefreshLayout: void setProgressBackgroundColorSchemeResource(int)
+android.support.v4.widget.SwipeRefreshLayout: void setProgressBackgroundColorSchemeColor(int)
+android.support.v4.widget.SwipeRefreshLayout: void setColorScheme(int[])
+android.support.v4.widget.SwipeRefreshLayout: void setColorSchemeResources(int[])
+android.support.v4.widget.SwipeRefreshLayout: void setColorSchemeColors(int[])
+android.support.v4.widget.SwipeRefreshLayout: void setDistanceToTriggerSync(int)
+android.support.v4.widget.SwipeRefreshLayout: int getProgressCircleDiameter()
+cn.donica.slcd.launcher.AppsContentProvider
+cn.donica.slcd.launcher.AppsContentProvider: AppsContentProvider()
+cn.donica.slcd.launcher.BaseApplication
+cn.donica.slcd.launcher.BaseApplication: BaseApplication()
+cn.donica.slcd.launcher.InstallOrUninstallReceiver
+cn.donica.slcd.launcher.InstallOrUninstallReceiver: InstallOrUninstallReceiver()
+cn.donica.slcd.launcher.MainActivity
+cn.donica.slcd.launcher.MainActivity: MainActivity()
+cn.donica.slcd.launcher.R$attr: int defaultColor
+cn.donica.slcd.launcher.R$attr: int defaultSize
+cn.donica.slcd.launcher.R$attr: int indicator_gap
+cn.donica.slcd.launcher.R$attr: int selectedColor
+cn.donica.slcd.launcher.R$attr: int selectedSize
+cn.donica.slcd.launcher.R$dimen: int app_icon_size
+cn.donica.slcd.launcher.R$drawable: int android
+cn.donica.slcd.launcher.R$drawable: int appitemgrid_appitemicon
+cn.donica.slcd.launcher.R$drawable: int background
+cn.donica.slcd.launcher.R$drawable: int colors
+cn.donica.slcd.launcher.R$drawable: int grid_selector_background_pressed
+cn.donica.slcd.launcher.R$drawable: int ico_kiora
+cn.donica.slcd.launcher.R$drawable: int icon
+cn.donica.slcd.launcher.R$drawable: int k_icon
+cn.donica.slcd.launcher.R$drawable: int lin_hig
+cn.donica.slcd.launcher.R$drawable: int line_an
+cn.donica.slcd.launcher.R$drawable: int messages
+cn.donica.slcd.launcher.R$drawable: int music
+cn.donica.slcd.launcher.R$drawable: int page_indicator
+cn.donica.slcd.launcher.R$drawable: int page_indicator_focused
+cn.donica.slcd.launcher.R$drawable: int shortcut_app_item
+cn.donica.slcd.launcher.R$drawable: int shortcut_app_item_focus
+cn.donica.slcd.launcher.R$drawable: int top_num_focus
+cn.donica.slcd.launcher.R$drawable: int top_num_normal
+cn.donica.slcd.launcher.R$drawable: int wallpager1
+cn.donica.slcd.launcher.R$drawable: int you
+cn.donica.slcd.launcher.R$drawable: int zuo
+cn.donica.slcd.launcher.R$id: int ScrollLayoutTest
+cn.donica.slcd.launcher.R$id: int appitemframe
+cn.donica.slcd.launcher.R$id: int appitemiconfg
+cn.donica.slcd.launcher.R$id: int btn_appicon
+cn.donica.slcd.launcher.R$id: int dot
+cn.donica.slcd.launcher.R$id: int grid_layout
+cn.donica.slcd.launcher.R$id: int itemText
+cn.donica.slcd.launcher.R$id: int ivAppIcon
+cn.donica.slcd.launcher.R$id: int linearLayout
+cn.donica.slcd.launcher.R$id: int myView
+cn.donica.slcd.launcher.R$id: int pageControl
+cn.donica.slcd.launcher.R$id: int relative
+cn.donica.slcd.launcher.R$id: int seatTv
+cn.donica.slcd.launcher.R$id: int tvAppName
+cn.donica.slcd.launcher.R$id: int tv_name
+cn.donica.slcd.launcher.R$layout: int app_item
+cn.donica.slcd.launcher.R$layout: int grid_row_layout
+cn.donica.slcd.launcher.R$layout: int layout_test
+cn.donica.slcd.launcher.R$layout: int main
+cn.donica.slcd.launcher.R$layout: int page_text
+cn.donica.slcd.launcher.R$string: int app_name
+cn.donica.slcd.launcher.R$string: int seat_number
+cn.donica.slcd.launcher.R$string: int seat_number_is_not_configured
+cn.donica.slcd.launcher.R$styleable: int[] DotView
+cn.donica.slcd.launcher.R$styleable: int DotView_defaultColor
+cn.donica.slcd.launcher.R$styleable: int DotView_defaultSize
+cn.donica.slcd.launcher.R$styleable: int DotView_selectedColor
+cn.donica.slcd.launcher.R$styleable: int DotView_selectedSize
+cn.donica.slcd.launcher.R$styleable: int[] PageIndicator
+cn.donica.slcd.launcher.R$styleable: int PageIndicator_indicator_gap
+cn.donica.slcd.launcher.TestActivity
+cn.donica.slcd.launcher.ui.DotView
+cn.donica.slcd.launcher.ui.DotView: DotView(android.content.Context)
+cn.donica.slcd.launcher.ui.DotView: DotView(android.content.Context,android.util.AttributeSet)
+cn.donica.slcd.launcher.ui.DotView: DotView(android.content.Context,android.util.AttributeSet,int)
+cn.donica.slcd.launcher.ui.MagicIndicator
+cn.donica.slcd.launcher.ui.MagicIndicator: MagicIndicator(android.content.Context,android.util.AttributeSet)
+cn.donica.slcd.launcher.ui.MagicIndicator: cn.donica.slcd.launcher.ui.IPagerNavigator getNavigator()
+cn.donica.slcd.launcher.ui.MagicIndicator: void setNavigator(cn.donica.slcd.launcher.ui.IPagerNavigator)
+cn.donica.slcd.launcher.ui.PageControlView
+cn.donica.slcd.launcher.ui.PageControlView: PageControlView(android.content.Context)
+cn.donica.slcd.launcher.ui.PageControlView: PageControlView(android.content.Context,android.util.AttributeSet)
+cn.donica.slcd.launcher.ui.PageIndicator
+cn.donica.slcd.launcher.ui.PageIndicator: PageIndicator(android.content.Context,android.util.AttributeSet)
+cn.donica.slcd.launcher.ui.PageIndicator: PageIndicator(android.content.Context,android.util.AttributeSet,int)
+cn.donica.slcd.launcher.ui.ScaleCircleNavigator: void setMinRadius(int)
+cn.donica.slcd.launcher.ui.ScaleCircleNavigator: void setMaxRadius(int)
+cn.donica.slcd.launcher.ui.ScaleCircleNavigator: void setNormalCircleColor(int)
+cn.donica.slcd.launcher.ui.ScaleCircleNavigator: void setSelectedCircleColor(int)
+cn.donica.slcd.launcher.ui.ScaleCircleNavigator: void setCircleSpacing(int)
+cn.donica.slcd.launcher.ui.ScaleCircleNavigator: void setStartInterpolator(android.view.animation.Interpolator)
+cn.donica.slcd.launcher.ui.ScaleCircleNavigator: void setCircleCount(int)
+cn.donica.slcd.launcher.ui.ScaleCircleNavigator: void setTouchable(boolean)
+cn.donica.slcd.launcher.ui.ScaleCircleNavigator: void setFollowTouch(boolean)
+cn.donica.slcd.launcher.ui.ScaleCircleNavigator: void setSkimOver(boolean)
+cn.donica.slcd.launcher.ui.ScaleCircleNavigator: void setCircleClickListener(cn.donica.slcd.launcher.ui.ScaleCircleNavigator$OnCircleClickListener)
+cn.donica.slcd.launcher.ui.ScrollLayout
+cn.donica.slcd.launcher.ui.ScrollLayout: int getCurrentScreenIndex()
+cn.donica.slcd.launcher.ui.ScrollLayout: ScrollLayout(android.content.Context,android.util.AttributeSet)
+cn.donica.slcd.launcher.ui.ScrollLayout: ScrollLayout(android.content.Context,android.util.AttributeSet,int)
+cn.donica.slcd.launcher.ui.ScrollLayout: int getCurScreen()
+cn.donica.slcd.launcher.ui.ScrollLayout: void setOnScreenChangeListener(cn.donica.slcd.launcher.ui.ScrollLayout$OnScreenChangeListener)

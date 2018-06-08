@@ -1,0 +1,34 @@
+{
+    "logs": [
+        {
+            "outputFile": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\DLauncher\\build\\intermediates\\res\\merged\\release\\values-zh\\values-zh.xml",
+            "map": [
+                {
+                    "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\DLauncher\\src\\main\\res\\values-zh\\strings.xml",
+                    "from": {
+                        "startLines": "2,3,4",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,98,143",
+                        "endColumns": "42,44,65",
+                        "endOffsets": "93,138,204"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\DLauncher\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-zh\\values-zh.xml",
+            "map": [
+                {
+                    "source": "E:\\WorkSpace\\Android_Studio\\Android\\Donica\\DLauncher\\src\\main\\res\\values-zh\\strings.xml",
+                    "from": {
+                        "startLines": "2,3,4",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,98,143",
+                        "endColumns": "42,44,65",
+                        "endOffsets": "93,138,204"
+                    }
+                }
+            ]
+        }
+    ]
+}
