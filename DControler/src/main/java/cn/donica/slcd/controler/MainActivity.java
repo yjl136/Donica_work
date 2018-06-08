@@ -8,7 +8,6 @@ import android.bluetooth.BluetoothGattCharacteristic;
 import android.bluetooth.BluetoothGattDescriptor;
 import android.bluetooth.BluetoothGattService;
 import android.bluetooth.BluetoothInputDevice;
-import android.bluetooth.BluetoothProfile;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.ParcelUuid;
@@ -19,9 +18,6 @@ import android.widget.TextView;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-
-import static android.R.attr.start;
-import static java.security.CryptoPrimitive.MAC;
 
 public class MainActivity extends AppCompatActivity {
     private final String MAC_EXTRA = "mac_extra";
@@ -54,23 +50,13 @@ public class MainActivity extends AppCompatActivity {
         connectTv.setText("connecting");
         initAdapter();
         BluetoothDevice device = adapter.getRemoteDevice(mac);
-        //adapter.getProfileProxy(this,new HidListener(),INPUT_DEVICE);
         gatt = device.connectGatt(this, false, new BluetoothGattCallback() {
             @Override
             public void onConnectionStateChange(BluetoothGatt gatt, int status, int newState) {
                 super.onConnectionStateChange(gatt, status, newState);
-            /*    if(newState==BluetoothProfile.STATE_DISCONNECTED){
-                    connectTv.setText("disconnected");
-                }else if(newState==BluetoothProfile.STATE_CONNECTED){
-                    connectTv.setText("connected");
-                }else {
-                    connectTv.setText(""+newState);
-                }*/
                 Log.i(TAG, "onConnectionStateChange" + " status:" + status + "  newstate:" + newState + "  newstate:" + newState);
                 gatt.discoverServices();
-
             }
-
             @Override
             public void onServicesDiscovered(BluetoothGatt gatt, int status) {
                 super.onServicesDiscovered(gatt, status);
@@ -89,7 +75,6 @@ public class MainActivity extends AppCompatActivity {
                         Log.i(TAG, "cuuid:" + cuuid);
                         List<BluetoothGattDescriptor> descriptors = characteristic.getDescriptors();
                         for (BluetoothGattDescriptor descriptor : descriptors) {
-
                             String duuid = descriptor.getUuid().toString();
                             String desc = descriptor.toString();
                             Log.i(TAG, "duuid:" + duuid + " desc:" + desc);
@@ -97,20 +82,19 @@ public class MainActivity extends AppCompatActivity {
                     }
                     Log.i(TAG, "---------------------------------" + "end" + "----------------------------------");
                 }
-
             }
 
             @Override
             public void onCharacteristicRead(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic, int status) {
                 super.onCharacteristicRead(gatt, characteristic, status);
                 Log.i(TAG, "onCharacteristicRead values:" + new String(characteristic.getValue()));
-
             }
 
             @Override
             public void onCharacteristicWrite(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic, int status) {
                 super.onCharacteristicWrite(gatt, characteristic, status);
                 Log.i(TAG, "onCharacteristicWrite values:" + new String(characteristic.getValue()));
+
             }
 
             @Override
@@ -123,7 +107,6 @@ public class MainActivity extends AppCompatActivity {
             public void onDescriptorRead(BluetoothGatt gatt, BluetoothGattDescriptor descriptor, int status) {
                 super.onDescriptorRead(gatt, descriptor, status);
                 String uuid = descriptor.getUuid().toString();
-
                 Log.i(TAG, "onDescriptorRead  uuid:" + uuid);
             }
 
@@ -181,36 +164,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public class HidListener implements BluetoothProfile.ServiceListener {
-        @Override
-        public void onServiceConnected(int profile, BluetoothProfile proxy) {
-            try {
-                hid = (BluetoothInputDevice) proxy;
-                BluetoothDevice device = adapter.getRemoteDevice(mac);
-                boolean connect = hid.connect(device);
-                Log.i(TAG, "connect:" + connect);
-                /* Method method1 = hid.getClass().getMethod("setPriority", BluetoothDevice.class, int.class);
-                boolean setPriority = (boolean) method1.invoke(hid, device, 100);
-                Method method = hid.getClass().getMethod("connect", BluetoothDevice.class);
-                boolean isConnect = (boolean) method.invoke(hid, device);
-                Log.i(TAG, "connect:" + isConnect + "  priority:" + setPriority);
-                boolean send = hid.sendData(device, "adb shell input keyevent 4");
-                Log.i(TAG, "send:" + send);
-                int state = hid.getConnectionState(device);
-                Log.i(TAG, "state:" + state);*/
-             /*   List<BluetoothDevice> devices =hid.getConnectedDevices();
-                for(BluetoothDevice device1 : devices){
-                    Log.i(TAG,"name:"+device1.getName()+"  mac:"+device1.getAddress());
-                }*/
-            } catch (Exception e) {
 
-            }
-        }
-
-        @Override
-        public void onServiceDisconnected(int profile) {
-            hid = null;
-        }
-    }
 
 }

@@ -18,7 +18,6 @@ import android.os.Bundle;
 import android.os.ParcelUuid;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-
 import java.util.List;
 import java.util.UUID;
 
@@ -58,63 +57,50 @@ public class MainActivity extends AppCompatActivity {
                 super.onConnectionStateChange(device, status, newState);
                 Log.i(TAG, "onConnectionStateChange" + " name:" + device.getName() + " newstate:" + newState);
             }
-
-
             @Override
             public void onServiceAdded(int status, BluetoothGattService service) {
                 super.onServiceAdded(status, service);
                 Log.i(TAG, "onServiceAdded  status:" + status);
             }
-
-
             @Override
             public void onCharacteristicReadRequest(BluetoothDevice device, int requestId, int offset, BluetoothGattCharacteristic characteristic) {
                 super.onCharacteristicReadRequest(device, requestId, offset, characteristic);
                 boolean send = server.sendResponse(device, requestId, BluetoothGatt.GATT_SUCCESS, offset, new String("test").getBytes());
                 Log.i(TAG, "onCharacteristicReadRequest send:" + send + " offset:" + offset + "  ");
-
             }
-
-
             @Override
             public void onCharacteristicWriteRequest(BluetoothDevice device, int requestId, BluetoothGattCharacteristic characteristic, boolean preparedWrite, boolean responseNeeded, int offset, byte[] value) {
                 super.onCharacteristicWriteRequest(device, requestId, characteristic, preparedWrite, responseNeeded, offset, value);
                 Log.i(TAG, "onCharacteristicWriteRequest");
             }
-
             @Override
             public void onDescriptorReadRequest(BluetoothDevice device, int requestId, int offset, BluetoothGattDescriptor descriptor) {
                 super.onDescriptorReadRequest(device, requestId, offset, descriptor);
                 Log.i(TAG, "onDescriptorReadRequest");
+
             }
-
-
             @Override
             public void onDescriptorWriteRequest(BluetoothDevice device, int requestId, BluetoothGattDescriptor descriptor, boolean preparedWrite, boolean responseNeeded, int offset, byte[] value) {
                 super.onDescriptorWriteRequest(device, requestId, descriptor, preparedWrite, responseNeeded, offset, value);
                 Log.i(TAG, "onDescriptorWriteRequest");
             }
-
-
             @Override
             public void onExecuteWrite(BluetoothDevice device, int requestId, boolean execute) {
                 super.onExecuteWrite(device, requestId, execute);
                 Log.i(TAG, "onExecuteWrite");
             }
-
-
             @Override
             public void onNotificationSent(BluetoothDevice device, int status) {
                 super.onNotificationSent(device, status);
                 Log.i(TAG, "onNotificationSent");
             }
-
             @Override
             public void onMtuChanged(BluetoothDevice device, int mtu) {
                 super.onMtuChanged(device, mtu);
                 Log.i(TAG, "onMtuChanged");
             }
         });
+
         addService();
         printService();
     }

@@ -1,1 +1,1 @@
-include ':app', ':advFunTest', ':DLauncher', ':Settings', ':DMonitor', ':DShell_lib', ':DBootCount', ':DControler', ':DServer', ':Test'
+include ':app', ':DLauncher', ':Settings', ':DMonitor', ':DShell_lib', ':DBootCount', ':DControler', ':DServer', ':Test', ':Server', ':DClicent', ':libzxing'
